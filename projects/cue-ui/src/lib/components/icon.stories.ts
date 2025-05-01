@@ -4,6 +4,7 @@ import { IconComponent, supportedIcons } from './icon.component';
 const meta: Meta<IconComponent> = {
   title: 'Icon',
   component: IconComponent,
+  tags: ['autodocs'],
   argTypes: {
     icon: {
       control: {

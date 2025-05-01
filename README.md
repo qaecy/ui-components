@@ -1,59 +1,29 @@
-# UiComponents
+# UI Components
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+This library contains all Cue UI components.
 
-## Development server
+## Backward compatability
+Create separate branches for major Angular versions and use npm tags (e.g., v19, v20).
 
-To start a local development server, run:
+## Storybook
+Serve: `ng run cue-ui:storybook`
+Build: `npm run build-storybook`
 
-```bash
-ng serve
-```
+## Color scheme
+Color scheme is generated with `ng generate @angular/material:theme-color`
+- primary: #2859E1
+- secondary: #121C2B
+- tertiary: #E2F552
+- neutral: #1948CA
+- error: #FC2626
+- Do you want to generate high contrast value override mixins? No
+- Path: projects/cue-ui/src/styles
+- Scss? Yes
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Each component might override colors but it will always use the `--cue` prefixed variables found in `styles.scss`
 
-## Code scaffolding
+## Dark mode
+Dark mode is applied by setting the class `dark` on the body. In order to get this to work with Storybook which uses an iframe for the current story a hack had to be implemented in `.storybook/preview.ts`
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Roadmap
+- Build all components used in Figma [Wireframes 1](https://www.figma.com/design/h5fVJbtTez0KZyVrj5uw2K/User-Interface?node-id=102-2085&m=dev) and [Wireframes 2](https://www.figma.com/design/qPs1KmEVp6guLV8rfTc9YJ/250410_CUE_Interface?node-id=1-2219&t=7pdDck1Eawi4U0up-0)

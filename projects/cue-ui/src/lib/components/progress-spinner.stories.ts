@@ -4,6 +4,7 @@ import { ProgressSpinnerComponent } from './progress-spinner.component';
 const meta: Meta<ProgressSpinnerComponent> = {
   title: 'Progress spinner',
   component: ProgressSpinnerComponent,
+  tags: ['autodocs'],
   argTypes: {
   },
 };

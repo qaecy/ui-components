@@ -4,6 +4,7 @@ import { CardComponent } from './card.component';
 const meta: Meta<CardComponent> = {
   title: 'Card',
   component: CardComponent,
+  tags: ['autodocs'],
   argTypes: {
     color: {
       control: {

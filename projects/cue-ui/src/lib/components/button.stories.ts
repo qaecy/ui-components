@@ -5,6 +5,7 @@ import { supportedIcons } from './icon.component';
 const meta: Meta<ButtonComponent> = {
   title: 'Button',
   component: ButtonComponent,
+  tags: ['autodocs'],
   argTypes: {
     appearance: {
       control: {
@@ -66,6 +67,18 @@ export const Filled: Story = {
     appearance: 'filled',
     color: "primary",
     loading: false,
+    disabled: false,
+    failed: false,
+    icon: "",
+  },
+};
+
+export const AccentLoading: Story = {
+  render,
+  args: {
+    appearance: 'filled',
+    color: "accent",
+    loading: true,
     disabled: false,
     failed: false,
     icon: "",
