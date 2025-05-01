@@ -1,0 +1,49 @@
+@use "@angular/material" as mat;
+@use "./light-theme" as theme;
+@use "./dark-theme" as dark-theme;
+@import url(https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp);
+
+:root{
+    --cue-primary: #2859E1;
+    --cue-accent: #E2F552;
+    --cue-secondary: #121C2B;
+    --cue-info: #1948CA;
+    --cue-error: #FC2626;
+    --cue-success: #4CAF50;
+    --cue-warning: #FFC107;
+    --cue-extra-light-gray: #F5F6F9;
+}
+
+@mixin apply-dark-mode {
+  color-scheme: dark;
+}
+
+body {
+  background-color: light-dark(var(--cue-extra-light-gray), var(--cue-secondary));
+  color: light-dark(var(--cue-secondary), var(--cue-extra-light-gray));
+
+  @include mat.theme(
+    (
+      color: theme.$primary-palette,
+      typography: Poppins,
+      density: -2,
+    )
+  );
+}
+
+body {
+  margin: 0;
+
+  &.dark {
+    @include apply-dark-mode;
+  }
+}
+
+:root {
+  @include mat.card-overrides(
+    (
+      elevated-container-shape: 30px,
+      outlined-container-shape: 30px,
+    )
+  );
+}

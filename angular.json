@@ -3,5 +3,87 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "cue-ui": {
+      "projectType": "library",
+      "root": "projects/cue-ui",
+      "sourceRoot": "projects/cue-ui/src",
+      "prefix": "cue",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/cue-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/cue-ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/cue-ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/cue-ui/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/cue-ui/.storybook",
+            "browserTarget": "cue-ui:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/cue-ui"
+            ],
+            "port": 6006,
+            "styles": [
+              "@fontsource/poppins/300.css",
+              "@fontsource/poppins/400.css",
+              "@fontsource/poppins/500.css",
+              "@fontsource/poppins/700.css",
+              "@fontsource/material-icons",
+              "projects/cue-ui/src/styles.scss"
+            ]
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/cue-ui/.storybook",
+            "browserTarget": "cue-ui:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/cue-ui"
+            ],
+            "styles": [
+              "@fontsource/poppins/300.css",
+              "@fontsource/poppins/400.css",
+              "@fontsource/poppins/500.css",
+              "@fontsource/poppins/700.css",
+              "@fontsource/material-icons",
+              "projects/cue-ui/src/styles.scss"
+            ],
+            "outputDir": "storybook-static"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "8700b855-8f45-4dcb-8ab2-23d25c0e8c38"
   }
 }
