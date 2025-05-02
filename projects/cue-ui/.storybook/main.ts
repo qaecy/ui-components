@@ -2,7 +2,7 @@ import type { StorybookConfig } from '@storybook/angular';
 
 const config: StorybookConfig = {
   "stories": [
-    "../src/lib/components/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+    "../src/lib/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   "addons": [
     "@storybook/addon-essentials",

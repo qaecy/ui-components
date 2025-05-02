@@ -1,25 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, effect, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { ProgressSpinnerComponent } from './progress-spinner.component';
 import { IconComponent } from './icon.component';
 import { TooltipDirective } from '../directives/tooltip.directive';
-
-export const supportedColors = ["accent", "primary", "extra-light-gray"];
-export type ButtonColor = (typeof supportedColors)[number];
+import { ButtonColor, Color, contrastColors, TooltipColor } from '../shared/colors';
 
 @Component({
   selector: 'cue-button',
   standalone: true,
   imports: [MatButtonModule, CommonModule, ProgressSpinnerComponent, IconComponent, TooltipDirective],
   template: ` @switch (appearance()) { @case ("stroked") {
-    <button mat-stroked-button [disabled]="disabled()" [style.border-color]="colorVar()" [style.color]="textColor()">
+    <button mat-stroked-button [disabled]="disabled()" 
+      [style.border-color]="colorVar()" [style.color]="textColor()"
+      [cueTooltip]="tooltip()" tooltipSize="small" [tooltipColor]="tooltipColor()" [tooltipPlacement]="'top'">
       <ng-container [ngTemplateOutlet]="btnContent"></ng-container>
     </button>
     } @case ("filled") {
     <button mat-raised-button [disabled]="disabled()" 
-      [style.background-color]="colorVar()" 
-      [style.color]="textColor()" [cueTooltip]="tooltip()">
+      [style.background-color]="colorVar()" [style.color]="textColor()" 
+      [cueTooltip]="tooltip()" tooltipSize="small" [tooltipColor]="tooltipColor()" [tooltipPlacement]="'top'">
       <ng-container [ngTemplateOutlet]="btnContent"></ng-container>
     </button>
     } }
@@ -51,8 +51,8 @@ export class ButtonComponent {
   loading = input(false);
   disabled = input(false);
   failed = input(false);
-  icon = input<string|undefined>("home");
-  tooltip = input<string>("Hello")
+  icon = input<string|undefined>(undefined);
+  tooltip = input<string>("")
 
   colorVar = computed(() => {
     if(this.disabled()) return "none";
@@ -63,9 +63,11 @@ export class ButtonComponent {
     if(this.failed()) return `var(--cue-error)`;
     if(this.disabled()) return `none`;
     if(this.appearance() === "stroked") return this.colorVar();
-    if(bgColor === "accent") return `var(--cue-secondary)`;
-    if(bgColor === "extra-light-gray") return `var(--cue-secondary)`;
-    if(bgColor === "primary") return `var(--cue-extra-light-gray)`
-    return bgColor;
+    const contrast = contrastColors.get(bgColor as Color);
+    return `var(--cue-${contrast})`;
+  });
+  tooltipColor = computed<TooltipColor>(() => {
+    if(this.failed()) return "error" as TooltipColor;
+    return this.color() as TooltipColor;
   });
 }

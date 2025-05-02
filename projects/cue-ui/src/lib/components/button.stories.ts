@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { ButtonComponent, supportedColors } from './button.component';
+import { ButtonComponent } from './button.component';
 import { supportedIcons } from './icon.component';
+import { buttonColors } from '../shared/colors';
 
 const meta: Meta<ButtonComponent> = {
   title: 'Button',
@@ -17,7 +18,7 @@ const meta: Meta<ButtonComponent> = {
       control: {
         type: 'select',
       },
-      options: supportedColors,
+      options: buttonColors,
     },
     loading: {
       control: {

@@ -8,7 +8,7 @@ import { ResizedDirective, ResizedEvent } from '../directives/resized.directive'
   styleUrls: ['./nav-bar.component.scss'],
   host: {
     '[style.--nav-width]': `isMobile() ? '100%' : resultingSidebarWidth()`,
-    '[style.--bounce-duration]': `showBounceAnimation() ? '2s' : '0s'`,
+    '[style.--bounce-duration]': `showBounceAnimation() && !isOpen ? '2s' : '0s'`,
     '[style.--nav-toggle-left]': `isMobile() ? 'calc(100% - 16px)' : '200px'`,
     '[class.nav-open]': 'isOpen',
   },

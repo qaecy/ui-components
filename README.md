@@ -8,7 +8,7 @@ This library contains all Cue UI components.
 Create separate branches for major Angular versions and use npm tags (e.g., v19, v20).
 
 ## Storybook
-Serve: `ng run cue-ui:storybook`
+Serve: `npm run storybook`
 Build: `npm run build-storybook`
 
 ## Color scheme

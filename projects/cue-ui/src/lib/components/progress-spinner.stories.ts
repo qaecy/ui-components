@@ -24,7 +24,7 @@ export const Default: Story = {
 export const Inline: Story = {
   render: (args) => ({
     props: args,
-    template: `<p>Hello <cue-progress-spinner [inline]="${args.inline}"></cue-progress-spinner></p>`,
+    template: `<p style="font-family: var(--cue-font-family)">Hello <cue-progress-spinner [inline]="${args.inline}" colorInner="${args.colorInner}" colorOuter="${args.colorOuter}"></cue-progress-spinner></p>`,
   }),
   args: {
     inline: true,
