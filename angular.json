@@ -53,7 +53,10 @@
               "@fontsource/poppins/500.css",
               "@fontsource/poppins/700.css",
               "@fontsource/material-icons",
-              "projects/cue-ui/src/styles.scss"
+              "projects/cue-ui/src/styles.scss",
+              "tippy.js/dist/tippy.css",
+              "tippy.js/animations/shift-away.css",
+              "tippy.js/themes/light.css"
             ]
           }
         },

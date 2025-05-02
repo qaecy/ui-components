@@ -1,6 +1,6 @@
 @use "@angular/material" as mat;
 @use "./light-theme" as theme;
-@use "./dark-theme" as dark-theme;
+// @use "./tippy";
 @import url(https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp);
 
 :root{
@@ -12,6 +12,7 @@
     --cue-success: #4CAF50;
     --cue-warning: #FFC107;
     --cue-extra-light-gray: #F5F6F9;
+    --cue-font-family: Poppins;
 }
 
 @mixin apply-dark-mode {
@@ -25,7 +26,7 @@ body {
   @include mat.theme(
     (
       color: theme.$primary-palette,
-      typography: Poppins,
+      typography: var(--cue-font-family),
       density: -2,
     )
   );
@@ -46,4 +47,13 @@ body {
       outlined-container-shape: 30px,
     )
   );
+}
+
+.tippy-box[data-theme~="cue"] {
+  background-color: light-dark("blue", "red");
+  color: light-dark("red", "blue");
+  font-family: Poppins;
+}
+.tippy-box[data-theme~="cue"] > .tippy-arrow {
+  background-color: light-dark("blue", "red");
 }

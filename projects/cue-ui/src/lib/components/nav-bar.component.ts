@@ -1,0 +1,82 @@
+import { Component, effect, input, linkedSignal, signal } from '@angular/core';
+import { ResizedDirective, ResizedEvent } from '../directives/resized.directive';
+
+@Component({
+  selector: 'cue-nav-bar',
+  imports: [ResizedDirective],
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.scss'],
+  host: {
+    '[style.--nav-width]': `isMobile() ? '100%' : resultingSidebarWidth()`,
+    '[style.--bounce-duration]': `showBounceAnimation() ? '2s' : '0s'`,
+    '[style.--nav-toggle-left]': `isMobile() ? 'calc(100% - 16px)' : '200px'`,
+    '[class.nav-open]': 'isOpen',
+  },
+})
+export class NavBarComponent {
+  navWidth = input<string>('200px');
+  mobileBreakpoint = input<number>(576); // small
+  keepOpenBreakpoint = input<number>(992); // lg
+  showSideNav = input<boolean>(true);
+  parentBorderRadius = input<string>('0px');
+  showBounceAnimation = input(true);
+
+  resultingSidebarWidth = linkedSignal(() => {
+    const sideBarHidden = !this.showSideNav();
+    console.log(sideBarHidden);
+    return sideBarHidden ? '0' : this.navWidth();
+  });
+
+  isOpen = false;
+  hideDragHandle = signal(false);
+  isMobile = signal(false);
+  parentWidth = signal(500);
+  contentMargin = '0';
+  private _dragStartX = 0;
+  private _isDragging = false;
+
+  onBreakpointChange = effect(() => {
+    this.mobileBreakpoint();
+    this.keepOpenBreakpoint();
+    this._updateResponsiveness();
+  });
+
+  toggle() {
+    this.isOpen = !this.isOpen;
+    this._updateContentMargin();
+  }
+
+  handleDrag(e: MouseEvent, action: 'start' | 'move' | 'end') {
+    if (action === 'start') {
+      this._dragStartX = e.clientX;
+      this._isDragging = true;
+    } else if (action === 'move' && this._isDragging) {
+      const dragDistance = e.clientX - this._dragStartX;
+      if (Math.abs(dragDistance) > 30) {
+        this.isOpen = dragDistance > 0;
+      }
+    } else if (action === 'end') {
+      this._isDragging = false;
+    }
+  }
+
+  onResize(ev: ResizedEvent) {
+    this.parentWidth.set(ev.newRect.width);
+    this._updateResponsiveness();
+  }
+
+  private _updateContentMargin() {
+    let width = this.resultingSidebarWidth();
+    if (this.isMobile()) width = '100%';
+    this.contentMargin = this.isOpen ? width : '0';
+  }
+
+  private _updateResponsiveness() {
+    const isMobile = this.parentWidth() < this.mobileBreakpoint();
+    const isLargeScreen = this.parentWidth() > this.keepOpenBreakpoint();
+    this.isMobile.set(isMobile);
+    this.isOpen = isLargeScreen;
+    this.hideDragHandle.set(isLargeScreen);
+    this._updateContentMargin();
+  }
+}

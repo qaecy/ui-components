@@ -1,0 +1,28 @@
+<div
+  cueResized
+  (resized)="onResize($event)"
+  class="sidebar-container"
+  [style.borderTopLeftRadius]="parentBorderRadius()"
+  [style.borderBottomLeftRadius]="parentBorderRadius()"
+>
+
+  @if(showSideNav()){ @if(!hideDragHandle()){
+  <button
+    class="nav-toggle"
+    (click)="toggle()"
+    (mousedown)="handleDrag($event, 'start')"
+  >
+    <div class="drag-handle"></div>
+  </button>
+
+  }
+
+  <nav class="side-nav">
+    <ng-content select="[sidebarContent]"></ng-content>
+  </nav>
+  }
+
+  <div class="content" [style.margin-left]="contentMargin">
+    <ng-content select="[mainContent]"></ng-content>
+  </div>
+</div>
