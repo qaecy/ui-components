@@ -93,6 +93,7 @@
   --cue-warning: #FFC107;
   --cue-extra-light-gray: #F5F6F9;
   --cue-font-family: Poppins;
+  --cue-card-border-radius: 30px;
 }
 
 body {
@@ -335,18 +336,8 @@ body.dark {
 }
 
 :root {
-  --mdc-elevated-card-container-shape: 30px;
+  --mdc-elevated-card-container-shape: var(--cue-card-border-radius);
 }
 :root {
-  --mdc-outlined-card-container-shape: 30px;
-}
-
-.tippy-box[data-theme~=cue] {
-  background-color: light-dark("blue", "red");
-  color: light-dark("red", "blue");
-  font-family: Poppins;
-}
-
-.tippy-box[data-theme~=cue] > .tippy-arrow {
-  background-color: light-dark("blue", "red");
+  --mdc-outlined-card-container-shape: var(--cue-card-border-radius);
 }
