@@ -2,5 +2,5 @@
  * Public API Surface of cue-ui
  */
 
-export * from './lib/cue-ui.service';
-export * from './lib/cue-ui.component';
+export * from './lib/components';
+export * from './lib/directives';

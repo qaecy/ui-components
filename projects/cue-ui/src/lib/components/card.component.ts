@@ -31,6 +31,8 @@ const appearanceMap = {
       [style.color]="textColor()"
       [style.border-color]="strokeColor()"
       [appearance]="appearance()"
+      [style.width]="width()"
+      [style.height]="height()"
     >
       @if(title()){
       <mat-card-header>
@@ -45,7 +47,7 @@ const appearanceMap = {
       }
 
       <!-- Main content -->
-      <mat-card-content>
+      <mat-card-content [style.padding]="borderLess() ? '0' : '16px'">
         <ng-content></ng-content>
       </mat-card-content>
 
@@ -72,9 +74,11 @@ const appearanceMap = {
       }
     </mat-card>
   `,
-  styles: `mat-card{
-    padding: 16px;
-  }`,
+  styles: `
+    mat-card {
+      box-sizing: border-box;
+    }
+  `,
 })
 export class CardComponent {
   title = input<string>('');
@@ -83,6 +87,9 @@ export class CardComponent {
   appearance = input<'outlined' | 'raised'>('raised');
   actionButtons = input<CardButton[]>([]);
   actionsAlign = input<'start' | 'end'>('end');
+  height = input<string>('auto');
+  width = input<string>('auto');
+  borderLess = input<boolean>(false);
 
   actionButtonsStyled = computed(() =>
     this.actionButtons().map((btn) => {

@@ -1,6 +1,5 @@
 @use "@angular/material" as mat;
-@use "./light-theme" as theme;
-// @use "./tippy";
+@use "./cue-theme" as theme;
 @import url(https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp);
 
 :root{
@@ -13,6 +12,7 @@
     --cue-warning: #FFC107;
     --cue-extra-light-gray: #F5F6F9;
     --cue-font-family: Poppins;
+    --cue-card-border-radius: 30px;
 }
 
 @mixin apply-dark-mode {
@@ -43,17 +43,8 @@ body {
 :root {
   @include mat.card-overrides(
     (
-      elevated-container-shape: 30px,
-      outlined-container-shape: 30px,
+      elevated-container-shape: var(--cue-card-border-radius),
+      outlined-container-shape: var(--cue-card-border-radius),
     )
   );
-}
-
-.tippy-box[data-theme~="cue"] {
-  background-color: light-dark("blue", "red");
-  color: light-dark("red", "blue");
-  font-family: Poppins;
-}
-.tippy-box[data-theme~="cue"] > .tippy-arrow {
-  background-color: light-dark("blue", "red");
 }

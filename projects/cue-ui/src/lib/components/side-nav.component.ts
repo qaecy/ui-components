@@ -2,18 +2,18 @@ import { Component, effect, input, linkedSignal, signal } from '@angular/core';
 import { ResizedDirective, ResizedEvent } from '../directives/resized.directive';
 
 @Component({
-  selector: 'cue-nav-bar',
+  selector: 'cue-side-nav',
   imports: [ResizedDirective],
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss'],
+  templateUrl: './side-nav.component.html',
+  styleUrls: ['./side-nav.component.scss'],
   host: {
-    '[style.--nav-width]': `isMobile() ? '100%' : resultingSidebarWidth()`,
+    '[style.--nav-width]': `isMobile() ? '100%' : resultingSideNavWidth()`,
     '[style.--bounce-duration]': `showBounceAnimation() && !isOpen ? '2s' : '0s'`,
     '[style.--nav-toggle-left]': `isMobile() ? 'calc(100% - 16px)' : '200px'`,
     '[class.nav-open]': 'isOpen',
   },
 })
-export class NavBarComponent {
+export class SideNavComponent {
   navWidth = input<string>('200px');
   mobileBreakpoint = input<number>(576); // small
   keepOpenBreakpoint = input<number>(992); // lg
@@ -21,10 +21,9 @@ export class NavBarComponent {
   parentBorderRadius = input<string>('0px');
   showBounceAnimation = input(true);
 
-  resultingSidebarWidth = linkedSignal(() => {
-    const sideBarHidden = !this.showSideNav();
-    console.log(sideBarHidden);
-    return sideBarHidden ? '0' : this.navWidth();
+  resultingSideNavWidth = linkedSignal(() => {
+    const sideNavHidden = !this.showSideNav();
+    return sideNavHidden ? '0' : this.navWidth();
   });
 
   isOpen = false;
@@ -66,7 +65,7 @@ export class NavBarComponent {
   }
 
   private _updateContentMargin() {
-    let width = this.resultingSidebarWidth();
+    let width = this.resultingSideNavWidth();
     if (this.isMobile()) width = '100%';
     this.contentMargin = this.isOpen ? width : '0';
   }

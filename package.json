@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "storybook": "ng run cue-ui:storybook",
-    "build-storybook": "ng run cue-ui:build-storybook"
+    "build-storybook": "ng run cue-ui:build-storybook",
+    "deploy-local": "cd dist/cue-ui && npm pack"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/router": "^19.2.0",
     "@fontsource/material-icons": "^5.2.5",
     "@fontsource/poppins": "^5.2.5",
+    "mapbox-gl": "3.3.0",
     "rxjs": "~7.8.0",
     "tippy.js": "^6.3.7",
     "tslib": "^2.3.0",
@@ -41,6 +43,7 @@
     "@storybook/blocks": "^8.6.12",
     "@storybook/test": "^8.6.12",
     "@types/jasmine": "~5.1.0",
+    "@types/mapbox-gl": "^3.4.1",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

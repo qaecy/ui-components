@@ -126,3 +126,29 @@ export const ButtonsStyled: Story = {
     actionsAlign: "end",
   },
 };
+
+export const FixedSize: Story = {
+  render: (args: any) => ({
+    props: args,
+    template: `<cue-card style="font-family: var(--cue-font-family)" height="${args.height}" width="${args.width}">
+      I'm 300px wide and 200px tall and I will stay that size no matter the content.
+      <img src="https://placehold.co/600x400" alt="Placeholder image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" />
+    </cue-card>`}),
+  args: {
+    height: "200px",
+    width: "300px",
+  },
+};
+
+export const FixedSizeBorderLess: Story = {
+  render: (args: any) => ({
+    props: args,
+    template: `<cue-card style="font-family: var(--cue-font-family)" height="${args.height}" width="${args.width}" [borderLess]="${args.borderLess}">
+      <img style="border-radius: var(--cue-card-border-radius)" src="https://placehold.co/${parseInt(args.width)}x${parseInt(args.height)}" alt="Placeholder image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" />
+    </cue-card>`}),
+  args: {
+    height: "200px",
+    width: "300px",
+    borderLess: true,
+  },
+};

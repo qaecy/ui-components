@@ -1,33 +1,33 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { NavBarComponent } from './nav-bar.component';
+import { SideNavComponent } from './side-nav.component';
 
-const meta: Meta<NavBarComponent> = {
-  title: 'Nav Bar',
-  component: NavBarComponent,
+const meta: Meta<SideNavComponent> = {
+  title: 'Side Nav',
+  component: SideNavComponent,
   tags: ['autodocs'],
   argTypes: {},
 };
 
 export default meta;
-type Story = StoryObj<NavBarComponent>;
+type Story = StoryObj<SideNavComponent>;
 
 const render = (args: any) => ({
   props: args,
   template: `<div style="width: 100%; height: 500px; border: 1px solid; border-radius: ${args.parentBorderRadius}; font-family: var(--cue-font-family);">
-  <cue-nav-bar 
+  <cue-side-nav 
     navWidth="${args.navWidth}" 
     [showSideNav]="${args.showSideNav}" 
     parentBorderRadius="${args.parentBorderRadius}"
     [mobileBreakpoint]="${args.mobileBreakpoint}"
     [showBounceAnimation]="${args.showBounceAnimation}"
     [keepOpenBreakpoint]="${args.keepOpenBreakpoint}">
-      <div sidebarContent style="padding: 16px;">
-        <p class="mat-typography">Sidebar Content</p>
+      <div sideNavContent style="padding: 16px;">
+        <p class="mat-typography">Side Nav Content</p>
       </div>
       <div mainContent style="padding: 16px;">
         <p class="mat-typography">Main Content</p>
       </div>
-    </cue-nav-bar>
+    </cue-side-nav>
   </div>`,
 });
 
