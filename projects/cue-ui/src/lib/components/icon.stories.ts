@@ -16,6 +16,8 @@ const meta: Meta<IconComponent> = {
       control: {
         type: 'boolean',
       },
+      description: 'If true, the icon will be displayed inline with the text.',
+      defaultValue: false,
     },
   },
 };
@@ -27,5 +29,16 @@ export const Default: Story = {
   args: {
     icon: 'filter',
     inline: false
+  },
+};
+
+export const Inline: Story = {
+  render: (args: any) => ({
+    props: args,
+    template: `<span style="font-family: var(--cue-font-family)">I'm an inline icon <cue-icon [icon]="icon" [inline]="inline"></cue-icon></span>`,
+  }),
+  args: {
+    icon: 'filter',
+    inline: true
   },
 };

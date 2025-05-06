@@ -23,6 +23,8 @@
   }
 
   <div class="content" [style.margin-left]="contentMargin">
-    <ng-content select="[mainContent]"></ng-content>
+    <div [style.margin-left]="isOpen ? '1rem' : '0.2rem'">
+      <ng-content select="[mainContent]"></ng-content>
+    </div>
   </div>
 </div>

@@ -78,7 +78,7 @@ export const Cards: Story = {
       minSizes: args.minSizes,
       gutterSize: args.gutterSize,
     },
-    template: `<cue-split-layout style="display: block; height: 500px; width: 100%; display: flex;" 
+    template: `<cue-split-layout style="display: block; height: 500px; width: 100%; display: flex; font-family: var(--cue-font-family);" 
       [sizes]="sizes" [minSizes]="minSizes" [gutterSize]="gutterSize" (resized)="newSize = $event">
       <div leftContent style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
         <cue-card height="200px">

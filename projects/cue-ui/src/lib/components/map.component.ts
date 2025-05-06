@@ -66,7 +66,10 @@ export interface FeatureClickHoverEvent {
     cueDarkMode
     (darkModeChange)="setDarkMode($event)"
     (resized)="onParentResize()"
-  ></div>`,
+  ></div>
+  @if(error()){
+    <span>{{error()}}</span>
+  }`,
   styles: [
     `
       @import url('mapbox-gl/dist/mapbox-gl.css');
@@ -123,6 +126,7 @@ export class MapComponent implements OnDestroy {
     return this.borderRadius();
   }
 
+  error = signal("");
   private readonly _darkMode = signal(this._getSystemColorPreference());
   private _styleId = computed(() => {
     return this._darkMode()
@@ -336,6 +340,9 @@ export class MapComponent implements OnDestroy {
         this.mapReady.emit();
         this._emittedReady = true;
       }
+    });
+    map.on('error', (response) => {
+      this.error.set(response.error.message)
     });
   }
 

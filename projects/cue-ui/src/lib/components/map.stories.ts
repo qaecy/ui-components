@@ -9,6 +9,12 @@ const meta: Meta<MapComponent> = {
   argTypes: {
     featureCollection: {
       control: 'object'
+    },
+    mapboxToken: {
+      control: {
+        type: 'text'
+      },
+      description: "API Token for mapbox (Required!)"
     }
   },
 };

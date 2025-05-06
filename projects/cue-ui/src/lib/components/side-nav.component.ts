@@ -1,4 +1,4 @@
-import { Component, effect, input, linkedSignal, signal } from '@angular/core';
+import { Component, computed, effect, input, linkedSignal, signal } from '@angular/core';
 import { ResizedDirective, ResizedEvent } from '../directives/resized.directive';
 
 @Component({
@@ -20,6 +20,7 @@ export class SideNavComponent {
   showSideNav = input<boolean>(true);
   parentBorderRadius = input<string>('0px');
   showBounceAnimation = input(true);
+  foldOver = input(true);
 
   resultingSideNavWidth = linkedSignal(() => {
     const sideNavHidden = !this.showSideNav();
@@ -31,6 +32,7 @@ export class SideNavComponent {
   isMobile = signal(false);
   parentWidth = signal(500);
   contentMargin = '0';
+  isLargeScreen = computed(() => this.parentWidth() > this.keepOpenBreakpoint());
   private _dragStartX = 0;
   private _isDragging = false;
 
@@ -72,10 +74,9 @@ export class SideNavComponent {
 
   private _updateResponsiveness() {
     const isMobile = this.parentWidth() < this.mobileBreakpoint();
-    const isLargeScreen = this.parentWidth() > this.keepOpenBreakpoint();
     this.isMobile.set(isMobile);
-    this.isOpen = isLargeScreen;
-    this.hideDragHandle.set(isLargeScreen);
+    this.isOpen = this.isLargeScreen();
+    this.hideDragHandle.set(this.isLargeScreen());
     this._updateContentMargin();
   }
 }
