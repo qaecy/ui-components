@@ -1,6 +1,5 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { GeoJSONFeatureCollection, MapComponent } from './map.component';
-import { CardComponent } from './card.component'; // Import CardComponent
 import { LngLatLike } from 'mapbox-gl';
 
 const meta: Meta<MapComponent> = {
@@ -12,11 +11,6 @@ const meta: Meta<MapComponent> = {
       control: 'object'
     }
   },
-  decorators: [
-    moduleMetadata({
-      imports: [CardComponent],
-    }),
-  ],
 };
 
 const mapboxToken = "<MAPBOX_TOKEN>";

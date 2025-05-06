@@ -91,9 +91,14 @@
   --cue-error: #FC2626;
   --cue-success: #4CAF50;
   --cue-warning: #FFC107;
+  --cue-light-gray: #D9D9D9;
   --cue-extra-light-gray: #F5F6F9;
   --cue-font-family: Poppins;
   --cue-card-border-radius: 30px;
+  --cue-gutter-color: (
+      light: var(--cue-light-gray),
+      dark: var(--cue-accent),
+  );
 }
 
 body {

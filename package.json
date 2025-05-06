@@ -26,6 +26,7 @@
     "@fontsource/poppins": "^5.2.5",
     "mapbox-gl": "3.3.0",
     "rxjs": "~7.8.0",
+    "split.js": "^1.6.5",
     "tippy.js": "^6.3.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

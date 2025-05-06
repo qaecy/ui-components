@@ -6,6 +6,7 @@ export const allColors = [
   "error",
   "warning",
   "info",
+  "light-gray",
   "extra-light-gray",
 ] as const;
 export type Color = (typeof allColors)[number];
