@@ -73,6 +73,7 @@ export interface SearchResult {
           <cue-table
             [data]="searchResults()"
             [columnDefs]="columnDefs"
+            tooltipCol="summary"
           ></cue-table>
           } @else {
           <div style="display: flex; height: 100%; justify-content: center; align-items: center;">
@@ -120,5 +121,12 @@ export class DocumentSearchScreen {
     return featureCollection;
   });
 
-  columnDefs = [new ColumnDef('name', 'Name', 'left')];
+  columnDefs: ColumnDef[] = [];
+
+  constructor(){
+    this.columnDefs.push(new ColumnDef('name', 'Name', 'left'));
+    const keywordsCol = new ColumnDef('keywords', "Keywords", "right");
+    keywordsCol.type = "STRINGARRAY";
+    this.columnDefs.push(keywordsCol);
+  }
 }

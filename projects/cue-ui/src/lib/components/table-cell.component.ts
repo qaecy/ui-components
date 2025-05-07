@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   ElementRef,
   input,
   output,
@@ -15,6 +16,7 @@ export const displayTypes = [
   'COLOR',
   'HTMLELEMENT',
   'TRUNCATED',
+  'STRINGARRAY',
 ];
 export type DisplayType = (typeof displayTypes)[number];
 
@@ -29,18 +31,30 @@ export type DisplayType = (typeof displayTypes)[number];
     [class.left-aligned]="contentAlignment() === 'left'"
     [class.center-aligned]="contentAlignment() === 'center'"
   >
+    <!-- SPECIAL CASES -->
+
+    <!-- COLOR -->
     @if(valueType() === 'COLOR'){
     <div class="color" [style.background-color]="value()"></div>
-    } @else if(valueType() === 'CHECKBOX'){
+    } 
+    
+    <!-- CHECKBOX -->
+    @else if(valueType() === 'CHECKBOX'){
     <mat-checkbox
       [disabled]="!editable()"
       [checked]="value()"
       (change)="handleValueChange($event.checked)"
     ></mat-checkbox>
-    } @else if(valueType() === 'TRUNCATED'){
+    } 
+    
+    <!-- TRUNCATED -->
+    @else if(valueType() === 'TRUNCATED'){
     <span cueTruncate [truncateLength]="30" [innerHTML]="value()"></span>
-    } @else if(valueType() === 'DEFAULT'){
-    <span [innerHTML]="value()"></span>
+    } 
+    
+    <!-- DEFAULT CASE -->
+    @else {
+        <span [innerHTML]="htmlValue()"></span>
     }
   </div> `,
   styles: [
@@ -75,6 +89,16 @@ export class TableCellComponent {
   contentAlignment = input<'left' | 'right' | 'center'>('left');
   editable = input(true);
   valueChange = output<any>();
+
+  htmlValue = computed(() => {
+    const type = this.valueType();
+    switch (type) {
+      case 'STRINGARRAY':
+        return this.value().join(', ');
+      default:
+        return this.value();
+    }
+  });
 
   private _htmlAppended = false;
   @ViewChild('cell') set cell(content: ElementRef) {

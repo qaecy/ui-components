@@ -4,7 +4,7 @@ const mapboxToken = "pk.eyJ1IjoibWFkc2hvbHRlbiIsImEiOiJjbWFiMTYyc3EwOXM5MmtzYzRq
 // const mapboxToken = "<MAPBOX_TOKEN>";
 
 // 👇 Imports the required stories
-import { DocumentSearchScreen } from './document-app.component';
+import { DocumentSearchScreen, Property, SearchResult } from './document-app.component';
  
 const meta: Meta<DocumentSearchScreen> = {
   component: DocumentSearchScreen,
@@ -13,7 +13,7 @@ const meta: Meta<DocumentSearchScreen> = {
 export default meta;
 type Story = StoryObj<DocumentSearchScreen>;
 
-const properties = [{
+const properties: Property[] = [{
   key: "Name",
   value: "BRÜCKE Grenze D_CH Basel"
 },{
@@ -26,12 +26,20 @@ const properties = [{
   key: "Inventory Object Number",
   value: "12.02.08.410.10"
 }];
+
+const results: SearchResult[] = Array.from({ length: 20 }, (_, index) => ({
+  id: `${index + 1}`,
+  name: `Test document ${index + 1}`,
+  keywords: ["drawing", "diagram"],
+  summary: `This is a test summary for document ${index + 1}`
+}));
  
 export const Full: Story = {
   args: {
     properties,
     location: [7.644993, 47.574627],
     mapboxToken,
+    searchResults: results
   },
 };
 

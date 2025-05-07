@@ -127,7 +127,6 @@ export class TableComponent implements OnChanges {
       .slice()
       .reverse()
       .find((option) => option <= toFit);
-    console.log(closestOption);
     return closestOption ?? 5;
   });
   hidePageSize = computed(() => {
@@ -135,7 +134,6 @@ export class TableComponent implements OnChanges {
   });
 
   showPaginator = linkedSignal(() => {
-    console.log(this.data.length <= this.pageSize());
     if (this.data.length <= this.pageSize()) {
       return false;
     }
@@ -230,7 +228,6 @@ export class TableComponent implements OnChanges {
 
   tableResized(ev: ResizedEvent) {
     const h = ev.newRect.height;
-    console.log(h);
     if (h !== this.tableHeight()) this.tableHeight.set(h);
   }
 
