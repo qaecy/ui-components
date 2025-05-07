@@ -1,0 +1,68 @@
+/* .selected{
+    font-weight: 500;
+} */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow-x: hidden;
+  flex-direction: column;
+}
+.table-container{
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 100%;
+}
+::ng-deep .mat-mdc-row.selected {
+  font-weight: 600;
+}
+::ng-deep .mat-mdc-row.clickable:hover {
+  font-weight: 600;
+}
+.hidden {
+  display: none;
+}
+.filter-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  align-items: center;
+  padding-bottom: 0.2rem;
+}
+::ng-deep .filter-row .mat-mdc-form-field-subscript-wrapper {
+  height: 0;
+}
+.dimmed {
+  opacity: 0.7;
+}
+
+.floating-box {
+  position: fixed;
+  z-index: 1000;
+  white-space: nowrap;
+  transition: top 0.2s ease-in-out;
+}
+
+::ng-deep .right-aligned {
+  text-align: right;
+}
+::ng-deep .left-aligned {
+  text-align: left;
+}
+::ng-deep .center-aligned {
+  text-align: center;
+}
+::ng-deep .right-aligned .mat-sort-header-container {
+  justify-content: flex-end;
+}
+::ng-deep .left-aligned .mat-sort-header-container {
+  justify-content: flex-start;
+}
+::ng-deep .center-aligned .mat-sort-header-container {
+  justify-content: center;
+}
+.paginator {
+  position: sticky;
+  right: 0;
+}

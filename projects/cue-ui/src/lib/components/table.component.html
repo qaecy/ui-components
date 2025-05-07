@@ -1,0 +1,162 @@
+<div
+  *ngIf="dataSource"
+  class="container"
+  id="simple-table"
+  cueResized
+  (resized)="tableResized($event)"
+>
+  <!-- FILTER -->
+  @if(displayFilter){
+  <div class="filter-row">
+    @if(!filterVisible){
+    <span style="flex: 1"></span>
+    <button
+      mat-icon-button
+      aria-label="Show filter"
+      (click)="filterVisible = true"
+    >
+      <mat-icon>filter_alt</mat-icon>
+    </button>
+    } @if(filterVisible){
+    <mat-form-field style="width: 100%" floatLabel="always">
+      <mat-label>{{ filterLabel }}</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        [(ngModel)]="filterStr"
+        [placeholder]="filterLabel"
+        subscriptSizing="dynamic"
+      />
+    </mat-form-field>
+    <button
+      mat-icon-button
+      aria-label="Hide filter"
+      (click)="filterVisible = false"
+    >
+      <mat-icon>filter_alt_off</mat-icon>
+    </button>
+    }
+  </div>
+  }
+
+  <div class="table-container">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      matSort
+      [fixedLayout]="fixedLayout"
+      (matSortChange)="onSortChange($event)"
+    >
+      @for (key of displayedColumns; track key; let index = $index) {
+      <ng-container [matColumnDef]="key">
+        <!-- REGULAR HEADER -->
+        <ng-container *ngIf="columnDefs[index].type !== 'CHECKBOX'">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            [class.right-aligned]="columnDefs[index]['textAlign'] === 'right'"
+            [class.left-aligned]="columnDefs[index]['textAlign'] === 'left'"
+            [class.center-aligned]="columnDefs[index]['textAlign'] === 'center'"
+          >
+            {{ columnDefs[index]["label"] }}
+          </th>
+        </ng-container>
+
+        <!-- CHECKBOX HEADER -->
+        <ng-container *ngIf="columnDefs[index].type === 'CHECKBOX'">
+          <th mat-header-cell *matHeaderCellDef>
+            <div
+              [class.right-aligned]="columnDefs[index]['textAlign'] === 'right'"
+              [class.left-aligned]="columnDefs[index]['textAlign'] === 'left'"
+              [class.center-aligned]="
+                columnDefs[index]['textAlign'] === 'center'
+              "
+            >
+              <span>{{ columnDefs[index]["label"] }}</span>
+              <mat-checkbox
+                [disabled]="!columnDefs[index].editable"
+                [checked]="
+                  selection[key] && selection[key].length === data.length
+                "
+                (click)="toggleAllSelected(key)"
+              ></mat-checkbox>
+            </div>
+          </th>
+        </ng-container>
+
+        <td
+          cueResized
+          (resized)="rowResized($event)"
+          mat-cell
+          *matCellDef="let element"
+        >
+          <cue-table-cell
+            [value]="element[key]"
+            [valueType]="columnDefs[index].type"
+            [editable]="
+              editableCol !== undefined
+                ? element[editableCol]
+                : columnDefs[index].editable
+            "
+            [contentAlignment]="columnDefs[index].textAlign"
+            (valueChange)="onCellValueChange(key, element, $event)"
+          ></cue-table-cell>
+        </td>
+      </ng-container>
+      }
+
+      <!-- Header -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+      <!-- General Rows -->
+      <tr
+        style="position: relative"
+        class="mat-row"
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [class.clickable]="clickableRows && selectedRow() !== row.id"
+        [class.selected]="selectedRow() && selectedRow() === row.id"
+        (click)="handleRowClick(row)"
+        [cueTooltip]="tooltipCol !== undefined ? row[tooltipCol] : ''"
+        [class.dimmed]="dimmedCol !== undefined ? row[dimmedCol] : ''"
+        (mouseenter)="showFloatingBox($event, row)"
+      >
+        >
+      </tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4" *ngIf="filterStr">
+          No data matching the filter "{{ filterStr }}"
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="flex-grow: 1; background-color: var(--mat-sys-surface)"></div>
+
+  @if(showPaginator()){
+  <mat-paginator
+    class="paginator"
+    [pageSizeOptions]="pageSizeOptions"
+    [hidePageSize]="hidePageSize()"
+    [pageSize]="pageSize()"
+    showFirstLastButtons
+    panelClass="frosted"
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+  }
+</div>
+
+<!-- Floating Box -->
+<div class="floating-box" *ngIf="hoveredRow" [ngStyle]="floatingBoxStyle">
+  @if(actionItemsCol !== undefined && hoveredRow[actionItemsCol]){
+  <cue-icon-menu
+    [menuItems]="hoveredRow[actionItemsCol]"
+    openDirection="left"
+  ></cue-icon-menu>
+  }
+</div>

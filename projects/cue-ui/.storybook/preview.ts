@@ -1,4 +1,6 @@
 import { componentWrapperDecorator, type Preview } from '@storybook/angular';
+import { applicationConfig } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { setCompodocJson } from "@storybook/addon-docs/angular";
 import docJson from "../documentation.json";
 import { themes } from '@storybook/theming';
@@ -56,6 +58,9 @@ const preview: Preview = {
       // Apply theme immediately when story renders
       setTimeout(() => applyThemeToIframe(currentTheme), 0);
       return story;
+    }),
+    applicationConfig({
+      providers: [provideAnimations()],
     }),
   ],
   parameters: {

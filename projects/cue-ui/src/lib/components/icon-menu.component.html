@@ -1,0 +1,76 @@
+<div
+  class="container"
+  [style.flex-direction]="flexDirection()"
+  [style.gap]="gap()"
+  [style.width]="size()"
+  [style.height]="size()"
+  (mouseenter)="onContainerHovered()"
+>
+  @if(!hidden()){
+  <!-- Main icon (unchanged) -->
+  <div
+    class="btn"
+    (mouseenter)="onMouseEnter()"
+    (mouseover)="hovered = mainItem().id"
+    (mouseleave)="hovered = undefined"
+  >
+    <button
+      mat-mini-fab
+      aria-label="Select"
+      [style.width]="size()"
+      [style.height]="size()"
+      [style.line-height]="size()"
+      [disabled]="mainIconDisabled()"
+      [cueTooltip]="mainIconDisabled() ? '' : mainItem().label"
+      [tooltipPlacement]="tooltipPlacement()"
+      (click)="handleClick(0)"
+    >
+      <mat-icon
+        [style.font-size]="iconSize()"
+        [style.line-height]="iconSize()"
+        [style.width]="iconSize()"
+        [style.height]="iconSize()"
+        >{{ mainItem().icon }}</mat-icon
+      >
+    </button>
+  </div>
+
+  <!-- Remaining items -->
+  @if(isExpanded() && otherItems().length){
+  <div
+    class="icon-container"
+    [@iconAnimation]="isExpanded() ? 'visible' : 'hidden'"
+  >
+    @for(item of otherItems(); track item.id; let idx = $index){
+    <div
+      class="btn delayed"
+      (mouseover)="hovered = item.id"
+      (mouseleave)="hovered = undefined"
+      [style.transform]="getTransform(idx + 1)"
+    >
+      <button
+        mat-mini-fab
+        aria-label="Select"
+        [style.width]="size()"
+        [style.height]="size()"
+        [style.line-height]="size()"
+        [cueTooltip]="item.label"
+        [tooltipPlacement]="tooltipPlacement()"
+        (click)="handleClick(idx + 1)"
+      >
+        <mat-icon
+          [style.font-size]="iconSize()"
+          [style.line-height]="iconSize()"
+          [style.width]="iconSize()"
+          [style.height]="iconSize()"
+          >{{ item.icon }}</mat-icon
+        >
+      </button>
+    </div>
+    }
+    <div [style.transform]="getTransform(menuItems().length)" class="delayed">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  } }
+</div>

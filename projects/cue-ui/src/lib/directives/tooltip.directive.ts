@@ -66,6 +66,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
         background-color: ${bgColor};
         color: ${textColor};
         border-radius: 4px;
+        font-family: var(--cue-font-family);
         font-size: ${fontSize};
         padding: ${padding};
       }
