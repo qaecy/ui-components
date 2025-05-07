@@ -1,22 +1,36 @@
 import { Component, computed, input, Input, signal } from '@angular/core';
 import { SplitLayoutComponent } from '../components/split-layout.component';
 import {
+    CardComponent,
   GeoJSONFeatureCollection,
   KeyValComponent,
   MapComponent,
   SideNavComponent,
 } from '../components';
 import { LngLatLike } from 'mapbox-gl';
-import { CardComponent } from 'cue-ui';
+import { ColumnDef, TableComponent } from '../components/table.component';
 
 export interface Property {
   key: string;
   value: string;
 }
 
+export interface SearchResult {
+  id: string;
+  name: string;
+  keywords: string[];
+  summary: string;
+}
+
 @Component({
   selector: 'document-app',
-  imports: [SplitLayoutComponent, MapComponent, CardComponent, KeyValComponent],
+  imports: [
+    SplitLayoutComponent,
+    MapComponent,
+    CardComponent,
+    KeyValComponent,
+    TableComponent,
+  ],
   template: `
     <cue-split-layout
       mainContent
@@ -26,6 +40,11 @@ export interface Property {
       [gutterSize]="30"
     >
       <div leftContent class="left-content">
+        <!-- SEARCH BOX -->
+        <cue-card color="primary">
+          <p>Search card</p>
+        </cue-card>
+
         <!-- PROPERTIES -->
         @if(properties().length){
         <cue-card color="accent">
@@ -46,13 +65,22 @@ export interface Property {
           [mapboxToken]="token"
         ></cue-map>
         } }
+      </div>
 
-        <!-- SEARCH BOX -->
-        <cue-card color="primary">
-          <p>Search card</p>
+      <div rightContent style="height: 100%;">
+        <cue-card appearance="outlined" height="100%">
+          @if(searchResults().length){
+          <cue-table
+            [data]="searchResults()"
+            [columnDefs]="columnDefs"
+          ></cue-table>
+          } @else {
+          <div style="display: flex; height: 100%; justify-content: center; align-items: center;">
+            <span>{{ info() }}</span>
+          </div>
+          }
         </cue-card>
       </div>
-      <div rightContent>Right</div>
     </cue-split-layout>
   `,
   styles: [
@@ -69,6 +97,8 @@ export class DocumentSearchScreen {
   properties = input<Property[]>([]);
   location = input<LngLatLike | undefined>(undefined);
   mapboxToken = input<string>();
+  searchResults = input<SearchResult[]>([]);
+  info = input<string>('Search your project...');
 
   featureCollection = computed(() => {
     const center: any = this.location();
@@ -89,4 +119,6 @@ export class DocumentSearchScreen {
     ];
     return featureCollection;
   });
+
+  columnDefs = [new ColumnDef('name', 'Name', 'left')];
 }

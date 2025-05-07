@@ -17,7 +17,7 @@ import {
 } from '@angular/animations';
 import { v4 as uuid4 } from 'uuid';
 import { Placement } from 'tippy.js';
-import { TooltipDirective } from 'cue-ui';
+import { TooltipDirective } from '../directives';
 
 export const openDirections = ['left', 'right', 'top', 'down'];
 export type OpenDirection = (typeof openDirections)[number];

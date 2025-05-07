@@ -40,3 +40,23 @@ export const NoLocation: Story = {
     properties
   },
 };
+
+export const BeforeResults: Story = {
+  args: {
+    properties,
+    location: [7.644993, 47.574627],
+    mapboxToken,
+    searchResults: [],
+    info: "Search your project..."
+  },
+};
+
+export const NoResults: Story = {
+  args: {
+    properties,
+    location: [7.644993, 47.574627],
+    mapboxToken,
+    searchResults: [],
+    info: "The search returned no results"
+  },
+};
