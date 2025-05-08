@@ -46,7 +46,9 @@ export interface DocumentSearchViewSearchResult {
       <div leftContent class="left-content">
         <!-- SEARCH BOX -->
         <cue-card color="primary">
+          <ng-content select="[searchBefore]"></ng-content>
           <cue-search-bar (valueSubmit)="doSearch.emit($event)"></cue-search-bar>
+          <ng-content select="[searchAfter]"></ng-content>
         </cue-card>
 
         <!-- PROPERTIES -->
@@ -124,6 +126,7 @@ export class DocumentSearchView {
         },
       },
     ];
+    console.log(featureCollection);
     return featureCollection;
   });
 

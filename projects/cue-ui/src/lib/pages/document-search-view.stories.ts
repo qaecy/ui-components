@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
-const mapboxToken = "pk.eyJ1IjoibWFkc2hvbHRlbiIsImEiOiJjbWFiMTYyc3EwOXM5MmtzYzRqcWJ0N2dzIn0.cPH3wfmHY6LbquPWzH5zdQ";
-// const mapboxToken = "<MAPBOX_TOKEN>";
+const mapboxToken = "<MAPBOX_TOKEN>";
 
 // 👇 Imports the required stories
 import { DocumentSearchView, DocumentSearchViewProperty, DocumentSearchViewSearchResult } from './document-search-view.component';
