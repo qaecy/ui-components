@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostListener,
   input,
   output,
 } from '@angular/core';
@@ -30,7 +31,12 @@ import { Icon, IconComponent } from './icon.component';
         class="search-button"
         [style.background-color]="searchIconBackground()"
       >
-        <cue-icon class="search-icon" style="color: black; transform: translateY(2px)" [inline]="true" [icon]="submitIcon()"></cue-icon>
+        <cue-icon
+          class="search-icon"
+          style="color: black; transform: translateY(2px)"
+          [inline]="true"
+          [icon]="submitIcon()"
+        ></cue-icon>
       </span>
       }
     </div>
@@ -38,21 +44,23 @@ import { Icon, IconComponent } from './icon.component';
   styles: [
     `
       .search-container {
+        --sb-padding: 8px;
         display: flex;
         gap: 1rem;
         width: 100%;
-        padding: 8px;
+        padding: var(--sb-padding);
         align-items: center;
         border-radius: 30px;
         font-size: 14px;
         font-family: var(--cue-font-family);
-        width: calc(100% - 16px);
+        width: calc(100% - calc(2 * var(--sb-padding)));
       }
 
       .search-input {
         all: unset;
         flex: 1;
         background-color: rgba(0, 0, 0, 0);
+        min-width: 50px;
       }
 
       .search-input:focus {
@@ -101,8 +109,13 @@ export class SearchBarComponent {
   valueChange = output<string>();
   valueSubmit = output<string>();
 
-  private _debounceTimer?: NodeJS.Timeout;
-  private _value = "";
+  private _debounceTimer?: any;
+  private _value = '';
+
+  @HostListener('document:keydown.enter', ['$event'])
+  handleEnterKey(event: KeyboardEvent) {
+    this.submit();
+  }
 
   update(event: Event) {
     const inputElement = event.target as HTMLInputElement;
@@ -117,7 +130,7 @@ export class SearchBarComponent {
     }, this.debounceTime()); // 200ms debounce time
   }
 
-  submit(){
+  submit() {
     this.valueSubmit.emit(this._value);
   }
 }

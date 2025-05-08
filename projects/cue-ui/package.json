@@ -5,7 +5,7 @@
     "@angular/common": "19.2.0",
     "@angular/core": "19.2.0",
     "@angular/material": "19.2.0",
-    "@angular/animations": "^19.2.9",
+    "@angular/animations": "19.2.0",
     "tippy.js": "6.3.7",
     "split.js": "1.6.5",
     "mapbox-gl": "3.3.0"

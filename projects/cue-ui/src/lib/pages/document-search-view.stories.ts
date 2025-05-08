@@ -4,16 +4,16 @@ const mapboxToken = "pk.eyJ1IjoibWFkc2hvbHRlbiIsImEiOiJjbWFiMTYyc3EwOXM5MmtzYzRq
 // const mapboxToken = "<MAPBOX_TOKEN>";
 
 // 👇 Imports the required stories
-import { DocumentSearchScreen, Property, SearchResult } from './document-app.component';
+import { DocumentSearchView, DocumentSearchViewProperty, DocumentSearchViewSearchResult } from './document-search-view.component';
  
-const meta: Meta<DocumentSearchScreen> = {
-  component: DocumentSearchScreen,
+const meta: Meta<DocumentSearchView> = {
+  component: DocumentSearchView,
 };
  
 export default meta;
-type Story = StoryObj<DocumentSearchScreen>;
+type Story = StoryObj<DocumentSearchView>;
 
-const properties: Property[] = [{
+const properties: DocumentSearchViewProperty[] = [{
   key: "Name",
   value: "BRÜCKE Grenze D_CH Basel"
 },{
@@ -27,10 +27,12 @@ const properties: Property[] = [{
   value: "12.02.08.410.10"
 }];
 
-const results: SearchResult[] = Array.from({ length: 20 }, (_, index) => ({
+const results: DocumentSearchViewSearchResult[] = Array.from({ length: 20 }, (_, index) => ({
   id: `${index + 1}`,
   name: `Test document ${index + 1}`,
   keywords: ["drawing", "diagram"],
+  size: Math.floor(Math.random() * (10000000 - 100 + 1)) + 100,
+  mime: 'application/pdf',
   summary: `This is a test summary for document ${index + 1}`
 }));
  

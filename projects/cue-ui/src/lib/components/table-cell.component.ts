@@ -9,21 +9,24 @@ import {
 } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TruncateDirective } from '../directives/truncate.directive';
+import { MimeIconComponent } from './mime-icon.component';
 
 export const displayTypes = [
-  'DEFAULT',
   'CHECKBOX',
   'COLOR',
+  'DEFAULT',
   'HTMLELEMENT',
-  'TRUNCATED',
+  'DATASIZE',
   'STRINGARRAY',
+  'TRUNCATED',
+  'MIMEICON',
 ];
 export type DisplayType = (typeof displayTypes)[number];
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'cue-table-cell',
-  imports: [MatCheckboxModule, TruncateDirective],
+  imports: [MatCheckboxModule, TruncateDirective, MimeIconComponent],
   template: `<div
     class="container"
     #cell
@@ -36,8 +39,8 @@ export type DisplayType = (typeof displayTypes)[number];
     <!-- COLOR -->
     @if(valueType() === 'COLOR'){
     <div class="color" [style.background-color]="value()"></div>
-    } 
-    
+    }
+
     <!-- CHECKBOX -->
     @else if(valueType() === 'CHECKBOX'){
     <mat-checkbox
@@ -45,16 +48,21 @@ export type DisplayType = (typeof displayTypes)[number];
       [checked]="value()"
       (change)="handleValueChange($event.checked)"
     ></mat-checkbox>
-    } 
-    
+    }
+
     <!-- TRUNCATED -->
     @else if(valueType() === 'TRUNCATED'){
     <span cueTruncate [truncateLength]="30" [innerHTML]="value()"></span>
-    } 
-    
+    }
+
+    <!-- MIMEICON -->
+    @else if(valueType() === 'MIMEICON'){
+    <cue-mime-icon [mime]="value()"></cue-mime-icon>
+    }
+
     <!-- DEFAULT CASE -->
     @else {
-        <span [innerHTML]="htmlValue()"></span>
+    <span [innerHTML]="htmlValue()"></span>
     }
   </div> `,
   styles: [
@@ -95,6 +103,8 @@ export class TableCellComponent {
     switch (type) {
       case 'STRINGARRAY':
         return this.value().join(', ');
+      case 'DATASIZE':
+        return this._humanFileSize(this.value());
       default:
         return this.value();
     }
@@ -120,5 +130,29 @@ export class TableCellComponent {
 
   handleValueChange(newValue: any) {
     this.valueChange.emit(newValue);
+  }
+
+  private _humanFileSize(bytes: number, si = false, dp = 1) {
+    const thresh = si ? 1000 : 1024;
+
+    if (Math.abs(bytes) < thresh) {
+      return bytes + ' B';
+    }
+
+    const units = si
+      ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+      : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+    let u = -1;
+    const r = 10 ** dp;
+
+    do {
+      bytes /= thresh;
+      ++u;
+    } while (
+      Math.round(Math.abs(bytes) * r) / r >= thresh &&
+      u < units.length - 1
+    );
+
+    return bytes.toFixed(dp) + ' ' + units[u];
   }
 }

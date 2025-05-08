@@ -42,3 +42,10 @@ export const Inline: Story = {
     inline: true
   },
 };
+
+export const SVGIcon: Story = {
+  args: {
+    icon: 'file_pdf',
+    inline: false
+  },
+};

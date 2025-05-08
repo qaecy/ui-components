@@ -59,7 +59,43 @@ export const Default: Story = {
     placeholder: 'Search...',
     debounceTime: 200,
     showSubmitButton: true,
-    submitIcon: "search",
+    submitIcon: 'search',
+    borderColor: 'rgba(0,0,0,0)',
+    backgroundColor: 'var(--cue-info)',
+    textColor: 'var(--cue-extra-light-gray)',
+    searchIconBackground: 'var(--cue-accent)',
+  },
+};
+
+export const Narrow: Story = {
+  render: (args: any) => ({
+    props: {
+      backgroundColor: args.backgroundColor,
+      borderColor: args.borderColor,
+      debounceTime: args.debounceTime,
+      placeholder: args.placeholder,
+      searchIconBackground: args.searchIconBackground,
+      showSubmitButton: args.showSubmitButton,
+      submitIcon: args.submitIcon,
+      textColor: args.textColor,
+    },
+    template: `<cue-card width="200px">
+              <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"  
+                  [submitIcon]="submitIcon" [showSubmitButton]="showSubmitButton"
+                  [backgroundColor]="backgroundColor" [borderColor]="borderColor"
+                  [textColor]="textColor" [searchIconBackground]="searchIconBackground"
+                  (valueChange)="valueChange = $event"
+                  (valueSubmit)="valueSubmit = $event">
+              </cue-search-bar>
+          </cue-card>
+          <p>valueChange: {{valueChange}}</p>
+          <p>valueSubmit: {{valueSubmit}}</p>`,
+  }),
+  args: {
+    placeholder: 'Search...',
+    debounceTime: 200,
+    showSubmitButton: true,
+    submitIcon: 'search',
     borderColor: 'rgba(0,0,0,0)',
     backgroundColor: 'var(--cue-info)',
     textColor: 'var(--cue-extra-light-gray)',

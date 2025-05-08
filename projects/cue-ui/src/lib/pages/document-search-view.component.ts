@@ -1,4 +1,4 @@
-import { Component, computed, input, Input, signal } from '@angular/core';
+import { Component, computed, input, Input, output, signal } from '@angular/core';
 import { SplitLayoutComponent } from '../components/split-layout.component';
 import {
     CardComponent,
@@ -11,20 +11,22 @@ import { LngLatLike } from 'mapbox-gl';
 import { ColumnDef, TableComponent } from '../components/table.component';
 import { SearchBarComponent } from '../components/search-bar.component';
 
-export interface Property {
+export interface DocumentSearchViewProperty {
   key: string;
   value: string;
 }
 
-export interface SearchResult {
+export interface DocumentSearchViewSearchResult {
   id: string;
   name: string;
   keywords: string[];
   summary: string;
+  mime: string;
+  size: number;
 }
 
 @Component({
-  selector: 'document-app',
+  selector: 'cue-document-search',
   imports: [
     SplitLayoutComponent,
     MapComponent,
@@ -44,7 +46,7 @@ export interface SearchResult {
       <div leftContent class="left-content">
         <!-- SEARCH BOX -->
         <cue-card color="primary">
-          <cue-search-bar></cue-search-bar>
+          <cue-search-bar (valueSubmit)="doSearch.emit($event)"></cue-search-bar>
         </cue-card>
 
         <!-- PROPERTIES -->
@@ -96,12 +98,14 @@ export interface SearchResult {
     `,
   ],
 })
-export class DocumentSearchScreen {
-  properties = input<Property[]>([]);
+export class DocumentSearchView {
+  properties = input<DocumentSearchViewProperty[]>([]);
   location = input<LngLatLike | undefined>(undefined);
   mapboxToken = input<string>();
-  searchResults = input<SearchResult[]>([]);
+  searchResults = input<DocumentSearchViewSearchResult[]>([]);
   info = input<string>('Search your project...');
+
+  doSearch = output<string>();
 
   featureCollection = computed(() => {
     const center: any = this.location();
@@ -130,5 +134,11 @@ export class DocumentSearchScreen {
     const keywordsCol = new ColumnDef('keywords', "Keywords", "right");
     keywordsCol.type = "STRINGARRAY";
     this.columnDefs.push(keywordsCol);
+    const sizeCol = new ColumnDef('size', "Size", "right");
+    sizeCol.type = "DATASIZE";
+    this.columnDefs.push(sizeCol);
+    const mimeCol = new ColumnDef('mime', "Type", "center");
+    mimeCol.type = "MIMEICON";
+    this.columnDefs.push(mimeCol);
   }
 }

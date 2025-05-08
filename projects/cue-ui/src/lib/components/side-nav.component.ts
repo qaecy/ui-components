@@ -20,7 +20,7 @@ export class SideNavComponent {
   showSideNav = input<boolean>(true);
   parentBorderRadius = input<string>('0px');
   showBounceAnimation = input(true);
-  foldOver = input(true);
+  foldOver = input(true); // Not implemented but should fold over the content rather than squeezing it
 
   resultingSideNavWidth = linkedSignal(() => {
     const sideNavHidden = !this.showSideNav();
