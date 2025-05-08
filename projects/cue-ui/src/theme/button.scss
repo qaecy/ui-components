@@ -1,0 +1,20 @@
+:root {
+  /* BUTTON SYSTEM */
+  --cue-button-s-height: calc(32rem / 16);
+  --cue-button-s-padding-x: calc(24rem / 16);
+
+  --cue-button-m-height: calc(44rem / 16);
+  --cue-button-m-padding-x: calc(24rem / 16);
+
+  --cue-button-border-radius: 200px;
+  --cue-button-border-width: 1px;
+  --cue-button-border-style: solid;
+
+  --cue-button-primary-background: var(--cue-color-blue);
+  --cue-button-primary-foreground: var(--cue-color-white);
+  --cue-button-primary-border-color: var(--cue-color-blue);
+
+  --cue-button-secondary-background: transparent;
+  --cue-button-secondary-foreground: currentColor;
+  --cue-button-secondary-border-color: currentColor;
+}

@@ -1,17 +1,19 @@
-import { Component, computed, input, Input, signal } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { SplitLayoutComponent } from '../components/split-layout.component';
 import {
-    CardComponent,
+  Card,
   GeoJSONFeatureCollection,
   KeyValComponent,
   MapComponent,
-  SideNavComponent,
 } from '../components';
 import { LngLatLike } from 'mapbox-gl';
 import { ColumnDef, TableComponent } from '../components/table.component';
 import { SearchBarComponent } from '../components/search-bar.component';
+import { KeyValList } from '../components/key-val-list.component';
+import { FlexContainer } from '../components/flexcontainer.component';
 
 export interface Property {
+  size: 'm' | 'l' | 'xl';
   key: string;
   value: string;
 }
@@ -28,49 +30,60 @@ export interface SearchResult {
   imports: [
     SplitLayoutComponent,
     MapComponent,
-    CardComponent,
+    Card,
     KeyValComponent,
     TableComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    Card,
+    KeyValList,
+    FlexContainer,
   ],
   template: `
     <cue-split-layout
       mainContent
-      style="display: block; height: 100%; width: 100%; font-family: var(--cue-font-family)"
+      style="display: block; min-height: 100%; "
       [sizes]="[30, 70]"
       [minSizes]="[10, 200]"
       [gutterSize]="30"
     >
-      <div leftContent class="left-content">
+      <cue-flexcontainer direction="column" leftContent class="leftContent">
         <!-- SEARCH BOX -->
-        <cue-card color="primary">
+        <cue-card variant="primary">
           <cue-search-bar></cue-search-bar>
         </cue-card>
 
         <!-- PROPERTIES -->
         @if(properties().length){
-        <cue-card color="accent">
-          @for(item of properties(); track $index){
-          <cue-key-val [key]="item.key" [val]="item.value"></cue-key-val>
-          }
+        <cue-card variant="accent">
+          <cue-key-val-list>
+            @for(item of properties(); track $index){
+            <cue-key-val
+              [size]="item.size"
+              [key]="item.key"
+              [val]="item.value"
+            ></cue-key-val>
+            }
+          </cue-key-val-list>
         </cue-card>
         }
 
         <!-- MAP -->
         @if(mapboxToken(); as token){ @if(location(); as center){
-        <cue-map
-          style="height: 200px; width: calc(100% - 2px); border: 1px solid var(--cue-primary); border-radius: var(--cue-card-border-radius);"
-          borderRadius="var(--cue-card-border-radius)"
-          [zoom]="10"
-          [center]="center"
-          [featureCollection]="featureCollection()"
-          [mapboxToken]="token"
-        ></cue-map>
+        <cue-card [padded]="false" style="position:relative" variant="default">
+          <cue-map
+            style="width:100%"
+            borderRadius="var(--cue-card-border-radius)"
+            [zoom]="10"
+            [center]="center"
+            [featureCollection]="featureCollection()"
+            [mapboxToken]="token"
+          ></cue-map>
+        </cue-card>
         } }
-      </div>
+      </cue-flexcontainer>
 
       <div rightContent style="height: 100%;">
-        <cue-card appearance="outlined" height="100%">
+        <cue-card>
           @if(searchResults().length){
           <cue-table
             [data]="searchResults()"
@@ -78,7 +91,9 @@ export interface SearchResult {
             tooltipCol="summary"
           ></cue-table>
           } @else {
-          <div style="display: flex; height: 100%; justify-content: center; align-items: center;">
+          <div
+            style="display: flex; height: 100%; justify-content: center; align-items: center;"
+          >
             <span>{{ info() }}</span>
           </div>
           }
@@ -86,15 +101,6 @@ export interface SearchResult {
       </div>
     </cue-split-layout>
   `,
-  styles: [
-    `
-      .left-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-    `,
-  ],
 })
 export class DocumentSearchScreen {
   properties = input<Property[]>([]);
@@ -125,10 +131,10 @@ export class DocumentSearchScreen {
 
   columnDefs: ColumnDef[] = [];
 
-  constructor(){
+  constructor() {
     this.columnDefs.push(new ColumnDef('name', 'Name', 'left'));
-    const keywordsCol = new ColumnDef('keywords', "Keywords", "right");
-    keywordsCol.type = "STRINGARRAY";
+    const keywordsCol = new ColumnDef('keywords', 'Keywords', 'right');
+    keywordsCol.type = 'STRINGARRAY';
     this.columnDefs.push(keywordsCol);
   }
 }

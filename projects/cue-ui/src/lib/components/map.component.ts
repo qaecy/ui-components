@@ -21,9 +21,7 @@ import mapboxgl, {
   MapMouseEvent,
   MapboxGeoJSONFeature,
 } from 'mapbox-gl';
-import {
-  ResizedDirective,
-} from '../directives/resized.directive';
+import { ResizedDirective } from '../directives/resized.directive';
 import { DarkModeDirective } from '../directives/dark-mode.directive';
 
 export class GeoJSONFeatureCollection {
@@ -60,16 +58,16 @@ export interface FeatureClickHoverEvent {
   selector: 'cue-map',
   imports: [CommonModule, ResizedDirective, DarkModeDirective],
   template: `<div
-    #map
-    id="map"
-    cueResized
-    cueDarkMode
-    (darkModeChange)="setDarkMode($event)"
-    (resized)="onParentResize()"
-  ></div>
-  @if(error()){
-    <span>{{error()}}</span>
-  }`,
+      #map
+      id="map"
+      cueResized
+      cueDarkMode
+      (darkModeChange)="setDarkMode($event)"
+      (resized)="onParentResize()"
+    ></div>
+    @if(error()){
+    <span>{{ error() }}</span>
+    }`,
   styles: [
     `
       @import url('mapbox-gl/dist/mapbox-gl.css');
@@ -90,7 +88,6 @@ export interface FeatureClickHoverEvent {
   ],
 })
 export class MapComponent implements OnDestroy {
-  
   mapboxToken = input.required<string>(); // TODO: make this required
   center = input<LngLatLike>([8.5, 47.4]);
   zoom = input(2);
@@ -126,7 +123,7 @@ export class MapComponent implements OnDestroy {
     return this.borderRadius();
   }
 
-  error = signal("");
+  error = signal('');
   private readonly _darkMode = signal(this._getSystemColorPreference());
   private _styleId = computed(() => {
     return this._darkMode()
@@ -167,14 +164,14 @@ export class MapComponent implements OnDestroy {
 
   onZoomChange = effect(() => {
     this._map?.flyTo({
-        center: this.center(),
-        zoom: this.zoom(),
-        essential: true,
+      center: this.center(),
+      zoom: this.zoom(),
+      essential: true,
     });
   });
 
   onStyleChange = effect(() => {
-    console.log(this._styleId())
+    console.log(this._styleId());
     if (!this._firstThemeReceived) {
       this._firstThemeReceived = true;
       return;
@@ -276,7 +273,7 @@ export class MapComponent implements OnDestroy {
     if (clickable) this._setLayerEvents();
   }
 
-  setDarkMode(darkMode: boolean){
+  setDarkMode(darkMode: boolean) {
     this._darkMode.set(darkMode);
   }
 
@@ -342,7 +339,7 @@ export class MapComponent implements OnDestroy {
       }
     });
     map.on('error', (response) => {
-      this.error.set(response.error.message)
+      this.error.set(response.error.message);
     });
   }
 

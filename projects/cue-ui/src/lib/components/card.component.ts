@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CardColor, Color, contrastColors } from '../shared/colors';
 import { ButtonComponent } from './button.component';
@@ -22,7 +22,7 @@ const appearanceMap = {
 };
 
 @Component({
-  selector: 'cue-card',
+  selector: 'cue-mat-card',
   standalone: true,
   imports: [MatCardModule, ButtonComponent],
   template: `

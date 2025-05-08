@@ -28,10 +28,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/cue-ui/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
         "storybook": {
@@ -40,12 +37,7 @@
             "configDir": "projects/cue-ui/.storybook",
             "browserTarget": "cue-ui:build",
             "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              "projects/cue-ui"
-            ],
+            "compodocArgs": ["-e", "json", "-d", "projects/cue-ui"],
             "port": 6006,
             "styles": [
               "@fontsource/poppins/300.css",
@@ -53,7 +45,7 @@
               "@fontsource/poppins/500.css",
               "@fontsource/poppins/700.css",
               "@fontsource/material-icons",
-              "projects/cue-ui/src/styles.scss",
+              "projects/cue-ui/src/theme/main.scss",
               "tippy.js/dist/tippy.css",
               "tippy.js/animations/shift-away.css",
               "tippy.js/themes/light.css"
@@ -66,19 +58,14 @@
             "configDir": "projects/cue-ui/.storybook",
             "browserTarget": "cue-ui:build",
             "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              "projects/cue-ui"
-            ],
+            "compodocArgs": ["-e", "json", "-d", "projects/cue-ui"],
             "styles": [
               "@fontsource/poppins/300.css",
               "@fontsource/poppins/400.css",
               "@fontsource/poppins/500.css",
               "@fontsource/poppins/700.css",
               "@fontsource/material-icons",
-              "projects/cue-ui/src/styles.scss"
+              "projects/cue-ui/src/theme/main.scss"
             ],
             "outputDir": "storybook-static"
           }

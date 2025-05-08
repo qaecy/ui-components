@@ -1,37 +1,29 @@
 import { Component, input } from '@angular/core';
+import { Typography } from './typography.component';
 
 @Component({
   selector: 'cue-key-val',
-  template: `<div class="container">
-    <span class="key">{{ key() }}</span>
-    <span class="val">{{ val() }}</span>
-  </div>`,
+  imports: [Typography],
+  template: ` <dt>
+      <cue-typography size="s">{{ key() }}</cue-typography>
+    </dt>
+    <dd>
+      <cue-typography [size]="size()">{{ val() }}</cue-typography>
+    </dd>`,
   styles: [
     `
-      .container {
-        display: flex;
-        flex-direction: column;
-        font-family: var(--cue-font-family);
+      dl {
+        margin: 0;
       }
-      .key {
-        font-size: 14px;
-        font-weight: 600;
-        font-style: normal;
-        line-height: 22px;
-        letter-spacing: 0.1px;
-      }
-      .val {
-        font-size: 16px;
-        font-weight: 400;
-        font-size: 16px;
-        font-style: normal;
-        line-height: 24px;
-        letter-spacing: 0.5px;
+      dt,
+      dd {
+        margin: 0;
       }
     `,
   ],
 })
 export class KeyValComponent {
+  size = input<'m' | 'l' | 'xl'>('m');
   key = input.required<string>();
   val = input.required<string>();
 }
