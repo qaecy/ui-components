@@ -55,7 +55,7 @@ export class Card {
     }
     if (this.variant() === 'fade') {
       styles.push(`
-          border-bottom: 0;
+          border: 0;
           background: linear-gradient(to bottom,var(--cue-${color}),var(--cue-main-background));
           `);
     }
