@@ -9,6 +9,7 @@ import {
 } from '../components';
 import { LngLatLike } from 'mapbox-gl';
 import { ColumnDef, TableComponent } from '../components/table.component';
+import { SearchBarComponent } from '../components/search-bar.component';
 
 export interface Property {
   key: string;
@@ -30,6 +31,7 @@ export interface SearchResult {
     CardComponent,
     KeyValComponent,
     TableComponent,
+    SearchBarComponent
   ],
   template: `
     <cue-split-layout
@@ -42,7 +44,7 @@ export interface SearchResult {
       <div leftContent class="left-content">
         <!-- SEARCH BOX -->
         <cue-card color="primary">
-          <p>Search card</p>
+          <cue-search-bar></cue-search-bar>
         </cue-card>
 
         <!-- PROPERTIES -->

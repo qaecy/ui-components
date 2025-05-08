@@ -15,7 +15,6 @@ import {
 import { TableCellComponent } from './table-cell.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
 import {
   ResizedDirective,
   ResizedEvent,
@@ -29,6 +28,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { IconMenuComponent } from './icon-menu.component';
 import { MatButtonModule } from '@angular/material/button';
+import { IconComponent } from './icon.component';
 
 export class ColumnDef {
   type = 'DEFAULT';
@@ -54,7 +54,7 @@ export interface CellValueChange {
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule,
+    IconComponent,
     ResizedDirective,
     MatTableModule,
     MatPaginatorModule,

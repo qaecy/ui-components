@@ -5,7 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 
 const materialIconMap = new Map<Icon, string>([
     ["filter", "filter_alt"],
+    ["filter_off", "filter_alt_off"],
     ["home", "home"],
+    ["rocket", "rocket_launch"],
+    ["search", "search"],
+    ["send", "send"],
     ["warning", "warning"]
 ]);
 export const supportedIcons: string[] = Array.from(materialIconMap.keys()); // For now only material icons but can be extended with own

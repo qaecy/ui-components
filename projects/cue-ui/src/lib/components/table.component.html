@@ -15,7 +15,7 @@
       aria-label="Show filter"
       (click)="filterVisible = true"
     >
-      <mat-icon>filter_alt</mat-icon>
+    <cue-icon icon="filter"></cue-icon>
     </button>
     } @if(filterVisible){
     <mat-form-field style="width: 100%" floatLabel="always">
@@ -33,7 +33,7 @@
       aria-label="Hide filter"
       (click)="filterVisible = false"
     >
-      <mat-icon>filter_alt_off</mat-icon>
+      <cue-icon icon="filter_off"></cue-icon>
     </button>
     }
   </div>
