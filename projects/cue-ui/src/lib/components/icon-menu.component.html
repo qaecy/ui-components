@@ -1,39 +1,26 @@
-<div
-  class="container"
-  [style.flex-direction]="flexDirection()"
-  [style.gap]="gap()"
-  [style.width]="size()"
-  [style.height]="size()"
+<cue-flexcontainer
+  class="wrap"
+  gap="s"
+  align="start"
+  [direction]="flexDirection()"
   (mouseenter)="onContainerHovered()"
 >
   @if(!hidden()){
   <!-- Main icon (unchanged) -->
-  <div
-    class="btn"
+  <cue-button
+    [size]="size()"
+    [variant]="variant()"
+    [disabled]="mainIconDisabled()"
+    [cueTooltip]="mainIconDisabled() ? '' : mainItem().label"
+    [tooltipPlacement]="tooltipPlacement()"
+    (click)="handleClick(0)"
+    aria-label="Select"
     (mouseenter)="onMouseEnter()"
     (mouseover)="hovered = mainItem().id"
     (mouseleave)="hovered = undefined"
   >
-    <button
-      mat-mini-fab
-      aria-label="Select"
-      [style.width]="size()"
-      [style.height]="size()"
-      [style.line-height]="size()"
-      [disabled]="mainIconDisabled()"
-      [cueTooltip]="mainIconDisabled() ? '' : mainItem().label"
-      [tooltipPlacement]="tooltipPlacement()"
-      (click)="handleClick(0)"
-    >
-      <mat-icon
-        [style.font-size]="iconSize()"
-        [style.line-height]="iconSize()"
-        [style.width]="iconSize()"
-        [style.height]="iconSize()"
-        >{{ mainItem().icon }}</mat-icon
-      >
-    </button>
-  </div>
+    <cue-button-icon [icon]="mainItem().icon" />
+  </cue-button>
 
   <!-- Remaining items -->
   @if(isExpanded() && otherItems().length){
@@ -41,36 +28,30 @@
     class="icon-container"
     [@iconAnimation]="isExpanded() ? 'visible' : 'hidden'"
   >
-    @for(item of otherItems(); track item.id; let idx = $index){
-    <div
-      class="btn delayed"
-      (mouseover)="hovered = item.id"
-      (mouseleave)="hovered = undefined"
-      [style.transform]="getTransform(idx + 1)"
+    <cue-flexcontainer
+      class="overlay"
+      gap="s"
+      [direction]="flexDirection()"
+      (mouseenter)="onContainerHovered()"
     >
-      <button
-        mat-mini-fab
-        aria-label="Select"
-        [style.width]="size()"
-        [style.height]="size()"
-        [style.line-height]="size()"
-        [cueTooltip]="item.label"
-        [tooltipPlacement]="tooltipPlacement()"
-        (click)="handleClick(idx + 1)"
+      @for(item of otherItems(); track item.id; let idx = $index){
+      <div
+        class="btn delayed"
+        (mouseover)="hovered = item.id"
+        (mouseleave)="hovered = undefined"
       >
-        <mat-icon
-          [style.font-size]="iconSize()"
-          [style.line-height]="iconSize()"
-          [style.width]="iconSize()"
-          [style.height]="iconSize()"
-          >{{ item.icon }}</mat-icon
+        <cue-button
+          [size]="size()"
+          [variant]="variant()"
+          [cueTooltip]="item.label"
+          [tooltipPlacement]="tooltipPlacement()"
+          (click)="handleClick(idx + 1)"
         >
-      </button>
-    </div>
-    }
-    <div [style.transform]="getTransform(menuItems().length)" class="delayed">
-      <ng-content></ng-content>
-    </div>
+          <cue-button-icon [icon]="item.icon" />
+        </cue-button>
+      </div>
+      }
+    </cue-flexcontainer>
   </div>
   } }
-</div>
+</cue-flexcontainer>

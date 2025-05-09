@@ -1,0 +1,33 @@
+import { Component, computed, input } from '@angular/core';
+@Component({
+  selector: 'cue-flexcontainer',
+  standalone: true,
+  imports: [],
+  template: `
+    <div [style]="getStyles()">
+      <ng-content></ng-content>
+    </div>
+  `,
+  styles: `
+      div {
+        display: flex;
+      }
+    `,
+})
+export class FlexContainer {
+  gap = input<'s' | 'm' | 'l'>('m');
+  direction = input<'row' | 'column'>('row');
+  wrap = input<'nowrap' | 'wrap' | 'wrap-reverse'>('nowrap');
+  align = input<'stretch' | 'start' | 'center' | 'end' | 'baseline'>('stretch');
+  justify = input<'start' | 'center' | 'end' | 'space-between'>('start');
+
+  getStyles = computed(() => {
+    return `
+        flex-direction: ${this.direction()};
+        flex-wrap: ${this.wrap()};
+        align-items: ${this.align()};
+        justify-content: ${this.justify()};
+        gap: var(--cue-flex-gap-${this.gap()});
+    `;
+  });
+}

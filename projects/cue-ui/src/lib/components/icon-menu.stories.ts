@@ -26,7 +26,7 @@ type Story = StoryObj<IconMenuComponent>;
 export const Default: Story = {
   args: {
     menuItems: [
-      new IconMenuItem('home', 'Home', () => console.log('Clicked home')),
+      new IconMenuItem('unknown', 'Home', () => console.log('Clicked home')),
     ],
   },
 };
@@ -34,8 +34,17 @@ export const Default: Story = {
 export const MultipleEntries: Story = {
   args: {
     menuItems: [
-      new IconMenuItem('home', 'Home', () => console.log('Clicked home')),
-      new IconMenuItem('settings', 'Settings', () =>
+      new IconMenuItem('unknown', 'Home', () => console.log('Clicked home')),
+      new IconMenuItem('gear', 'Settings', () =>
+        console.log('Clicked settings')
+      ),
+      new IconMenuItem('gear', 'Settings', () =>
+        console.log('Clicked settings')
+      ),
+      new IconMenuItem('gear', 'Settings', () =>
+        console.log('Clicked settings')
+      ),
+      new IconMenuItem('gear', 'Settings', () =>
         console.log('Clicked settings')
       ),
     ],
@@ -45,12 +54,18 @@ export const MultipleEntries: Story = {
 export const FoldDown: Story = {
   args: {
     menuItems: [
-      new IconMenuItem('home', 'Home', () => console.log('Clicked home')),
-      new IconMenuItem('settings', 'Settings', () =>
+      new IconMenuItem('unknown', 'Home', () => console.log('Clicked home')),
+      new IconMenuItem('gear', 'Settings', () =>
+        console.log('Clicked settings')
+      ),
+      new IconMenuItem('gear', 'Settings', () =>
+        console.log('Clicked settings')
+      ),
+      new IconMenuItem('gear', 'Settings', () =>
         console.log('Clicked settings')
       ),
     ],
-    openDirection: "down",
-    labelPosition: "right"
+    openDirection: 'down',
+    labelPosition: 'right',
   },
 };

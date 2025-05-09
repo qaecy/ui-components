@@ -1,7 +1,7 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { SearchBarComponent } from './search-bar.component';
-import { CardComponent } from './card.component';
-import { supportedIcons } from './icon.component';
+import { Card } from './card.component';
+import { svgs } from './icons/svg';
 
 const meta: Meta<SearchBarComponent> = {
   title: 'Search bar',
@@ -9,7 +9,7 @@ const meta: Meta<SearchBarComponent> = {
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [CardComponent],
+      imports: [Card],
     }),
   ],
   argTypes: {
@@ -23,7 +23,7 @@ const meta: Meta<SearchBarComponent> = {
       control: {
         type: 'select',
       },
-      options: supportedIcons,
+      options: Object.keys(svgs),
     },
   },
 };
@@ -34,53 +34,50 @@ type Story = StoryObj<SearchBarComponent>;
 export const Default: Story = {
   render: (args: any) => ({
     props: {
-      backgroundColor: args.backgroundColor,
-      borderColor: args.borderColor,
+      variant: args.variant,
       debounceTime: args.debounceTime,
       placeholder: args.placeholder,
-      searchIconBackground: args.searchIconBackground,
+      buttonVariant: args.buttonVariant,
       showSubmitButton: args.showSubmitButton,
       submitIcon: args.submitIcon,
-      textColor: args.textColor,
     },
-    template: `<cue-card>
-            <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"  
-                [submitIcon]="submitIcon" [showSubmitButton]="showSubmitButton"
-                [backgroundColor]="backgroundColor" [borderColor]="borderColor"
-                [textColor]="textColor" [searchIconBackground]="searchIconBackground"
-                (valueChange)="valueChange = $event"
-                (valueSubmit)="valueSubmit = $event">
-            </cue-search-bar>
-        </cue-card>
+    template: `
+          <cue-card variant="primary" shadow="true">
+              <cue-search-bar
+                  [placeholder]="placeholder"
+                  [debounceTime]="debounceTime"
+                  [variant]="variant"
+                  [showSubmitButton]="showSubmitButton"
+                  [submitIcon]="submitIcon"
+                  [buttonVariant]="buttonVariant"
+                  (valueChange)="valueChange = $event"
+                  (valueSubmit)="valueSubmit = $event"/>
+          </cue-card>
         <p>valueChange: {{valueChange}}</p>
         <p>valueSubmit: {{valueSubmit}}</p>`,
   }),
   args: {
     placeholder: 'Search...',
+    variant: 'secondary',
+    buttonVariant: 'accent',
     debounceTime: 200,
     showSubmitButton: true,
-    submitIcon: 'search',
-    borderColor: 'rgba(0,0,0,0)',
-    backgroundColor: 'var(--cue-info)',
-    textColor: 'var(--cue-extra-light-gray)',
-    searchIconBackground: 'var(--cue-accent)',
+    submitIcon: 'paperplane',
   },
 };
 
 export const Narrow: Story = {
   render: (args: any) => ({
     props: {
-      backgroundColor: args.backgroundColor,
-      borderColor: args.borderColor,
+      variant: args.variant,
       debounceTime: args.debounceTime,
       placeholder: args.placeholder,
-      searchIconBackground: args.searchIconBackground,
+      buttonVariant: args.buttonVariant,
       showSubmitButton: args.showSubmitButton,
       submitIcon: args.submitIcon,
-      textColor: args.textColor,
     },
     template: `<cue-card width="200px">
-              <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"  
+              <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"
                   [submitIcon]="submitIcon" [showSubmitButton]="showSubmitButton"
                   [backgroundColor]="backgroundColor" [borderColor]="borderColor"
                   [textColor]="textColor" [searchIconBackground]="searchIconBackground"
@@ -93,12 +90,10 @@ export const Narrow: Story = {
   }),
   args: {
     placeholder: 'Search...',
+    variant: 'secondary',
+    buttonVariant: 'accent',
     debounceTime: 200,
     showSubmitButton: true,
-    submitIcon: 'search',
-    borderColor: 'rgba(0,0,0,0)',
-    backgroundColor: 'var(--cue-info)',
-    textColor: 'var(--cue-extra-light-gray)',
-    searchIconBackground: 'var(--cue-accent)',
+    submitIcon: 'paperplane',
   },
 };
