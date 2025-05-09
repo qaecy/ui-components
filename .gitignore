@@ -5,7 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
-/storybook-static
+/storybook-static/*
 
 # Node
 /node_modules
@@ -43,3 +43,15 @@ testem.log
 Thumbs.db
 
 *storybook.log
+storybook-static/4.c8ed5fc1.iframe.bundle.js
+storybook-static/300.f4b481c0.iframe.bundle.js
+storybook-static/578.aa66baa3.iframe.bundle.js
+storybook-static/801.a799ff11.iframe.bundle.js
+storybook-static/components-button-stories.68a44877.iframe.bundle.js
+storybook-static/components-icon-menu-stories.156c974f.iframe.bundle.js
+storybook-static/components-icon-stories.d70f5d31.iframe.bundle.js
+storybook-static/components-search-bar-stories.00898c1d.iframe.bundle.js
+storybook-static/components-table-stories.27ecb8db.iframe.bundle.js
+storybook-static/main.7b952a7f.iframe.bundle.js
+storybook-static/pages-document-app-stories.097ab4dd.iframe.bundle.js
+storybook-static/runtime~main.1b9491a2.iframe.bundle.js

@@ -26,7 +26,7 @@ const meta: Meta<{
       control: {
         type: 'select',
       },
-      options: ['primary', 'secondary', 'tertiary'],
+      options: ['accent', 'primary', 'secondary', 'tertiary'],
     },
     size: {
       control: {

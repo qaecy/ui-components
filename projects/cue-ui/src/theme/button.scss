@@ -30,6 +30,18 @@
   --cue-button-primary-disabled-background: var(--cue-color-ultralightgray);
   --cue-button-primary-disabled-border-color: var(--cue-color-ultralightgray);
 
+  --cue-button-accent-background: var(--cue-accent);
+  --cue-button-accent-foreground: var(--cue-accentContrast);
+  --cue-button-accent-focus-color: var(--cue-accent);
+  --cue-button-accent-border-color: var(--cue-accent);
+  --cue-button-accent-disabled-foreground: var(
+    --background-color,
+    --cue-main-background
+  );
+  --cue-button-accent-disabled-foreground: var(--cue-color-lightgray);
+  --cue-button-accent-disabled-background: var(--cue-color-ultralightgray);
+  --cue-button-accent-disabled-border-color: var(--cue-color-ultralightgray);
+
   --cue-button-secondary-background: transparent;
   --cue-button-secondary-foreground: currentColor;
   --cue-button-secondary-focus-color: currentColor;
