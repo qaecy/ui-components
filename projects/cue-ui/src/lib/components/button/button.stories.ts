@@ -3,7 +3,7 @@ import { Button } from './button.component';
 import { ButtonIcon } from './button-icon.component';
 import { ButtonLabel } from './button-label.component';
 import { ButtonPadder } from './button-padder.component';
-import { IconName } from '../icons/svg-icon.component';
+import { IconName } from '../icons/types';
 
 const meta: Meta<{
   variant: string;

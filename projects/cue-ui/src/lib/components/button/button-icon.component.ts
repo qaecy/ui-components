@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
-import { IconName, SvgIcon } from '../icons/svg-icon.component';
+import { SvgIcon } from '../icons/svg-icon.component';
+import { IconName } from '../icons/types';
 
 @Component({
   selector: 'cue-button-icon',

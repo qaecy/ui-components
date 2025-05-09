@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { TooltipDirective } from '../../directives/tooltip.directive';
+import { ButtonSize, ButtonVariant } from './types';
 
 @Component({
   selector: 'cue-button',
@@ -44,8 +45,8 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
   `,
 })
 export class Button {
-  variant = input<'primary' | 'secondary' | 'tertiary'>('primary');
-  size = input<'xs' | 's' | 'm'>('m');
+  variant = input<ButtonVariant>('primary');
+  size = input<ButtonSize>('m');
   tooltip = input<string>('');
   disabled = input(false);
 

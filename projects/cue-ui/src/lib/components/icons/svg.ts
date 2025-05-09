@@ -1,4 +1,4 @@
-import { IconName } from './svg-icon.component';
+import { IconName } from './types';
 
 export const svgs: {
   [K in IconName]: string;

@@ -7,8 +7,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { svgs } from './svg';
-
-export type IconName = 'unknown' | 'user' | 'loading' | 'gear' | 'sun' | 'moon';
+import { IconName } from './types';
 
 @Pipe({
   name: 'safeHtml',

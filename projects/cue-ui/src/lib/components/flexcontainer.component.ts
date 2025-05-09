@@ -1,10 +1,8 @@
 import { Component, computed, input } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-
 @Component({
   selector: 'cue-flexcontainer',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [],
   template: `
     <div [style]="getStyles()">
       <ng-content></ng-content>
@@ -13,11 +11,11 @@ import { MatCardModule } from '@angular/material/card';
   styles: `
       div {
         display: flex;
-        gap: var(--cue-flex-gap);
       }
     `,
 })
 export class FlexContainer {
+  gap = input<'s' | 'm' | 'l'>('m');
   direction = input<'row' | 'column'>('row');
   wrap = input<'nowrap' | 'wrap' | 'wrap-reverse'>('nowrap');
   align = input<'stretch' | 'start' | 'center' | 'end' | 'baseline'>('stretch');
@@ -29,6 +27,7 @@ export class FlexContainer {
         flex-wrap: ${this.wrap()};
         align-items: ${this.align()};
         justify-content: ${this.justify()};
+        gap: var(--cue-flex-gap-${this.gap()});
     `;
   });
 }

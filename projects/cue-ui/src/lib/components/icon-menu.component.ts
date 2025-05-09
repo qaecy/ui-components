@@ -5,8 +5,6 @@ import {
   linkedSignal,
   signal,
 } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import {
   animate,
   query,
@@ -18,6 +16,11 @@ import {
 import { v4 as uuid4 } from 'uuid';
 import { Placement } from 'tippy.js';
 import { TooltipDirective } from '../directives';
+import { FlexContainer } from './flexcontainer.component';
+import { Button } from './button/button.component';
+import { ButtonIcon } from './button/button-icon.component';
+import { ButtonSize, ButtonVariant } from './button/types';
+import { IconName } from './icons/types';
 
 export const openDirections = ['left', 'right', 'top', 'down'];
 export type OpenDirection = (typeof openDirections)[number];
@@ -26,7 +29,7 @@ export class IconMenuItem {
   id = uuid4();
   clickable = false;
   constructor(
-    public icon: string,
+    public icon: IconName,
     public label: string,
     public click: (() => void) | null = null
   ) {
@@ -38,7 +41,7 @@ export class IconMenuItem {
   selector: 'cue-icon-menu',
   templateUrl: './icon-menu.component.html',
   styleUrls: ['./icon-menu.component.scss'],
-  imports: [MatButtonModule, MatIconModule, TooltipDirective],
+  imports: [FlexContainer, Button, ButtonIcon, TooltipDirective],
   animations: [
     trigger('iconAnimation', [
       transition(':enter', [
@@ -60,12 +63,9 @@ export class IconMenuComponent {
   openDirection = input<OpenDirection>('right');
   labelPosition = input<Placement | undefined>();
   hideWhenNotHovered = input(false);
-  gap = input(2);
-  size = input('30px');
+  variant = input<ButtonVariant>('tertiary');
+  size = input<ButtonSize>('xs');
 
-  iconSize = computed(() => `calc(${this.size()} * 0.6)`);
-
-  distanceBetween = computed(() => `${20 + this.gap()}px`);
   mainItem = computed(() => this.menuItems()[0]);
   otherItems = computed(() => this.menuItems().slice(1));
   flexDirection = computed(() =>
@@ -91,30 +91,6 @@ export class IconMenuComponent {
     return false;
   });
   hovered?: string;
-
-  getTransform(i: number) {
-    const offsetFromMain = '0px';
-    const map: { [direction: OpenDirection]: string } = {
-      right: `translateX(calc((${
-        i * 1.2
-      } * ${this.size()}) + ${offsetFromMain})`,
-      left: `translateX(calc((-${
-        i * 1.2
-      } * ${this.size()}) - ${offsetFromMain})`,
-      top: `translateY(calc((-${
-        i * 1.2
-      } * ${this.size()}) - ${offsetFromMain})`,
-      down: `translateY(calc((${
-        i * 1.2
-      } * ${this.size()}) + ${offsetFromMain})`,
-    };
-    return map[this.openDirection()];
-  }
-
-  // onHover(isHovered: boolean) {
-  //   console.log(isHovered)
-  //   this.isHovered = isHovered;
-  // }
 
   onMouseEnter() {
     this.isExpanded.set(true);
