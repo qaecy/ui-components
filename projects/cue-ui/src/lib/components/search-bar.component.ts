@@ -6,7 +6,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import {  CardVariant } from './card.component';
+import { CardVariant } from './card.component';
 import { Button } from './button/button.component';
 import { ButtonIcon } from './button/button-icon.component';
 import { ButtonVariant } from './button/types';
@@ -47,6 +47,10 @@ import { Typography } from './typography.component';
         height: var(--height);
         display: flex;
         align-items: stretch;
+
+        @container container-wrap (width <= 20em) {
+          --height: calc(34rem / 16);
+        }
       }
 
       cue-button {
@@ -54,6 +58,10 @@ import { Typography } from './typography.component';
         right: calc(10em / 16);
         top: 50%;
         transform: translate(0, -50%);
+
+        @container container-wrap (width <= 20em) {
+          right: calc(4em / 16);
+        }
       }
 
       cue-typography {
@@ -92,6 +100,10 @@ import { Typography } from './typography.component';
           /* Edge 12 -18 */
           color: currentColor;
         }
+
+        @container container-wrap (width <= 20em) {
+          padding: 0 1em;
+        }
       }
     `,
   ],
@@ -109,7 +121,6 @@ export class SearchBarComponent {
 
   valueChange = output<string>();
   valueSubmit = output<string>();
-
 
   private _debounceTimer?: any;
   private _value = '';

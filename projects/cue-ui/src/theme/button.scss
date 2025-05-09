@@ -61,9 +61,7 @@
   --cue-button-label-padding-s-x: calc(16em / 16);
   --cue-button-label-padding-m-x: calc(24em / 16);
   --cue-button-label-padding-l-x: calc(48em / 16);
-}
 
-body {
   @media (prefers-color-scheme: dark) {
     --cue-button-primary-disabled-foreground: var(--cue-color-midgray);
     --cue-button-primary-disabled-border-color: var(--cue-color-midgray);
@@ -73,5 +71,21 @@ body {
     --cue-button-secondary-disabled-border-color: var(--cue-color-darkmidgray);
 
     --cue-button-tertiary-disabled-foreground: var(--cue-color-darkmidgray);
+  }
+}
+
+@container container-wrap (width <= 20em) {
+  div {
+    --cue-button-xs-height: calc(16em / 16);
+    --cue-button-xs-padding-x: calc(1em / 16);
+    --cue-button-xs-icon-width: calc(12em / 16);
+
+    --cue-button-s-height: calc(20em / 16);
+    --cue-button-s-padding-x: calc(4em / 16);
+    --cue-button-s-icon-width: calc(16em / 16);
+
+    --cue-button-m-height: calc(28em / 16);
+    --cue-button-m-padding-x: calc(4em / 16);
+    --cue-button-m-icon-width: calc(18em / 16);
   }
 }

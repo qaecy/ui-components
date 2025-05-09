@@ -2,6 +2,7 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { SearchBarComponent } from './search-bar.component';
 import { Card } from './card.component';
 import { svgs } from './icons/svg';
+import { Container } from './container.component';
 
 const meta: Meta<SearchBarComponent> = {
   title: 'Search bar',
@@ -9,7 +10,7 @@ const meta: Meta<SearchBarComponent> = {
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [Card],
+      imports: [Card, Container],
     }),
   ],
   argTypes: {
@@ -76,17 +77,20 @@ export const Narrow: Story = {
       showSubmitButton: args.showSubmitButton,
       submitIcon: args.submitIcon,
     },
-    template: `<cue-card width="200px">
-              <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"
-                  [submitIcon]="submitIcon" [showSubmitButton]="showSubmitButton"
-                  [backgroundColor]="backgroundColor" [borderColor]="borderColor"
-                  [textColor]="textColor" [searchIconBackground]="searchIconBackground"
-                  (valueChange)="valueChange = $event"
-                  (valueSubmit)="valueSubmit = $event">
-              </cue-search-bar>
-          </cue-card>
-          <p>valueChange: {{valueChange}}</p>
-          <p>valueSubmit: {{valueSubmit}}</p>`,
+    template: `
+    <cue-container width="200">
+      <cue-card>
+        <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"
+            [submitIcon]="submitIcon" [showSubmitButton]="showSubmitButton"
+            [backgroundColor]="backgroundColor" [borderColor]="borderColor"
+            [textColor]="textColor" [searchIconBackground]="searchIconBackground"
+            (valueChange)="valueChange = $event"
+            (valueSubmit)="valueSubmit = $event">
+        </cue-search-bar>
+      </cue-card>
+    </cue-container>
+    <p>valueChange: {{valueChange}}</p>
+    <p>valueSubmit: {{valueSubmit}}</p>`,
   }),
   args: {
     placeholder: 'Search...',
