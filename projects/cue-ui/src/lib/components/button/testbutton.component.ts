@@ -6,7 +6,7 @@ import { ButtonIcon } from './button-icon.component';
 @Component({
   selector: 'cue-testbutton',
   standalone: true,
-  imports: [CommonModule, TooltipDirective, ButtonIcon],
+  imports: [CommonModule, TooltipDirective],
   template: `<button
     [style]="getStyles()"
     [disabled]="disabled()"

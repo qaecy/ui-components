@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { SearchBarComponent } from './search-bar.component';
-import { CardComponent } from './card.component';
+import { Card } from './card.component';
 import { supportedIcons } from './icon.component';
 
 const meta: Meta<SearchBarComponent> = {
@@ -9,7 +9,7 @@ const meta: Meta<SearchBarComponent> = {
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [CardComponent],
+      imports: [Card],
     }),
   ],
   argTypes: {
@@ -44,7 +44,7 @@ export const Default: Story = {
       textColor: args.textColor,
     },
     template: `<cue-card>
-            <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"  
+            <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"
                 [submitIcon]="submitIcon" [showSubmitButton]="showSubmitButton"
                 [backgroundColor]="backgroundColor" [borderColor]="borderColor"
                 [textColor]="textColor" [searchIconBackground]="searchIconBackground"
@@ -59,7 +59,7 @@ export const Default: Story = {
     placeholder: 'Search...',
     debounceTime: 200,
     showSubmitButton: true,
-    submitIcon: "search",
+    submitIcon: 'search',
     borderColor: 'rgba(0,0,0,0)',
     backgroundColor: 'var(--cue-info)',
     textColor: 'var(--cue-extra-light-gray)',

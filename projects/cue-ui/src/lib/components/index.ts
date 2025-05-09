@@ -1,5 +1,5 @@
 export * from './button.component';
-export * from './testcard.component';
+export * from './card.component';
 export * from './icon.component';
 export * from './key-val.component';
 export * from './map.component';

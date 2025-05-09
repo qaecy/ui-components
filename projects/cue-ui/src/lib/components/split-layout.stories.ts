@@ -1,6 +1,6 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { SplitLayoutComponent } from './split-layout.component';
-import { CardComponent } from './card.component';
+import { Card } from './card.component';
 
 const meta: Meta<SplitLayoutComponent> = {
   title: 'Split Layout',
@@ -29,7 +29,7 @@ const meta: Meta<SplitLayoutComponent> = {
   },
   decorators: [
     moduleMetadata({
-      imports: [CardComponent],
+      imports: [Card],
     }),
   ],
 };
@@ -46,7 +46,7 @@ const render = (args: any) => ({
   // play: async (x: any) => {
   //   console.log(x)
   // },
-  template: `<cue-split-layout style="display: block; height: 500px; width: 100%;" 
+  template: `<cue-split-layout style="display: block; height: 500px; width: 100%;"
     [sizes]="sizes" [minSizes]="minSizes" [gutterSize]="gutterSize" (resized)="newSize = $event">
     <div leftContent>Left
       @if(newSize){<br><span>New size: {{newSize.left}}px</span>}
@@ -78,7 +78,7 @@ export const Cards: Story = {
       minSizes: args.minSizes,
       gutterSize: args.gutterSize,
     },
-    template: `<cue-split-layout style="display: block; height: 500px; width: 100%; display: flex; font-family: var(--cue-font-family);" 
+    template: `<cue-split-layout style="display: block; height: 500px; width: 100%; display: flex; font-family: var(--cue-font-family);"
       [sizes]="sizes" [minSizes]="minSizes" [gutterSize]="gutterSize" (resized)="newSize = $event">
       <div leftContent style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
         <cue-card height="200px">
