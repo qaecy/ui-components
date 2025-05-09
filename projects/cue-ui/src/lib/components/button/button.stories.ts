@@ -1,5 +1,5 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { TestButton } from './testbutton.component';
+import { Button } from './button.component';
 import { ButtonIcon } from './button-icon.component';
 import { ButtonLabel } from './button-label.component';
 import { ButtonPadder } from './button-padder.component';
@@ -13,8 +13,8 @@ const meta: Meta<{
   iconAfter: IconName | undefined;
   disabled: boolean;
 }> = {
-  title: 'TestButton',
-  component: TestButton,
+  title: 'Button',
+  component: Button,
   decorators: [
     moduleMetadata({
       imports: [ButtonIcon, ButtonLabel, ButtonPadder],
@@ -38,11 +38,11 @@ const meta: Meta<{
 };
 
 export default meta;
-type Story = StoryObj<TestButton>;
+type Story = StoryObj<Button>;
 
 const render = (args: any) => ({
   props: args,
-  template: `<cue-testbutton
+  template: `<cue-button
     variant="${args.variant}"
     size="${args.size}"
     [disabled]="${args.disabled}">
@@ -53,7 +53,7 @@ const render = (args: any) => ({
       <cue-button-padder justify="end">
         <cue-button-icon icon="loading"></cue-button-icon>
       </cue-button-padder>
-    </cue-testbutton>`,
+    </cue-button>`,
 });
 
 export const Default: Story = {
@@ -68,12 +68,12 @@ export const Default: Story = {
 export const IconOnly: Story = {
   render: (args: any) => ({
     props: args,
-    template: `<cue-testbutton
+    template: `<cue-button
       variant="${args.variant}"
       size="${args.size}"
       [disabled]="${args.disabled}">
           <cue-button-icon icon="user"/>
-      </cue-testbutton>`,
+      </cue-button>`,
   }),
   args: {
     variant: 'primary',
@@ -85,14 +85,14 @@ export const IconOnly: Story = {
 export const IconBeforeCompact: Story = {
   render: (args: any) => ({
     props: args,
-    template: `<cue-testbutton
+    template: `<cue-button
       variant="${args.variant}"
       size="${args.size}"
       [disabled]="${args.disabled}">
           <cue-button-icon icon="unknown"/>
           <cue-button-label>Click Me!</cue-button-label>
           <cue-button-padder size="s"/>
-      </cue-testbutton>`,
+      </cue-button>`,
   }),
   args: {
     variant: 'primary',

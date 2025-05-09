@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { TooltipDirective } from '../../directives/tooltip.directive';
-import { ButtonIcon } from './button-icon.component';
 
 @Component({
-  selector: 'cue-testbutton',
+  selector: 'cue-button',
   standalone: true,
   imports: [CommonModule, TooltipDirective],
   template: `<button
@@ -44,7 +43,7 @@ import { ButtonIcon } from './button-icon.component';
   }
   `,
 })
-export class TestButton {
+export class Button {
   variant = input<'primary' | 'secondary' | 'tertiary'>('primary');
   size = input<'xs' | 's' | 'm'>('m');
   tooltip = input<string>('');

@@ -1,7 +1,7 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { Card, cardVariants } from './card.component';
 import { Typography } from './typography.component';
-import { TestButton } from './button/testbutton.component';
+import { Button } from './button/button.component';
 import { Grid } from './grid.component';
 import { FlexContainer } from './flexcontainer.component';
 import { ButtonLabel } from './button/button-label.component';
@@ -15,7 +15,7 @@ const meta: Meta<Card> = {
     moduleMetadata({
       imports: [
         Typography,
-        TestButton,
+        Button,
         ButtonLabel,
         ButtonIcon,
         ButtonPadder,
@@ -70,22 +70,22 @@ export const WithContent: Story = {
         </cue-typography>
           <img src="https://placehold.co/600x400" alt="Placeholder image" style="display:block; max-width:20em;width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" />
           <cue-flexcontainer justify="end">
-            <cue-testbutton variant="secondary" disabled="true">
+            <cue-button variant="secondary" disabled="true">
               <cue-button-label>Disabled Secondary</cue-button-label>
-            </cue-testbutton>
-            <cue-testbutton variant="primary" disabled="true">
+            </cue-button>
+            <cue-button variant="primary" disabled="true">
               <cue-button-label>Disabled Primary</cue-button-label>
-            </cue-testbutton>
-            <cue-testbutton variant="secondary">
+            </cue-button>
+            <cue-button variant="secondary">
               <cue-button-label>Secondary Button</cue-button-label>
-            </cue-testbutton>
-            <cue-testbutton variant="primary" tooltip="User">
+            </cue-button>
+            <cue-button variant="primary" tooltip="User">
               <cue-button-padder size="l">
                 <cue-button-icon icon="user"/>
               </cue-button-padder>
               <cue-button-label>Primary Button</cue-button-label>
               <cue-button-padder size="l"/>
-            </cue-testbutton>
+            </cue-button>
           </cue-flexcontainer>
       </cue-grid>
     </cue-card>
