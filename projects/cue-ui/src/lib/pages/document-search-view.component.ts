@@ -19,7 +19,7 @@ export interface DocumentSearchViewProperty {
 export interface DocumentSearchViewSearchResult {
   id: string;
   name: string;
-  keywords: string[];
+  keywords: string;
   summary: string;
   mime: string;
   size: number;
@@ -116,7 +116,7 @@ export class DocumentSearchView {
     featureCollection.id = 'Location';
     const coordinates: number[] = Array.isArray(center)
       ? center
-      : [center.lat, center.lng];
+      : [center.lng, center.lat];
     featureCollection.features = [
       {
         type: 'Feature',
@@ -133,9 +133,11 @@ export class DocumentSearchView {
   columnDefs: ColumnDef[] = [];
 
   constructor(){
-    this.columnDefs.push(new ColumnDef('name', 'Name', 'left'));
+    const nameCol = new ColumnDef('name', 'Name', 'left');
+    nameCol.type = "TRUNCATED"
+    this.columnDefs.push(nameCol);
     const keywordsCol = new ColumnDef('keywords', "Keywords", "right");
-    keywordsCol.type = "STRINGARRAY";
+    keywordsCol.type = "TRUNCATED";
     this.columnDefs.push(keywordsCol);
     const sizeCol = new ColumnDef('size', "Size", "right");
     sizeCol.type = "DATASIZE";

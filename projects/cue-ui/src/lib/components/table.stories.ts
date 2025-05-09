@@ -72,4 +72,10 @@ export const Advanced: Story = {
       columnDefs: columnDefsAdv
     },
 };
-  
+
+export const Long: Story = {
+  args: {
+    data: [...data, ...data, ...data, ...data],
+    columnDefs
+  },
+};

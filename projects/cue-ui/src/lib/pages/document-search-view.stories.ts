@@ -29,7 +29,7 @@ const properties: DocumentSearchViewProperty[] = [{
 const results: DocumentSearchViewSearchResult[] = Array.from({ length: 20 }, (_, index) => ({
   id: `${index + 1}`,
   name: `Test document ${index + 1}`,
-  keywords: ["drawing", "diagram"],
+  keywords: "drawing, diagram",
   size: Math.floor(Math.random() * (10000000 - 100 + 1)) + 100,
   mime: 'application/pdf',
   summary: `This is a test summary for document ${index + 1}`

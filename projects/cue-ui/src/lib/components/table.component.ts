@@ -79,6 +79,7 @@ export class TableComponent implements OnChanges {
   // Functionality
   selectedRow = input<string>(); // Id of selected row
   paginate = input(true);
+  autoFitPageHeight = input(false);
   @Input() displaySelectColumn = false;
   @Input() displayFilter = true;
   @Input() clickableRows = false;
@@ -122,6 +123,7 @@ export class TableComponent implements OnChanges {
   tableHeight = signal(0);
   pageSize = computed(() => {
     if (this.tableHeight() === 0) return 5;
+    if (!this.autoFitPageHeight()) return 5;
     const toFit = (this.tableHeight() - 30) / this.rowHeight();
     const closestOption = this.pageSizeOptions
       .slice()
