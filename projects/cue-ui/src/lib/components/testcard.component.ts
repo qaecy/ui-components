@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ViewEncapsulation } from '@angular/core';
 
 export const cardVariants = [
   'default',
@@ -13,7 +13,9 @@ export type CardVariant = (typeof cardVariants)[number];
   selector: 'cue-card',
   standalone: true,
   imports: [],
+  //encapsulation: ViewEncapsulation.None,
   template: `
+    <link rel="stylesheet" href="./testcard.css" />
     <div [style]="getStyles()">
       <ng-content></ng-content>
     </div>
@@ -44,8 +46,17 @@ export class Card {
       case 'secondary':
         styles.push(`
           --cue-button-primary-background: var(--cue-color-ultralightgray);
+          --cue-button-primary-focus-color: var(--cue-color-ultralightgray);
           --cue-button-primary-foreground: var(--cue-color-blue);
           --cue-button-primary-border-color: var(--cue-color-ultralightgray);
+          --cue-button-primary-background: var(--cue-color-ultralightgray);
+
+          --cue-button-primary-disabled-foreground: var(--cue-color-midgray);
+          --cue-button-primary-disabled-background: var(--cue-color-lightgray);
+          --cue-button-primary-disabled-border-color: var(--cue-color-lightgray);
+
+          --cue-button-secondary-disabled-foreground: var(--cue-color-midgray);
+          --cue-button-secondary-disabled-border-color: var(--cue-color-midgray);
           `);
     }
     if (this.padded()) {

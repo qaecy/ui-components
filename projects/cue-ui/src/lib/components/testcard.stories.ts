@@ -1,16 +1,27 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { Card, cardVariants } from './testcard.component';
 import { Typography } from './typography.component';
-import { TestButton } from './testbutton.component';
+import { TestButton } from './button/testbutton.component';
 import { Grid } from './grid.component';
 import { FlexContainer } from './flexcontainer.component';
+import { ButtonLabel } from './button/button-label.component';
+import { ButtonIcon } from './button/button-icon.component';
+import { ButtonPadder } from './button/button-padder.component';
 
 const meta: Meta<Card> = {
   title: 'TestCard',
   component: Card,
   decorators: [
     moduleMetadata({
-      imports: [Typography, TestButton, Grid, FlexContainer],
+      imports: [
+        Typography,
+        TestButton,
+        ButtonLabel,
+        ButtonIcon,
+        ButtonPadder,
+        Grid,
+        FlexContainer,
+      ],
     }),
   ],
   argTypes: {
@@ -59,8 +70,22 @@ export const WithContent: Story = {
         </cue-typography>
           <img src="https://placehold.co/600x400" alt="Placeholder image" style="display:block; max-width:20em;width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" />
           <cue-flexcontainer justify="end">
-            <cue-testbutton variant="secondary">Secondary Button</cue-testbutton>
-            <cue-testbutton variant="primary">Primary Button</cue-testbutton>
+            <cue-testbutton variant="secondary" disabled="true">
+              <cue-button-label>Disabled Secondary</cue-button-label>
+            </cue-testbutton>
+            <cue-testbutton variant="primary" disabled="true">
+              <cue-button-label>Disabled Primary</cue-button-label>
+            </cue-testbutton>
+            <cue-testbutton variant="secondary">
+              <cue-button-label>Secondary Button</cue-button-label>
+            </cue-testbutton>
+            <cue-testbutton variant="primary" tooltip="User">
+              <cue-button-padder size="l">
+                <cue-button-icon icon="user"/>
+              </cue-button-padder>
+              <cue-button-label>Primary Button</cue-button-label>
+              <cue-button-padder size="l"/>
+            </cue-testbutton>
           </cue-flexcontainer>
       </cue-grid>
     </cue-card>

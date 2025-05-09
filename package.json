@@ -25,6 +25,7 @@
     "@angular/router": "^19.2.0",
     "@fontsource/material-icons": "^5.2.5",
     "@fontsource/poppins": "^5.2.5",
+    "angular-svg-icon": "^19.1.1",
     "mapbox-gl": "3.3.0",
     "rxjs": "~7.8.0",
     "split.js": "^1.6.5",
