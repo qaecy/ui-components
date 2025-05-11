@@ -11,15 +11,6 @@ import {
 } from '@angular/core';
 import { DarkModeDirective } from 'cue-ui';
 
-export const cardVariants = [
-  'default',
-  'primary',
-  'secondary',
-  'accent',
-  'fade',
-];
-export type CardVariant = (typeof cardVariants)[number];
-
 @Component({
   selector: 'cue-logo',
   standalone: true,

@@ -1,5 +1,6 @@
 export * from './app-header.component';
 export * from './card.component';
+export * from './card.stories';
 export * from './container.component';
 export * from './flexcontainer.component';
 export * from './grid.component';
@@ -8,6 +9,7 @@ export * from './icon.component';
 export * from './icons-svg';
 export * from './key-val-list.component';
 export * from './key-val.component';
+export * from './logo.component';
 export * from './map.component';
 export * from './mime-icon.component';
 export * from './search-bar.component';
