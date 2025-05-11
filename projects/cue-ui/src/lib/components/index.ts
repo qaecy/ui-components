@@ -4,7 +4,6 @@ export * from './container.component';
 export * from './flexcontainer.component';
 export * from './grid.component';
 export * from './icon-menu.component';
-export * from './icon-menu.stories';
 export * from './icon.component';
 export * from './icons-svg';
 export * from './key-val-list.component';
