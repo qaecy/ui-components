@@ -1,6 +1,9 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { SplitLayoutComponent } from './split-layout.component';
 import { Card } from './card.component';
+import { Container } from './container.component';
+import { Typography } from './typography.component';
+import { FlexContainer } from './flexcontainer.component';
 
 const meta: Meta<SplitLayoutComponent> = {
   title: 'Split Layout',
@@ -29,10 +32,31 @@ const meta: Meta<SplitLayoutComponent> = {
   },
   decorators: [
     moduleMetadata({
-      imports: [Card],
+      imports: [Typography, Card, Container, FlexContainer, Container],
     }),
   ],
 };
+
+const templateLeft = `<cue-container leftContent style="height:80vh">
+          <cue-flexcontainer direction="column">
+            <cue-card variant="primary" style="flex:0">
+              <cue-typography>I'm a blue card</cue-typography>
+            </cue-card>
+            <cue-card variant="accent">
+              <cue-typography>I'm a green card</cue-typography>
+            </cue-card>
+            <cue-card  variant="fade">
+              <cue-typography>I'm fade card</cue-typography>
+            </cue-card>
+          </cue-flexcontainer>
+        </cue-container>`;
+const templateRight = `<cue-container rightContent style="height:100%">
+        <cue-flexcontainer direction="column">
+          <cue-card variant="default">
+            <cue-typography>I'm a default card</cue-typography>
+          </cue-card>
+        </cue-flexcontainer>
+        </cue-container>`;
 
 export default meta;
 type Story = StoryObj<SplitLayoutComponent>;
@@ -46,15 +70,11 @@ const render = (args: any) => ({
   // play: async (x: any) => {
   //   console.log(x)
   // },
-  template: `<cue-split-layout style="display: block; height: 500px; width: 100%;"
+  template: `<cue-container width="100%" height="500px"><cue-split-layout
     [sizes]="sizes" [minSizes]="minSizes" [gutterSize]="gutterSize" (resized)="newSize = $event">
-    <div leftContent>Left
-      @if(newSize){<br><span>New size: {{newSize.left}}px</span>}
-    </div>
-    <div rightContent>Right
-      @if(newSize){<br><span>New size: {{newSize.right}}px</span>}
-    </div>
-  </cue-split-layout>`,
+        ${templateLeft}
+        ${templateRight}
+  </cue-split-layout></cue-container>`,
 });
 
 export const Default: Story = {
@@ -78,25 +98,17 @@ export const Cards: Story = {
       minSizes: args.minSizes,
       gutterSize: args.gutterSize,
     },
-    template: `<cue-split-layout style="display: block; height: 500px; width: 100%; display: flex; font-family: var(--cue-font-family);"
-      [sizes]="sizes" [minSizes]="minSizes" [gutterSize]="gutterSize" (resized)="newSize = $event">
-      <div leftContent style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
-        <cue-card height="200px">
-          I'm a blue card
-        </cue-card>
-        <cue-card height="150px" color="accent">
-          I'm a green card
-        </cue-card>
-        <cue-card height="calc(500px - 2rem - 350px)" color="accent" appearance="outlined">
-          I'm an outlined card
-        </cue-card>
-      </div>
-      <div rightContent>
-        <cue-card height="500px" appearance="outlined">
-          I'm an outlined card
-        </cue-card>
-      </div>
-    </cue-split-layout>`,
+    template: `
+      <cue-split-layout
+        style="height: 80vh; width: 100%;"
+        [sizes]="sizes"
+        [minSizes]="minSizes"
+        [gutterSize]="gutterSize"
+        (resized)="newSize = $event"
+      >
+        ${templateLeft}
+        ${templateRight}
+      </cue-split-layout>`,
   }),
   args: {
     sizes: [30, 70],

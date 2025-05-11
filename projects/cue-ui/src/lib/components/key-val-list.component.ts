@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
         margin: 0;
         display: flex;
         flex-direction: column;
-        gap: calc(10rem / 16);
+        gap: var(--cue-grid-gap-s);
       }
     `,
   ],

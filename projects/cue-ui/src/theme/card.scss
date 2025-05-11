@@ -2,20 +2,20 @@
   /* CARD SYSTEM */
   --cue-card-border-radius: calc(30em / 16);
   --cue-card-padding-x: calc(24em / 16);
-  --cue-card-padding-y: calc(20em / 16);
+  --cue-card-padding-y: calc(24em / 16);
   --cue-card-border-color: rgba(255, 255, 255, 0.2);
   --cue-card-box-shadow: 0 1px calc(24em / 16) rgba(0, 0, 0, 0.2);
+}
 
-  @media (prefers-color-scheme: dark) {
-    --cue-card-border-color: rgba(0, 0, 0, 0.2);
-    --cue-card-box-shadow: 0 1px calc(24em / 16) rgba(255, 255, 255, 0.3);
-  }
+body.dark {
+  --cue-card-border-color: rgba(0, 0, 0, 0.2);
+  --cue-card-box-shadow: 0 1px calc(24em / 16) rgba(255, 255, 255, 0.3);
 }
 
 @container container-wrap (width <= 20em) {
-  div {
+  cue-card {
     --cue-card-border-radius: calc(20em / 16);
-    --cue-card-padding-x: calc(8em / 16);
-    --cue-card-padding-y: calc(8em / 16);
+    --cue-card-padding-x: calc(12em / 16);
+    --cue-card-padding-y: calc(12em / 16);
   }
 }

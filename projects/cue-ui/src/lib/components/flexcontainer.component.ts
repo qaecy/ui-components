@@ -1,20 +1,26 @@
-import { Component, computed, input } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { Component, computed, HostBinding, input } from '@angular/core';
 @Component({
   selector: 'cue-flexcontainer',
   standalone: true,
   imports: [],
-  template: `
-    <div [style]="getStyles()">
-      <ng-content></ng-content>
-    </div>
-  `,
+  host: {
+    '[style]': 'getStyles()',
+  },
+  template: '<ng-content />',
   styles: `
-      div {
+      :host {
         display: flex;
+
+        & > * {
+          flex: 1;
+          max-width: 100%;
+        }
       }
     `,
 })
 export class FlexContainer {
+  style = input<string>('');
   gap = input<'s' | 'm' | 'l'>('m');
   direction = input<'row' | 'column'>('row');
   wrap = input<'nowrap' | 'wrap' | 'wrap-reverse'>('nowrap');
@@ -28,6 +34,7 @@ export class FlexContainer {
         align-items: ${this.align()};
         justify-content: ${this.justify()};
         gap: var(--cue-flex-gap-${this.gap()});
+        ${this.style()}
     `;
   });
 }

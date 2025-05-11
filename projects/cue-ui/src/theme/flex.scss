@@ -1,6 +1,14 @@
 :root {
-  /* GRID SYSTEM */
+  /* FLEX SYSTEM */
   --cue-flex-gap-s: calc(8em / 16);
   --cue-flex-gap-m: calc(16em / 16);
   --cue-flex-gap-l: calc(30em / 16);
+}
+
+@container container-wrap (width <= 20em) {
+  cue-flexcontainer {
+    --cue-flex-gap-s: calc(6em / 16);
+    --cue-flex-gap-m: calc(10em / 16);
+    --cue-flex-gap-l: calc(16em / 16);
+  }
 }

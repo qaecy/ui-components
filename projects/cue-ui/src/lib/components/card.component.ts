@@ -13,20 +13,21 @@ export type CardVariant = (typeof cardVariants)[number];
   selector: 'cue-card',
   standalone: true,
   imports: [],
-  template: `
-    <div [style]="getStyles()">
-      <ng-content></ng-content>
-    </div>
-  `,
+  host: {
+    '[style]': 'getStyles()',
+  },
+  template: '<ng-content />',
   styles: `
-      div {
-        border-radius: var(--cue-card-border-radius);
-        border: 1px solid var(--cue-card-border-color);
-      }
+    :host {
+      display: block;
+      border-radius: var(--cue-card-border-radius);
+      border: 1px solid var(--cue-card-border-color);
+    }
     `,
 })
 export class Card {
-  variant = input<CardVariant>('primary');
+  style = input<string>('');
+  variant = input<CardVariant>('default');
   shadow = input<boolean>(false);
   padded = input<boolean>(true);
 
@@ -73,6 +74,7 @@ export class Card {
           box-shadow: var(--cue-card-box-shadow);
           `);
     }
+    styles.push(this.style());
     return styles.join('');
   });
 }

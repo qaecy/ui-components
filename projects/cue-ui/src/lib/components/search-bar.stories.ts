@@ -78,7 +78,7 @@ export const Narrow: Story = {
       submitIcon: args.submitIcon,
     },
     template: `
-    <cue-container width="200">
+    <cue-container width="20em">
       <cue-card>
         <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"
             [submitIcon]="submitIcon" [showSubmitButton]="showSubmitButton"

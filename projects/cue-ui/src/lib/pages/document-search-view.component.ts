@@ -43,75 +43,76 @@ export interface DocumentSearchViewSearchResult {
     Container,
   ],
   template: `
-    <cue-split-layout
-      mainContent
-      style="display: block; min-height: 100%; "
-      [sizes]="[30, 70]"
-      [minSizes]="[10, 200]"
-      [gutterSize]="30"
-    >
-      <cue-container leftContent class="leftContent">
-        <cue-flexcontainer direction="column">
-          <!-- SEARCH BOX -->
-          <cue-card variant="primary">
-            <ng-content select="[searchBefore]"></ng-content>
-            <cue-search-bar></cue-search-bar>
-            <ng-content select="[searchAfter]"></ng-content>
-          </cue-card>
+    <cue-flexcontainer>
+      <cue-split-layout
+        mainContent
+        [sizes]="[30, 70]"
+        [minSizes]="[10, 200]"
+        [gutterSize]="30"
+      >
+        <cue-container leftContent class="leftContent">
+          <cue-flexcontainer direction="column">
+            <!-- SEARCH BOX -->
+            <cue-card variant="primary">
+              <ng-content select="[searchBefore]"></ng-content>
+              <cue-search-bar></cue-search-bar>
+              <ng-content select="[searchAfter]"></ng-content>
+            </cue-card>
 
-          <!-- PROPERTIES -->
-          @if(properties().length){
-          <cue-card variant="accent">
-            <cue-key-val-list>
-              @for(item of properties(); track $index){
-              <cue-key-val
-                [size]="item.size"
-                [key]="item.key"
-                [val]="item.value"
-              ></cue-key-val>
-              }
-            </cue-key-val-list>
-          </cue-card>
-          }
+            <!-- PROPERTIES -->
+            @if(properties().length){
+            <cue-card variant="accent">
+              <cue-key-val-list>
+                @for(item of properties(); track $index){
+                <cue-key-val
+                  [size]="item.size"
+                  [key]="item.key"
+                  [val]="item.value"
+                ></cue-key-val>
+                }
+              </cue-key-val-list>
+            </cue-card>
+            }
 
-          <!-- MAP -->
-          @if(mapboxToken(); as token){ @if(location(); as center){
-          <cue-card
-            [padded]="false"
-            style="position:relative"
-            variant="default"
-          >
-            <cue-map
-              style="width:100%"
-              borderRadius="var(--cue-card-border-radius)"
-              [zoom]="10"
-              [center]="center"
-              [featureCollection]="featureCollection()"
-              [mapboxToken]="token"
-            ></cue-map>
-          </cue-card>
-          } }
-        </cue-flexcontainer>
-      </cue-container>
+            <!-- MAP -->
+            @if(mapboxToken(); as token){ @if(location(); as center){
+            <cue-card
+              [padded]="false"
+              style="position:relative"
+              variant="default"
+            >
+              <cue-map
+                style="width:100%"
+                borderRadius="var(--cue-card-border-radius)"
+                [zoom]="10"
+                [center]="center"
+                [featureCollection]="featureCollection()"
+                [mapboxToken]="token"
+              ></cue-map>
+            </cue-card>
+            } }
+          </cue-flexcontainer>
+        </cue-container>
 
-      <div rightContent style="height: 100%;">
-        <cue-card>
-          @if(searchResults().length){
-          <cue-table
-            [data]="searchResults()"
-            [columnDefs]="columnDefs"
-            tooltipCol="summary"
-          ></cue-table>
-          } @else {
-          <div
-            style="display: flex; height: 100%; justify-content: center; align-items: center;"
-          >
-            <span>{{ info() }}</span>
-          </div>
-          }
-        </cue-card>
-      </div>
-    </cue-split-layout>
+        <div rightContent style="height: 100%;">
+          <cue-card>
+            @if(searchResults().length){
+            <cue-table
+              [data]="searchResults()"
+              [columnDefs]="columnDefs"
+              tooltipCol="summary"
+            ></cue-table>
+            } @else {
+            <div
+              style="display: flex; height: 100%; justify-content: center; align-items: center;"
+            >
+              <span>{{ info() }}</span>
+            </div>
+            }
+          </cue-card>
+        </div>
+      </cue-split-layout>
+    </cue-flexcontainer>
   `,
 })
 export class DocumentSearchView {

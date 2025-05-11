@@ -5,24 +5,26 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'cue-grid',
   standalone: true,
   imports: [MatCardModule],
-  template: `
-    <div [style]="getStyles()">
-      <ng-content></ng-content>
-    </div>
-  `,
+  host: {
+    '[style]': 'getStyles()',
+  },
+  template: '<ng-content />',
   styles: `
-      div {
+      :host {
         display: grid;
-        gap: var(--cue-grid-gap);
       }
     `,
 })
 export class Grid {
+  style = input<string>('');
+  gap = input<'s' | 'm' | 'l'>('m');
   columns = input<number>(1);
 
   getStyles = computed(() => {
     return `
         grid-template-columns: repeat(${this.columns()}, minmax(0, 1fr));
+        gap: var(--cue-grid-gap-${this.gap()});
+        ${this.style()}
     `;
   });
 }

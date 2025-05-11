@@ -1,15 +1,18 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'cue-container',
   standalone: true,
   imports: [MatCardModule],
-  template: `<div [style.width.px]="width()" [style.height.px]="height()">
-    <ng-content />
-  </div>`,
+  host: {
+    '[style.max-width]': 'width()',
+    '[style.max-height]': 'height()',
+    '[style]': 'getStyles()',
+  },
+  template: '<ng-content />',
   styles: `
-      div {
+      :host {
         display: flex;
         align-items: stretch;
         container-name: container-wrap;
@@ -23,6 +26,8 @@ import { MatCardModule } from '@angular/material/card';
     `,
 })
 export class Container {
-  width = input<number | undefined>(undefined);
-  height = input<number | undefined>(undefined);
+  width = input<string>('auto');
+  height = input<string>('auto');
+  style = input<string>('');
+  getStyles = computed(() => this.style());
 }
