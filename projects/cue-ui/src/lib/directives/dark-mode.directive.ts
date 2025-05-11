@@ -1,28 +1,27 @@
 // dark-mode.directive.ts
-import { 
-  Directive, 
-  computed, 
-  signal, 
-  DestroyRef, 
+import {
+  Directive,
+  computed,
+  signal,
+  DestroyRef,
   inject,
   Output,
   EventEmitter,
-  effect
+  effect,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Directive({
   selector: '[cueDarkMode]',
   standalone: true,
-  exportAs: 'darkModeDetector'
+  exportAs: 'darkModeDetector',
 })
 export class DarkModeDirective {
   private readonly destroyRef = inject(DestroyRef);
   private readonly _isDarkMode = signal(this.hasDarkClass());
-  
+
   // Expose as a computed property
   isDarkMode = computed(() => this._isDarkMode());
-  
+
   // Emit when dark mode changes
   @Output() darkModeChange = new EventEmitter<boolean>();
 
@@ -30,7 +29,10 @@ export class DarkModeDirective {
     // Watch for class changes on body
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'class'
+        ) {
           const newValue = this.hasDarkClass();
           if (newValue !== this._isDarkMode()) {
             this._isDarkMode.set(newValue);
@@ -42,7 +44,7 @@ export class DarkModeDirective {
     // Start observing the body element
     observer.observe(document.body, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     });
 
     // Clean up on destroy
