@@ -9,7 +9,7 @@ import {
   model,
   OnDestroy,
 } from '@angular/core';
-import { DarkModeDirective } from 'cue-ui';
+import { DarkModeDirective } from '../directives';
 
 @Component({
   selector: 'cue-logo',

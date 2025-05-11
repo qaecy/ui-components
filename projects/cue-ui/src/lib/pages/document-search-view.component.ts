@@ -14,7 +14,7 @@ import { FlexContainer } from '../components/flexcontainer.component';
 import { Container } from '../components/container.component';
 import { AppHeader } from '../components/app-header.component';
 import { Typography } from '../components/typography.component';
-import { Button } from 'cue-ui';
+import { Button } from '../components/button/button.component';
 import { ButtonIcon } from '../components/button/button-icon.component';
 
 export interface DocumentSearchViewProperty {
