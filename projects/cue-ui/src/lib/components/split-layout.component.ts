@@ -42,6 +42,10 @@ export interface PanelSizes {
   </div>`,
   styles: [
     `
+      :host {
+        display: contents;
+      }
+
       .split {
         display: flex;
         height: 100%;

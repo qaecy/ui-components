@@ -37,22 +37,22 @@ const meta: Meta<SplitLayoutComponent> = {
   ],
 };
 
-const templateLeft = `<cue-container leftContent style="height:80vh">
+const templateLeft = `<cue-container leftContent style="height:100%">
           <cue-flexcontainer direction="column">
-            <cue-card variant="primary" style="flex:0">
+            <cue-card variant="primary">
               <cue-typography>I'm a blue card</cue-typography>
             </cue-card>
-            <cue-card variant="accent">
+            <cue-card variant="accent" style="flex:1">
               <cue-typography>I'm a green card</cue-typography>
             </cue-card>
-            <cue-card  variant="fade">
+            <cue-card  variant="fade" style="flex:1">
               <cue-typography>I'm fade card</cue-typography>
             </cue-card>
           </cue-flexcontainer>
         </cue-container>`;
 const templateRight = `<cue-container rightContent style="height:100%">
         <cue-flexcontainer direction="column">
-          <cue-card variant="default">
+          <cue-card variant="default" style="flex:1">
             <cue-typography>I'm a default card</cue-typography>
           </cue-card>
         </cue-flexcontainer>

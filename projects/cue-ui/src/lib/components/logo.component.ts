@@ -45,6 +45,7 @@ export type CardVariant = (typeof cardVariants)[number];
     </svg>
   `,
   styles: `
+  :host {display:block}
   svg {
     flex: 1;
     display:block;

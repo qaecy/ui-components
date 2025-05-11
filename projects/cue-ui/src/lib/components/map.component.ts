@@ -96,8 +96,8 @@ export class MapComponent implements OnDestroy {
   @Input() cluster = true;
   @Input() zoomToFit = true;
 
-  private _height = signal<string>('300px');
-  private _width = signal<string>('400px');
+  private _height = signal<string>('100%');
+  private _width = signal<string>('100%');
   borderRadius = input<string>('0');
 
   @Output() mapReady = new EventEmitter<void>();

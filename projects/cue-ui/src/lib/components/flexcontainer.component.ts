@@ -11,11 +11,6 @@ import { Component, computed, HostBinding, input } from '@angular/core';
   styles: `
       :host {
         display: flex;
-
-        & > * {
-          flex: 1;
-          max-width: 100%;
-        }
       }
     `,
 })

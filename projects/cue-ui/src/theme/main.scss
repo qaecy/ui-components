@@ -11,20 +11,57 @@
 
 :root {
   color-scheme: light;
+  --main-padding: calc(10em / 16);
   /* EXISTING DEFINITIONS: marked for deletion */
   --cue-light-gray: #d9d9d9;
   --cue-extra-light-gray: #f5f6f9;
   --cue-font-family: Poppins;
 }
 
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
 body {
   --background-color: var(--cue-main-background);
   background-color: var(--background-color);
   color: var(--cue-main-foreground);
-  margin: 0;
+  padding: var(--main-padding);
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   &.dark {
     color-scheme: dark;
+  }
+
+  @media (min-width: 20em) {
+    --main-padding: calc(20em / 16);
+  }
+
+  @media (min-width: 40em) {
+    --main-padding: calc(32em / 16);
+  }
+}
+
+.sb-show-main,
+.sb-main-padded {
+  display: flex !important;
+  min-height: 100%;
+  padding: var(--main-padding) !important;
+
+  #storybook-root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    storybook-root {
+      display: contents;
+    }
   }
 }
 

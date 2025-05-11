@@ -79,7 +79,7 @@ export const Narrow: Story = {
     },
     template: `
     <cue-container width="20em">
-      <cue-card>
+      <cue-card variant="primary">
         <cue-search-bar [placeholder]="placeholder" [debounceTime]="debounceTime"
             [submitIcon]="submitIcon" [showSubmitButton]="showSubmitButton"
             [backgroundColor]="backgroundColor" [borderColor]="borderColor"

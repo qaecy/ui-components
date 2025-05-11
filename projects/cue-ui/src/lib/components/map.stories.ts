@@ -1,25 +1,31 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { GeoJSONFeatureCollection, MapComponent } from './map.component';
 import { LngLatLike } from 'mapbox-gl';
+import { Card } from './card.component';
 
 const meta: Meta<MapComponent> = {
   title: 'Map',
   component: MapComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [Card],
+    }),
+  ],
   tags: ['autodocs'],
   argTypes: {
     featureCollection: {
-      control: 'object'
+      control: 'object',
     },
     mapboxToken: {
       control: {
-        type: 'text'
+        type: 'text',
       },
-      description: "API Token for mapbox (Required!)"
-    }
+      description: 'API Token for mapbox (Required!)',
+    },
   },
 };
 
-const mapboxToken = "<MAPBOX_TOKEN>";
+const mapboxToken = '<MAPBOX_TOKEN>';
 
 const center: LngLatLike = [8.4721927, 47.4401767];
 const featureCollection = new GeoJSONFeatureCollection();
@@ -43,10 +49,9 @@ type Story = StoryObj<MapComponent>;
 export const Default: Story = {
   render: (args: any) => ({
     props: args,
-    template: `<cue-map 
-      style="height: 600px; width: 100%" 
-      [zoom]="${args.zoom}" 
-      [center]="${JSON.stringify(args.center)}" 
+    template: `<cue-map
+      [zoom]="${args.zoom}"
+      [center]="${JSON.stringify(args.center)}"
       mapboxToken="${args.mapboxToken}">
     </cue-map>`,
   }),
@@ -58,7 +63,7 @@ export const Default: Story = {
   },
 };
 
-export const Card: Story = {
+export const CardSample: Story = {
   render: (args: any) => ({
     props: {
       mapboxToken: args.mapboxToken,
@@ -67,14 +72,11 @@ export const Card: Story = {
       zoom: args.zoom,
       featureCollection: args.featureCollection,
     },
-    template: `<cue-map 
-      style="height: 200px; width: 200px;" 
-      [borderRadius]="borderRadius"
-      [zoom]="zoom" 
-      [center]="center" 
-      [featureCollection]="featureCollection" 
-      [mapboxToken]="mapboxToken">
-    </cue-map>`,
+    template: `<cue-card style="flex:1"><cue-map
+      [zoom]="zoom"
+      [center]="center"
+      [featureCollection]="featureCollection"
+      [mapboxToken]="mapboxToken"/></cue-card>`,
   }),
   args: {
     mapboxToken,
