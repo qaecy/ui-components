@@ -1,0 +1,40 @@
+<div #fabWrapper class="fab-wrapper" [class.active]="isActive()">
+  <cue-button
+    variant="accent"
+    size="m"
+    (libShortpress)="toggleActive()"
+    (libLongpress)="startDrag($event)"
+    (mouseover)="fabHovered = true"
+    (mouseleave)="fabHovered = false"
+    (mouseup)="onMouseUp($event)"
+  >
+    <cue-button-icon icon="user" />
+  </cue-button>
+
+  <!-- <button
+    mat-fab
+    [extended]="fabHovered"
+    (libShortpress)="toggleActive()"
+    (libLongpress)="startDrag($event)"
+    (mouseover)="fabHovered = true"
+    (mouseleave)="fabHovered = false"
+    (mouseup)="onMouseUp($event)"
+  >
+    @if(fabHovered){
+    <span style="margin-right: 5px">{{ fabText() }}</span>
+    }
+    <cue-logo size="m" [active]="true"></cue-logo>
+  </button> -->
+  <div
+    class="popup-content"
+    [class.visible]="isActive()"
+    [style.height]="containerHeight()"
+    [style.width]="containerWidth()"
+    [style.transform]="isTop ? 'translateY(10px)' : 'translateY(-10px)'"
+  >
+    <button mat-icon-button class="close-button" (click)="closePopup()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <ng-content></ng-content>
+  </div>
+</div>
