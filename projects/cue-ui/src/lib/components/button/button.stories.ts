@@ -72,7 +72,7 @@ export const IconOnly: Story = {
       variant="${args.variant}"
       size="${args.size}"
       [disabled]="${args.disabled}">
-          <cue-button-icon icon="user"/>
+          <cue-button-icon icon="avatar"/>
       </cue-button>`,
   }),
   args: {

@@ -3,7 +3,6 @@ import { Switch } from './switch.component';
 import { Card } from '../card.component';
 import { Typography } from '../typography.component';
 import { FlexContainer } from '../flexcontainer.component';
-import { svgs } from '../icons/svg';
 
 const meta: Meta<Switch> = {
   title: 'Input Switch',
@@ -111,7 +110,7 @@ export const InsideCards: Story = {
   args: {
     checked: false,
     size: 'm',
-    iconChecked: 'moon',
-    icon: 'sun',
+    iconChecked: 'dark-mode',
+    icon: 'light-mode',
   },
 };

@@ -81,7 +81,7 @@ export const WithContent: Story = {
             </cue-button>
             <cue-button variant="primary" tooltip="User">
               <cue-button-padder size="l">
-                <cue-button-icon icon="user"/>
+                <cue-button-icon icon="avatar"/>
               </cue-button-padder>
               <cue-button-label>Primary Button</cue-button-label>
               <cue-button-padder size="l"/>

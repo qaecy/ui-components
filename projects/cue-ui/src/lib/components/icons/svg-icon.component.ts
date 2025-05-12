@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { svgs } from './svg';
+import svgs from './svg.json';
 import { IconName } from './types';
 
 @Pipe({
@@ -24,7 +24,7 @@ export class SafeHtmlPipe {
   selector: 'cue-svg-icon',
   standalone: true,
   imports: [SafeHtmlPipe],
-  template: `<div [innerHTML]="this.getSvg() | safeHtml"></div>`,
+  template: `<div [innerHTML]="this.getSvg() ?? '' | safeHtml"></div>`,
   encapsulation: ViewEncapsulation.ShadowDom,
   styles: `
     svg {
@@ -38,6 +38,6 @@ export class SvgIcon {
   name = input<IconName | undefined>(undefined);
 
   getSvg = computed(() => {
-    return svgs[this.name() || 'unknown'];
+    return this.name() && svgs[this.name() as IconName];
   });
 }

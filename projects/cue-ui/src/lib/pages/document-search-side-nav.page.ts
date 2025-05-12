@@ -26,16 +26,16 @@ import { SideNavComponent } from '../components';
       <cue-app-header>
         <cue-flexcontainer end gap="m" align="center">
           <cue-button variant="tertiary" size="s" title="Assets">
-            <cue-button-icon icon="unknown" />
+            <cue-button-icon icon="folder" />
           </cue-button>
           <cue-button variant="tertiary" size="s" title="Info">
-            <cue-button-icon icon="unknown" />
+            <cue-button-icon icon="layout" />
           </cue-button>
           <cue-button variant="tertiary" size="s" title="Settings">
-            <cue-button-icon icon="gear" />
+            <cue-button-icon icon="settings" />
           </cue-button>
           <cue-button>
-            <cue-button-icon icon="user" />
+            <cue-button-icon icon="avatar" />
           </cue-button>
         </cue-flexcontainer>
       </cue-app-header>

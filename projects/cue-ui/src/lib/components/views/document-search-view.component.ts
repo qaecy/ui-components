@@ -17,6 +17,7 @@ import { Button } from '../button/button.component';
 import { ButtonIcon } from '../button/button-icon.component';
 import { PDFViewer } from '../pdf-viewer/pdf-viewer.component';
 import { TooltipDirective } from '../../directives';
+import { SvgIcon } from '../icons/svg-icon.component';
 
 export interface DocumentSearchViewProperty {
   size: 'm' | 'l' | 'xl';
@@ -49,10 +50,9 @@ export interface DocumentSearchViewSearchResult {
     Container,
     Typography,
     Button,
-    ButtonIcon,
     PDFViewer,
-    ButtonIcon,
     TooltipDirective,
+    ButtonIcon,
   ],
   template: `
     <cue-flexcontainer style="flex: 1">
@@ -119,7 +119,7 @@ export interface DocumentSearchViewSearchResult {
                 cueTooltip="Go back"
                 (click)="closePDF()"
               >
-                <cue-button-icon icon="arrow_back" />
+                <cue-button-icon icon="arrow-back" />
               </cue-button>
               <div style="height: 500px; width: 100%;">
                 <cue-pdf-viewer

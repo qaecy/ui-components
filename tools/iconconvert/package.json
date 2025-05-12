@@ -1,0 +1,19 @@
+{
+  "name": "cue-ui-icons-converter",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "run": "node ./convert.js"
+  },
+  "packageManager": "npm@10.8.1",
+  "version": "1.0.0",
+  "main": "import-helper.js",
+  "author": "",
+  "description": "",
+  "devDependencies": {
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-prettier": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0"
+  }
+}

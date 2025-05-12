@@ -9,6 +9,6 @@ import { IconName } from '../icons/types';
   template: `<cue-svg-icon slot="slot()" [name]="icon()"></cue-svg-icon>`,
 })
 export class ButtonIcon {
-  icon = input<IconName>('unknown');
+  icon = input<IconName | undefined>(undefined);
   slot = input<'before' | 'after'>('before');
 }
