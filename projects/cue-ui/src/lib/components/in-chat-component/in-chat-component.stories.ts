@@ -34,9 +34,10 @@ const render = (args: any) => ({
     md: args.md,
     context: args.context,
     startPassive: args.startPassive,
+    simulateStream: args.simulateStream
   },
   template: `<cue-typography>
-  <cue-in-chat-component [md]="md" [context]="context" [startPassive]="startPassive"></cue-in-chat-component>
+  <cue-in-chat-component [md]="md" [context]="context" [startPassive]="startPassive" [simulateStream]="simulateStream"></cue-in-chat-component>
   </cue-typography>`,
 });
 
@@ -86,6 +87,79 @@ export const BIMModelPassive: Story = {
   },
 };
 
+const tableData = {
+  rows: [
+    { name: 'Amberg Group AG' },
+    { name: 'Rhomberg Bau GmbH' },
+    { name: 'Bundesamt für Strassen (ASTRA)' },
+    { name: 'Implenia Schweiz AG' },
+    { name: 'VSL International Ltd' },
+    { name: 'Pini Group' },
+  ],
+  columns: [{ key: 'name', label: 'Name' }],
+};
+const mapFeatures = [
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.4745903, 47.4401465],
+    },
+    properties: {
+      Name: 'Amberg Group AG',
+    },
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [9.0728575, 47.4583023],
+    },
+    properties: {
+      Name: 'Rhomberg Bau GmbH',
+    },
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.752623, 47.493553],
+    },
+    properties: {
+      Name: 'Bundesamt für Strassen (ASTRA)',
+    },
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.0283565, 47.4217225],
+    },
+    properties: {
+      Name: 'Implenia Schweiz AG',
+    },
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [7.1743308, 46.892066],
+    },
+    properties: {
+      Name: 'VSL International Ltd',
+    },
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.6290925, 46.5148628],
+    },
+    properties: {
+      Name: 'Pini Group',
+    },
+  },
+];
 export const Combined: Story = {
   render,
   args: {
@@ -99,83 +173,38 @@ The companies' head quarters are shown on the map below:
 
 <map [data]="context.map"></map>`,
     context: {
-      table: {
-        rows: [
-          { name: 'Amberg Group AG' },
-          { name: 'Rhomberg Bau GmbH' },
-          { name: 'Bundesamt für Strassen (ASTRA)' },
-          { name: 'Implenia Schweiz AG' },
-          { name: 'VSL International Ltd' },
-          { name: 'Pini Group' },
-        ],
-        columns: [{ key: 'name', label: 'Name' }],
-      },
+      table: tableData,
       map: {
         mapboxToken,
-        features: [
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [8.4745903, 47.4401465],
-            },
-            properties: {
-              Name: 'Amberg Group AG',
-            },
-          },
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [9.0728575, 47.4583023],
-            },
-            properties: {
-              Name: 'Rhomberg Bau GmbH',
-            },
-          },
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [8.752623, 47.493553],
-            },
-            properties: {
-              Name: 'Bundesamt für Strassen (ASTRA)',
-            },
-          },
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [8.0283565, 47.4217225],
-            },
-            properties: {
-              Name: 'Implenia Schweiz AG',
-            },
-          },
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [7.1743308, 46.892066],
-            },
-            properties: {
-              Name: 'VSL International Ltd',
-            },
-          },
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [6.6290925, 46.5148628],
-            },
-            properties: {
-              Name: 'Pini Group',
-            },
-          },
-        ],
+        features: mapFeatures,
       },
     },
     startPassive: true,
   },
+};
+
+export const CombinedChunked: Story = {
+    render,
+    args: {
+        md: `Now the results are coming in chunks to simulate what it would look like if the markdown part was streamed from the server.
+        
+    There are 6 companies mentioned in the project.
+    
+    Table view:
+    
+    <table-simple [data]="context.table"></table-simple>
+    
+    The companies' head quarters are shown on the map below:
+    
+    <map [data]="context.map"></map>`,
+        context: {
+            table: tableData,
+            map: {
+                mapboxToken,
+                features: mapFeatures,
+            },
+        },
+        startPassive: true,
+        simulateStream: true
+    },
 };

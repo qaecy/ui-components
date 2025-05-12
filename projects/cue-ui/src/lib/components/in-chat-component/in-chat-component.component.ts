@@ -22,19 +22,48 @@ import { DocRefData } from './chat-components/inline-ref/inline-ref.component';
   imports: [DynamicHooksComponent],
 })
 export class InChatComponent {
-  
   md = input.required<string>();
   context = input.required<{ [key: string]: unknown }>();
   startPassive = input<boolean>(true);
+  simulateStream = input<boolean>(true);
 
   parsers = chatTags;
   html = signal<string>('');
   processedContext = computed(() => this._overrideContext(this.context()));
 
-  hoveredRef = signal<string>(""); // documentId of highlighted
+  hoveredRef = signal<string>(''); // documentId of highlighted
+
+  markdownChunks = computed(() => {
+    if(!this.simulateStream()) return [];
+    const md = this.md();
+    if (!md) return [];
+
+    const chunkSize = Math.ceil(md.length / 10);
+    const chunks: string[] = [];
+    for (let i = 0; i < md.length; i += chunkSize) {
+      chunks.push(md.slice(i, i + chunkSize));
+    }
+    return chunks;
+  });
+  chunkedMarkdown = signal("");
+
+  emitChunks = effect(() => {
+    const chunks = this.markdownChunks();
+    if (chunks.length === 0) return;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < chunks.length) {
+        this.chunkedMarkdown.update(str => str+= chunks[index]);
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 300);
+  });
 
   onTextChange = effect(async () => {
-    const txt = this.md();
+    const txt = this.simulateStream() ? this.chunkedMarkdown() : this.md();
     if (txt) {
       let html = await marked(txt);
       html = this._setPassiveMode(html, this.startPassive());
@@ -49,23 +78,30 @@ export class InChatComponent {
 
   private _setPassiveMode(html: string, passive: boolean) {
     ['bim-viewer', 'map'].forEach((tag) => {
-      html = html.replace(new RegExp(`<${tag}`, 'g'), `<${tag} [startPassive]="${passive}"`);
-      html = html.replace(new RegExp(`&lt;${tag}`, 'g'), `&lt;${tag} [startPassive]="${passive}"`);
+      html = html.replace(
+        new RegExp(`<${tag}`, 'g'),
+        `<${tag} [startPassive]="${passive}"`
+      );
+      html = html.replace(
+        new RegExp(`&lt;${tag}`, 'g'),
+        `&lt;${tag} [startPassive]="${passive}"`
+      );
     });
     return html;
   }
 
   // Appends hover/clicked events + tooltip
-  private _overrideRefOutput(html: string){
+  private _overrideRefOutput(html: string) {
     const regex = /<ref\b[^>]*>.*?<\/ref>/g;
     const refs = html.match(regex);
-    refs?.forEach(ref => {
+    refs?.forEach((ref) => {
       const indexM = ref.match(/\bi=["']?([^"'\s>]+)["']?/);
-      if(indexM){
+      if (indexM) {
         const index = parseInt(indexM[1]);
-        let addition = `(hovered)=context.qaecyRefHoverHandler($event) (clicked)=context.qaecyRefClickHandler($event)`
-        if(this.context()["refs"] !== undefined) addition+= ` [data]="context.refs[${index}]"`;
-        const newRef = ref.replace("<ref", `<ref ${addition}`);
+        let addition = `(hovered)=context.qaecyRefHoverHandler($event) (clicked)=context.qaecyRefClickHandler($event)`;
+        if (this.context()['refs'] !== undefined)
+          addition += ` [data]="context.refs[${index}]"`;
+        const newRef = ref.replace('<ref', `<ref ${addition}`);
         html = html.replace(ref, newRef);
       }
     });
@@ -76,7 +112,7 @@ export class InChatComponent {
     if (context === undefined) return;
     // Always add handler for reference hover and click
     context['qaecyRefHoverHandler'] = (i: number | undefined) => {
-        console.log("xx")
+      console.log('xx');
       const ref =
         i !== undefined ? this._getRefFromIndex(context, i) : undefined;
       const documentId = ref?.documentId ?? '';
@@ -90,10 +126,9 @@ export class InChatComponent {
     return context;
   }
 
-  private _getRefFromIndex(context: any, i: number): DocRefData|undefined{
-    const refs = context["refs"];
-    if(refs === undefined) return;
+  private _getRefFromIndex(context: any, i: number): DocRefData | undefined {
+    const refs = context['refs'];
+    if (refs === undefined) return;
     return refs[i];
   }
-
 }
