@@ -10,6 +10,7 @@ export * from './pdf-viewer/pdf-viewer.component';
 export * from './icon-menu.component';
 export * from './icon.component';
 export * from './icons-svg';
+export * from './in-chat-component/in-chat-component.component';
 export * from './key-val-list.component';
 export * from './key-val.component';
 export * from './logo.component';

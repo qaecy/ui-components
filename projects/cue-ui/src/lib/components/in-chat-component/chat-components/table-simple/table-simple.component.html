@@ -1,0 +1,9 @@
+<div class="container">
+  @if(rows()){
+  <cue-table
+    [displayFilter]="false"
+    [data]="rows()"
+    [columnDefs]="columnDefs()"
+  ></cue-table>
+  }
+</div>

@@ -23,28 +23,7 @@ import mapboxgl, {
 } from 'mapbox-gl';
 import { ResizedDirective } from '../directives/resized.directive';
 import { DarkModeDirective } from '../directives/dark-mode.directive';
-
-export class GeoJSONFeatureCollection {
-  type = 'FeatureCollection';
-  id?: string | number; // Optional identifier
-  bbox?: number[]; // Optional bounding box
-  properties?: { [key: string]: any };
-  features: GeoJSONFeature[] = [];
-}
-
-export interface GeoJSONFeature<G extends Geometry = Geometry> {
-  type: 'Feature';
-  geometry: G;
-  properties?: { [key: string]: any };
-  bbox?: number[]; // Optional bounding box
-  id?: string | number; // Optional identifier
-}
-
-export interface Geometry {
-  type: string; // Type of geometry (Point, LineString, Polygon, etc.)
-  coordinates?: number[] | number[][];
-}
-
+import { GeoJSONFeatureCollection } from '../utils/geojson/models';
 export interface LayerData {
   layer: AnyLayer;
   clickable: boolean;
