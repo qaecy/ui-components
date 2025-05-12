@@ -2,7 +2,6 @@ import { Component, computed, input, output, signal } from '@angular/core';
 import { SplitLayoutComponent } from '../split-layout.component';
 import {
   Card,
-  GeoJSONFeatureCollection,
   KeyValComponent,
   MapComponent,
 } from '../';
@@ -17,6 +16,7 @@ import { Button } from '../button/button.component';
 import { ButtonIcon } from '../button/button-icon.component';
 import { PDFViewer } from '../pdf-viewer/pdf-viewer.component';
 import { TooltipDirective } from '../../directives';
+import { GeoJSONFeatureCollection } from '../../utils/geojson/models';
 
 export interface DocumentSearchViewProperty {
   size: 'm' | 'l' | 'xl';

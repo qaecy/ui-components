@@ -1,7 +1,8 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { GeoJSONFeatureCollection, MapComponent } from './map.component';
+import { MapComponent } from './map.component';
 import { LngLatLike } from 'mapbox-gl';
 import { Card } from './card.component';
+import { GeoJSONFeatureCollection } from '../utils/geojson/models';
 
 const meta: Meta<MapComponent> = {
   title: 'Map',

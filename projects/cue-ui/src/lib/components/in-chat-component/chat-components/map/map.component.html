@@ -1,0 +1,51 @@
+<div class="container">
+  <!-- Start passive -->
+  @if(startPassive()){ @if(!loadDeferred){
+  <cue-passive-mode
+    icon="map"
+    label="Load map"
+    (activate)="loadDeferred = true"
+  ></cue-passive-mode>
+  } @defer(when loadDeferred){
+  <cue-map
+    [center]="lngLat"
+    [zoom]="zoom"
+    [cluster]="false"
+    [featureCollection]="featureCollection()"
+    [mapboxToken]="mapboxToken()"
+    (hoveredFeature)="setHovered($event)"
+  ></cue-map>
+  } }
+
+  @if(!startPassive()){
+  <cue-map
+    [center]="lngLat"
+    [zoom]="zoom"
+    [cluster]="false"
+    [featureCollection]="featureCollection()"
+    [mapboxToken]="mapboxToken()"
+    (hoveredFeature)="setHovered($event)"
+  ></cue-map>
+  }
+
+  @if(hoveredFeature(); as feature){
+  <div class="right-pane frosted">
+    <cue-key-val-list>
+      @for(item of featureProperties(); track $index){
+      <cue-key-val
+        size="m"
+        [key]="item.key"
+        [val]="item.val"
+      ></cue-key-val>
+      }
+    </cue-key-val-list>
+  </div>
+  }
+</div>
+
+<!-- @if(boxPosition(); as position) { @if(hoveredFeature(); as feature){
+<app-hover-box
+  [position]="position"
+  [content]="feature.properties"
+></app-hover-box>
+} } -->

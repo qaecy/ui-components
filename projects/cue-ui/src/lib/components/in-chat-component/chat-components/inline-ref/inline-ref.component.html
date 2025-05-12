@@ -1,0 +1,10 @@
+<div
+  class="chip-container"
+  [cueRefSummary]="data()"
+  [class.clickable]="clickable()"
+  (mouseover)="handleMouseIn()"
+  (mouseout)="handleMouseOut()"
+  (click)="handleClick()"
+>
+  <span class="chip">{{ i() }}</span>
+</div>

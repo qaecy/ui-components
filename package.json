@@ -28,6 +28,8 @@
     "@thatopen/components": "^2.2.4",
     "@thatopen/components-front": "^2.2.1",
     "mapbox-gl": "3.3.0",
+    "marked": "^15.0.11",
+    "ngx-dynamic-hooks": "^3.1.2",
     "pdfjs-dist": "^4.8.69",
     "rxjs": "~7.8.0",
     "split.js": "1.6.5",
