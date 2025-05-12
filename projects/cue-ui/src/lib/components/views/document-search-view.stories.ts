@@ -1,17 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { DocumentSearchView, DocumentSearchViewProperty, DocumentSearchViewSearchResult } from './document-search-view.component';
 
 const mapboxToken = "<MAPBOX_TOKEN>";
 
-// 👇 Imports the required stories
-import { DocumentSearchView, DocumentSearchViewProperty, DocumentSearchViewSearchResult } from './document-search-view.component';
-
 const meta: Meta<DocumentSearchView> = {
+  title: 'View: Document search',
   component: DocumentSearchView,
-
+  tags: ['autodocs'],
+  argTypes: {
+    
+  },
 };
 
 export default meta;
 type Story = StoryObj<DocumentSearchView>;
+
 
 const properties: DocumentSearchViewProperty[] = [{
     size: 'l',
@@ -44,7 +47,9 @@ const results: DocumentSearchViewSearchResult[] = Array.from({ length: 20 }, (_,
   summary: `This is a test summary for document ${index + 1}`,
   docURL: async () => {
     console.log(`requesting Test document ${index + 1}`);
-    return "https://ocw.mit.edu/courses/18-821-project-laboratory-in-mathematics-spring-2013/41c70fc8f822ec953739073e338142c7_MIT18_821S13_latexsample.pdf";
+    return index % 2 === 0 
+      ? "https://q-cad.com/wp-content/uploads/2023/05/1344465784.pdf" 
+      : "https://ocw.mit.edu/courses/18-821-project-laboratory-in-mathematics-spring-2013/41c70fc8f822ec953739073e338142c7_MIT18_821S13_latexsample.pdf";
   }
 }));
 

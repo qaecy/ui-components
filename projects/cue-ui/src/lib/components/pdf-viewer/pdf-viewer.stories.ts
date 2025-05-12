@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { PDFViewerComponent } from './pdf-viewer.component';
+import { PDFViewer } from './pdf-viewer.component';
 
 // This is an extended version of https://vadimdez.github.io/ng2-pdf-viewer/
 
-const meta: Meta<PDFViewerComponent> = {
+const meta: Meta<PDFViewer> = {
   title: 'PDF Viewer',
-  component: PDFViewerComponent,
+  component: PDFViewer,
   tags: ['autodocs'],
   argTypes: {
     renderText: {
@@ -25,7 +25,7 @@ const meta: Meta<PDFViewerComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<PDFViewerComponent>;
+type Story = StoryObj<PDFViewer>;
 
 const render = (args: any) => ({
   props: {
