@@ -6,7 +6,7 @@ import { FlexContainer } from '../flexcontainer.component';
 import { DarkmodeSwitch } from './darkmode-switch.component';
 
 const meta: Meta<DarkmodeSwitch> = {
-  title: 'Drakmode Switch',
+  title: 'Darkmode Switch',
   component: DarkmodeSwitch,
   decorators: [
     moduleMetadata({

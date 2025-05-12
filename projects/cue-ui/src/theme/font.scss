@@ -6,6 +6,10 @@
   --cue-font-weight-medium: 500;
   --cue-font-weight-semibold: 600;
 
+  --cue-font-xs-size: calc(100% / 16 * 9);
+  --cue-font-xs-line-height: calc(16 / 11);
+  --cue-font-xs-letter-spacing: 0.075em;
+
   --cue-font-s-size: calc(100% / 16 * 11);
   --cue-font-s-line-height: calc(16 / 11);
   --cue-font-s-letter-spacing: 0.05em;

@@ -6,7 +6,10 @@ const meta: Meta<MimeIconComponent> = {
   component: MimeIconComponent,
   tags: ['autodocs'],
   argTypes: {
-    
+    size: {
+      control: { type: 'select' },
+      options: ['xs', 's', 'm'],
+    },
   },
 };
 
@@ -15,14 +18,14 @@ type Story = StoryObj<MimeIconComponent>;
 
 export const Default: Story = {
   args: {
-    mime: 'application/pdf',
-    inline: false
+    mime: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    size: 'm',
   },
 };
 
 export const NonSupported: Story = {
   args: {
     mime: 'application/png',
-    inline: false
+    size: 'm',
   },
 };

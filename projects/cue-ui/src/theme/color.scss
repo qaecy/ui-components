@@ -42,6 +42,8 @@
 
   --cue-warning: #ffc107;
   --cue-warningContrast: var(--cue-color-white);
+
+  --cue-mimeicon-deco-color: var(--cue-color-lightgray);
 }
 
 body.dark {
@@ -53,4 +55,6 @@ body.dark {
 
   --cue-neutral: var(--cue-color-midgray);
   --cue-neutralContrast: var(--cue-color-white);
+
+  --cue-mimeicon-deco-color: var(--cue-color-midgray);
 }
