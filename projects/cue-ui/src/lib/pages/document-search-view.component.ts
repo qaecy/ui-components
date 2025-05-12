@@ -18,6 +18,8 @@ import { Button } from '../components/button/button.component';
 import { ButtonIcon } from '../components/button/button-icon.component';
 import { PDFViewerComponent } from '../components/pdf-viewer.component';
 import { TooltipDirective } from '../directives';
+import { Switch } from '../components/input/switch.component';
+import { DarkmodeSwitch } from '../components/input/darkmode-switch.component';
 
 export interface DocumentSearchViewProperty {
   size: 'm' | 'l' | 'xl';
@@ -55,11 +57,13 @@ export interface DocumentSearchViewSearchResult {
     PDFViewerComponent,
     ButtonIcon,
     TooltipDirective,
+    DarkmodeSwitch,
   ],
   template: `
     <cue-flexcontainer direction="column" style="flex: 1">
       <cue-app-header>
         <cue-flexcontainer end gap="m" align="center">
+          <cue-darkmode-switch [checked]="true" />
           <cue-button variant="tertiary" size="s" title="Assets">
             <cue-button-icon icon="unknown" />
           </cue-button>
@@ -132,7 +136,12 @@ export interface DocumentSearchViewSearchResult {
               <div
                 style="display: flex; flex-direction: column; align-items: flex-start; height: 100%"
               >
-                <cue-button variant="accent" size="s" cueTooltip="Go back" (click)="closePDF()">
+                <cue-button
+                  variant="accent"
+                  size="s"
+                  cueTooltip="Go back"
+                  (click)="closePDF()"
+                >
                   <cue-button-icon icon="arrow_back" />
                 </cue-button>
                 <div style="height: 500px; width: 100%;">

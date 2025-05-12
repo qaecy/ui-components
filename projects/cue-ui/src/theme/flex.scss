@@ -1,14 +1,6 @@
 :root {
   /* FLEX SYSTEM */
-  --cue-flex-gap-s: calc(8em / 16);
-  --cue-flex-gap-m: calc(16em / 16);
-  --cue-flex-gap-l: calc(30em / 16);
-}
-
-@container container-wrap (width <= 20em) {
-  cue-flexcontainer {
-    --cue-flex-gap-s: calc(6em / 16);
-    --cue-flex-gap-m: calc(10em / 16);
-    --cue-flex-gap-l: calc(16em / 16);
-  }
+  --cue-flex-gap-s: var(--cue-dim-gap-s);
+  --cue-flex-gap-m: var(--cue-dim-gap-m);
+  --cue-flex-gap-l: var(--cue-dim-gap-l);
 }

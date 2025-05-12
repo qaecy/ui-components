@@ -35,9 +35,9 @@ export class SafeHtmlPipe {
   `,
 })
 export class SvgIcon {
-  name = input<IconName>('unknown');
+  name = input<IconName | undefined>(undefined);
 
   getSvg = computed(() => {
-    return svgs[this.name()];
+    return svgs[this.name() || 'unknown'];
   });
 }

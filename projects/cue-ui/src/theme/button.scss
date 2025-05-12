@@ -2,15 +2,15 @@
   /* BUTTON SYSTEM */
   --cue-button-gap: calc(8em / 16);
 
-  --cue-button-xs-height: calc(24em / 16);
+  --cue-button-xs-height: var(--cue-dim-elem-xs);
   --cue-button-xs-padding-x: calc(3em / 16);
   --cue-button-xs-icon-width: calc(18em / 16);
 
-  --cue-button-s-height: calc(32em / 16);
+  --cue-button-s-height: var(--cue-dim-elem-s);
   --cue-button-s-padding-x: calc(6em / 16);
   --cue-button-s-icon-width: calc(20em / 16);
 
-  --cue-button-m-height: calc(44em / 16);
+  --cue-button-m-height: var(--cue-dim-elem-m);
   --cue-button-m-padding-x: calc(10em / 16);
   --cue-button-m-icon-width: calc(24em / 16);
 
@@ -58,9 +58,9 @@
   --cue-button-tertiary-disabled-foreground: var(--cue-color-midgray);
   --cue-button-tertiary-disabled-border-color: transparent;
 
-  --cue-button-label-padding-s-x: calc(16em / 16);
-  --cue-button-label-padding-m-x: calc(24em / 16);
-  --cue-button-label-padding-l-x: calc(48em / 16);
+  --cue-button-s-label-padding-x: calc(16em / 16);
+  --cue-button-m-label-padding-x: calc(24em / 16);
+  --cue-button-l-label-padding-x: calc(48em / 16);
 
   @media (prefers-color-scheme: dark) {
     --cue-button-primary-disabled-foreground: var(--cue-color-midgray);
@@ -75,16 +75,16 @@
 }
 
 @container container-wrap (width <= 20em) {
-  div {
-    --cue-button-xs-height: calc(16em / 16);
+  cue-button {
+    --cue-button-xs-height: var(--cue-dim-s-elem-xs);
     --cue-button-xs-padding-x: calc(1em / 16);
     --cue-button-xs-icon-width: calc(12em / 16);
 
-    --cue-button-s-height: calc(20em / 16);
+    --cue-button-s-height: var(--cue-dim-s-elem-s);
     --cue-button-s-padding-x: calc(4em / 16);
     --cue-button-s-icon-width: calc(16em / 16);
 
-    --cue-button-m-height: calc(28em / 16);
+    --cue-button-m-height: var(--cue-dim-s-elem-m);
     --cue-button-m-padding-x: calc(4em / 16);
     --cue-button-m-icon-width: calc(18em / 16);
   }

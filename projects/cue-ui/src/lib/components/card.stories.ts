@@ -91,4 +91,8 @@ export const WithContent: Story = {
     </cue-card>
     `,
   }),
+  args: {
+    variant: 'default',
+    shadow: false,
+  },
 };
