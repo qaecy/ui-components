@@ -1,4 +1,5 @@
 export * from './agent-fab/agent-fab.component';
+export * from './agent-response-formatter/agent-response-formatter.component';
 export * from './app-header.component';
 export * from './bim-tiles-viewer/bim-tiles-viewer.component';
 export * from './card.component';
@@ -10,7 +11,6 @@ export * from './pdf-viewer/pdf-viewer.component';
 export * from './icon-menu.component';
 export * from './icon.component';
 export * from './icons-svg';
-export * from './in-chat-component/in-chat-component.component';
 export * from './key-val-list.component';
 export * from './key-val.component';
 export * from './logo.component';
