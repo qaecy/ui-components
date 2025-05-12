@@ -4,6 +4,7 @@ export * from './card.stories';
 export * from './container.component';
 export * from './flexcontainer.component';
 export * from './grid.component';
+export * from './pdf-viewer/pdf-viewer.component';
 export * from './icon-menu.component';
 export * from './icon.component';
 export * from './icons-svg';

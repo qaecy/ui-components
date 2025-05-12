@@ -47,7 +47,7 @@ export interface PDFProgressData {
 export type ZoomScale = 'page-height' | 'page-fit' | 'page-width';
 
 import { GlobalWorkerOptions, VerbosityLevel, getDocument } from 'pdfjs-dist';
-import { createEventBus } from '../utils/event-bus-utils';
+import { createEventBus } from './utils/event-bus-utils';
 
 if (!isSSR()) {
   assign(PDFJS, 'verbosity', VerbosityLevel.INFOS);
@@ -82,7 +82,7 @@ export enum RenderTextMode {
   `,
   styleUrls: ['./pdf-viewer.component.scss'],
 })
-export class PDFViewerComponent
+export class PDFViewer
   implements OnChanges, OnInit, OnDestroy, AfterViewChecked
 {
   static CSS_UNITS = 96.0 / 72.0;
@@ -355,7 +355,7 @@ export class PDFViewerComponent
             page.getViewport({
               scale: this._zoom,
               rotation,
-            }).width * PDFViewerComponent.CSS_UNITS;
+            }).width * PDFViewer.CSS_UNITS;
           let scale = this._zoom;
           let stickToPage = true;
 
@@ -397,7 +397,7 @@ export class PDFViewerComponent
   }
 
   private getPDFLinkServiceConfig() {
-    const linkTarget = PDFViewerComponent.getLinkTarget(
+    const linkTarget = PDFViewer.getLinkTarget(
       this._externalLinkTarget
     );
 
@@ -609,7 +609,7 @@ export class PDFViewerComponent
 
   private getScale(viewportWidth: number, viewportHeight: number) {
     const borderSize = this._showBorders
-      ? 2 * PDFViewerComponent.BORDER_WIDTH
+      ? 2 * PDFViewer.BORDER_WIDTH
       : 0;
     const pdfContainerWidth =
       this.pdfViewerContainer.nativeElement.clientWidth - borderSize;
@@ -642,7 +642,7 @@ export class PDFViewerComponent
         break;
     }
 
-    return (this._zoom * ratio) / PDFViewerComponent.CSS_UNITS;
+    return (this._zoom * ratio) / PDFViewer.CSS_UNITS;
   }
 
   private resetPdfDocument() {

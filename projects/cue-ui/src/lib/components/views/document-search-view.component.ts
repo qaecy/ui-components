@@ -15,7 +15,7 @@ import { Container } from '../container.component';
 import { Typography } from '../typography.component';
 import { Button } from '../button/button.component';
 import { ButtonIcon } from '../button/button-icon.component';
-import { PDFViewerComponent } from '../pdf-viewer.component';
+import { PDFViewer } from '../pdf-viewer/pdf-viewer.component';
 import { TooltipDirective } from '../../directives';
 
 export interface DocumentSearchViewProperty {
@@ -50,7 +50,7 @@ export interface DocumentSearchViewSearchResult {
     Typography,
     Button,
     ButtonIcon,
-    PDFViewerComponent,
+    PDFViewer,
     ButtonIcon,
     TooltipDirective,
   ],
