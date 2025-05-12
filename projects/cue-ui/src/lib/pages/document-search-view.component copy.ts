@@ -3,6 +3,7 @@ import { SplitLayoutComponent } from '../components/split-layout.component';
 import {
   Card,
   GeoJSONFeatureCollection,
+  IconComponent,
   KeyValComponent,
   MapComponent,
 } from '../components';
@@ -12,12 +13,15 @@ import { SearchBarComponent } from '../components/search-bar.component';
 import { KeyValList } from '../components/key-val-list.component';
 import { FlexContainer } from '../components/flexcontainer.component';
 import { Container } from '../components/container.component';
+<<<<<<< HEAD
 import { AppHeader } from '../components/app-header.component';
 import { Typography } from '../components/typography.component';
 import { Button } from '../components/button/button.component';
 import { ButtonIcon } from '../components/button/button-icon.component';
+=======
 import { PDFViewerComponent } from '../components/pdf-viewer.component';
 import { TooltipDirective } from '../directives';
+>>>>>>> ebc184b (Merged document search)
 
 export interface DocumentSearchViewProperty {
   size: 'm' | 'l' | 'xl';
@@ -48,13 +52,15 @@ export interface DocumentSearchViewSearchResult {
     KeyValList,
     FlexContainer,
     Container,
+<<<<<<< HEAD
     AppHeader,
     Typography,
     Button,
     ButtonIcon,
+=======
     PDFViewerComponent,
-    ButtonIcon,
-    TooltipDirective,
+    TooltipDirective
+>>>>>>> ebc184b (Merged document search)
   ],
   template: `
     <cue-flexcontainer direction="column" style="flex: 1">
@@ -91,6 +97,7 @@ export interface DocumentSearchViewSearchResult {
                 <ng-content select="[searchAfter]"></ng-content>
               </cue-card>
 
+<<<<<<< HEAD
               <!-- PROPERTIES -->
               @if(properties().length){
               <cue-card variant="accent">
@@ -127,37 +134,13 @@ export interface DocumentSearchViewSearchResult {
 
           <cue-flexcontainer rightContent style="height:100%;flex: 1;">
             <cue-card style="flex:1">
-              <!-- DOCUMENT VIEW -->
-              @if(pdfURL()){
-              <div
-                style="display: flex; flex-direction: column; align-items: flex-start; height: 100%"
-              >
-                <cue-button variant="accent" size="s" cueTooltip="Go back" (click)="closePDF()">
-                  <cue-button-icon icon="arrow_back" />
-                </cue-button>
-                <div style="height: 500px; width: 100%;">
-                  <cue-pdf-viewer
-                    style="height: 100%; width: 100%"
-                    [src]="pdfURL()"
-                    [original-size]="false"
-                  ></cue-pdf-viewer>
-                </div>
-              </div>
-              }
-
-              <!-- TABLE VIEW -->
-              @else if(searchResults().length){
+              @if(searchResults().length){
               <cue-table
                 [data]="searchResults()"
-                [clickableRows]="true"
-                (clickedRow)="handleRowClick($event)"
                 [columnDefs]="columnDefs"
                 tooltipCol="summary"
               ></cue-table>
-              }
-
-              <!-- NO RESULTS -->
-              @else {
+              } @else {
               <div
                 style="display: flex;  justify-content: center; align-items: center;"
               >
@@ -169,6 +152,41 @@ export interface DocumentSearchViewSearchResult {
         </cue-split-layout>
       </cue-flexcontainer>
     </cue-flexcontainer>
+=======
+      <div rightContent style="height: 100%;">
+        <cue-card height="100%">
+
+          <!-- DOCUMENT VIEW -->
+          @if(pdfURL()){
+            <div style="display: flex; flex-direction: column; align-items: flex-start; height: 100%">
+            <cue-icon cueTooltip="Go back" icon="arrow_back" style="cursor: pointer;" (click)="closePDF()"></cue-icon>
+              <div style="height: 500px; width: 100%;">
+              <cue-pdf-viewer style="height: 100%; width: 100%" [src]="pdfURL()" [original-size]="false"></cue-pdf-viewer>
+              </div>
+            </div>
+          }
+
+          <!-- TABLE VIEW -->
+          @else if(searchResults().length){
+          <cue-table
+            [data]="searchResults()"
+            [columnDefs]="columnDefs"
+            [clickableRows]="true"
+            (clickedRow)="handleRowClick($event)"
+            tooltipCol="summary"
+          ></cue-table>
+          } 
+          
+          <!-- NO RESULTS -->
+          @else {
+          <div style="display: flex; height: 100%; justify-content: center; align-items: center;">
+            <span>{{ info() }}</span>
+          </div>
+          }
+        </cue-card>
+      </div>
+    </cue-split-layout>
+>>>>>>> ebc184b (Merged document search)
   `,
   styles: `:host{display: contents;}`,
 })
@@ -202,8 +220,9 @@ export class DocumentSearchView {
     return featureCollection;
   });
 
+  pdfURL = signal("");
+
   columnDefs: ColumnDef[] = [];
-  pdfURL = signal('');
 
   constructor() {
     const nameCol = new ColumnDef('name', 'Name', 'left');
@@ -220,15 +239,15 @@ export class DocumentSearchView {
     this.columnDefs.push(mimeCol);
   }
 
-  async handleRowClick(row: DocumentSearchViewSearchResult) {
-    if (row.docURL === undefined) return;
-    if (row.mime === 'application/pdf') {
+  async handleRowClick(row: DocumentSearchViewSearchResult){
+    if(row.docURL === undefined) return;
+    if(row.mime === "application/pdf"){
       const pdfURL = await row.docURL();
       this.pdfURL.set(pdfURL);
     }
   }
 
-  closePDF() {
-    this.pdfURL.set('');
+  closePDF(){
+    this.pdfURL.set("");
   }
 }

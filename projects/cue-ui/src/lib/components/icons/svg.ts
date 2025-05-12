@@ -3,6 +3,7 @@ import { IconName } from './types';
 export const svgs: {
   [K in IconName]: string;
 } = {
+  arrow_back: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>`,
   unknown: `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24">
   <circle cx="12" cy="12" r="10" fill="currentColor"/>
 </svg>`,

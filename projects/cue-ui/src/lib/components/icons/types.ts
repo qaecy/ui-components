@@ -1,4 +1,5 @@
 export type IconName =
+  | 'arrow_back'
   | 'unknown'
   | 'user'
   | 'loading'

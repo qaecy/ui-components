@@ -41,7 +41,11 @@ const results: DocumentSearchViewSearchResult[] = Array.from({ length: 20 }, (_,
   keywords: "drawing, diagram",
   size: Math.floor(Math.random() * (10000000 - 100 + 1)) + 100,
   mime: 'application/pdf',
-  summary: `This is a test summary for document ${index + 1}`
+  summary: `This is a test summary for document ${index + 1}`,
+  docURL: async () => {
+    console.log(`requesting Test document ${index + 1}`);
+    return "https://ocw.mit.edu/courses/18-821-project-laboratory-in-mathematics-spring-2013/41c70fc8f822ec953739073e338142c7_MIT18_821S13_latexsample.pdf";
+  }
 }));
 
 export const Full: Story = {

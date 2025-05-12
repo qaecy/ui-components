@@ -7,6 +7,7 @@ import { svgIcons } from './icons-svg';
 // export const supportedIcons = ["filter", "home"];
 
 const materialIconMap = new Map<Icon, string>([
+    ["arrow_back", "arrow_back"],
     ["file", "insert_drive_file"],
     ["filter", "filter_alt"],
     ["filter_off", "filter_alt_off"],

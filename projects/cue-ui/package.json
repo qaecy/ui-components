@@ -8,7 +8,8 @@
     "@angular/animations": "19.2.11",
     "tippy.js": "6.3.7",
     "split.js": "1.6.5",
-    "mapbox-gl": "3.3.0"
+    "mapbox-gl": "3.3.0",
+    "pdfjs-dist": "4.8.69"
   },
   "dependencies": {
     "tslib": "2.3.0"
