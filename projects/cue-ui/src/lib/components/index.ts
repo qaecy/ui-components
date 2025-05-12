@@ -1,4 +1,6 @@
+export * from './agent-fab/agent-fab.component';
 export * from './app-header.component';
+export * from './bim-tiles-viewer/bim-tiles-viewer.component';
 export * from './card.component';
 export * from './card.stories';
 export * from './container.component';
