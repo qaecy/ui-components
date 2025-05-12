@@ -54,7 +54,7 @@ const render = (args: any) => ({
   </p>`,
 });
 
-export const Default: Story = {
+export const DefaultTooltip: Story = {
   render,
   args: {
     cueTooltip: 'Hello',
