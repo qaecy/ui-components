@@ -38,8 +38,6 @@ export class InChatMap {
   mapboxToken = computed(() => this.data()?.mapboxToken ?? '');
   featureCollection = signal<GeoJSONFeatureCollection | undefined>(undefined);
 
-  x = effect(() => console.log(this.mapboxToken()))
-
   // @ViewChild(NgMapboxComponent) mapbox!: NgMapboxComponent;
   mapbox = contentChildren(MapComponent);
   lngLat: LngLatLike = [8.5, 47];
@@ -49,7 +47,6 @@ export class InChatMap {
 
   plotFeatures = effect(async () => {
     const features = this.features();
-    console.log(features);
     if (!features.length) {
       this.featureCollection.set(undefined);
       return;

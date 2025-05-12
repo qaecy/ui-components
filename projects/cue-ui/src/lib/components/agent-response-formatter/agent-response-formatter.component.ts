@@ -13,7 +13,7 @@ import { DocRefData } from './chat-components/inline-ref/inline-ref.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'cue-in-chat-component',
+  selector: 'cue-agent-response',
   template: `<ngx-dynamic-hooks
     [parsers]="parsers"
     [content]="html()"
@@ -21,7 +21,7 @@ import { DocRefData } from './chat-components/inline-ref/inline-ref.component';
   ></ngx-dynamic-hooks>`,
   imports: [DynamicHooksComponent],
 })
-export class InChatComponent {
+export class AgentResponseFormatter {
   md = input.required<string>();
   context = input.required<{ [key: string]: unknown }>();
   startPassive = input<boolean>(true);

@@ -1,14 +1,14 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { InChatComponent } from './in-chat-component.component';
 import { duplexArchitectureFull } from '../bim-tiles-viewer/duplex-architecture';
 import { Typography } from '../typography.component';
+import { AgentResponseFormatter } from './agent-response-formatter.component';
 
 const mapboxToken =
   'pk.eyJ1IjoibWFkc2hvbHRlbiIsImEiOiJjbWFiMTYyc3EwOXM5MmtzYzRqcWJ0N2dzIn0.cPH3wfmHY6LbquPWzH5zdQ';
 
-const meta: Meta<InChatComponent> = {
-  title: 'In-chat component',
-  component: InChatComponent,
+const meta: Meta<AgentResponseFormatter> = {
+  title: 'Agent response formatter',
+  component: AgentResponseFormatter,
   tags: ['autodocs'],
   argTypes: {
     startPassive: {
@@ -27,7 +27,7 @@ const meta: Meta<InChatComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<InChatComponent>;
+type Story = StoryObj<AgentResponseFormatter>;
 
 const render = (args: any) => ({
   props: {
@@ -37,7 +37,7 @@ const render = (args: any) => ({
     simulateStream: args.simulateStream
   },
   template: `<cue-typography>
-  <cue-in-chat-component [md]="md" [context]="context" [startPassive]="startPassive" [simulateStream]="simulateStream"></cue-in-chat-component>
+  <cue-agent-response [md]="md" [context]="context" [startPassive]="startPassive" [simulateStream]="simulateStream"></cue-agent-response>
   </cue-typography>`,
 });
 
