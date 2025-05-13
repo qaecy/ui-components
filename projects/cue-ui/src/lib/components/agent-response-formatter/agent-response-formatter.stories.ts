@@ -2,6 +2,7 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { duplexArchitectureFull } from '../bim-tiles-viewer/duplex-architecture';
 import { Typography } from '../typography.component';
 import { AgentResponseFormatter } from './agent-response-formatter.component';
+import { Card } from '../card.component';
 
 const mapboxToken =
   'pk.eyJ1IjoibWFkc2hvbHRlbiIsImEiOiJjbWFiMTYyc3EwOXM5MmtzYzRqcWJ0N2dzIn0.cPH3wfmHY6LbquPWzH5zdQ';
@@ -21,7 +22,7 @@ const meta: Meta<AgentResponseFormatter> = {
   },
   decorators: [
     moduleMetadata({
-      imports: [Typography],
+      imports: [Typography, Card],
     }),
   ],
 };
@@ -36,9 +37,9 @@ const render = (args: any) => ({
     startPassive: args.startPassive,
     simulateStream: args.simulateStream
   },
-  template: `<cue-typography>
+  template: `<cue-card><cue-typography>
   <cue-agent-response [md]="md" [context]="context" [startPassive]="startPassive" [simulateStream]="simulateStream"></cue-agent-response>
-  </cue-typography>`,
+  </cue-typography></cue-card>`,
 });
 
 export const DocumentRef: Story = {

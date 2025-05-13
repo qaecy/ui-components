@@ -1,0 +1,38 @@
+<div
+  #canvas
+  class="canvas"
+  (resized)="onResized($event)"
+  [displayLoading]="isLoading"
+  [loadingMessage]="loadingMessage"
+  cueDarkMode
+  (darkModeChange)="setDarkMode($event)"
+  cueLoadingOverlay
+  cueResized
+>
+  <ng-container *ngIf="settings().visibility.ui.enabled">
+    <!-- BOTTOM TOOLBAR -->
+    <div
+      class="toolbar-container"
+      *ngIf="settings().visibility.ui.toolbar.enabled"
+    >
+      <!-- <lib-toolbar
+        [settings]="settings"
+        [customToolbarItems]="customToolbarItems"
+      ></lib-toolbar> -->
+    </div>
+
+    <!-- LAYERS MENU -->
+    <lib-layers
+      [layers]="layers"
+      [settings]="settings()"
+      [class.hidden]="!settings().visibility.ui.showLayerPanel"
+    ></lib-layers>
+  </ng-container>
+</div>
+
+<!-- <lib-icon-menu
+  *ngIf="menuSettings"
+  [settings]="menuSettings"
+  class="menu"
+>
+</lib-icon-menu> -->

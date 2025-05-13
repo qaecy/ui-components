@@ -5,6 +5,7 @@ export * from './bim-tiles-viewer/bim-tiles-viewer.component';
 export * from './card.component';
 export * from './card.stories';
 export * from './container.component';
+export * from './draggable-card.component';
 export * from './flexcontainer.component';
 export * from './grid.component';
 export * from './pdf-viewer/pdf-viewer.component';

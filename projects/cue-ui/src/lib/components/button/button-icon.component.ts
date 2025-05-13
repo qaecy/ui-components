@@ -6,7 +6,7 @@ import { IconName } from '../icons/types';
   selector: 'cue-button-icon',
   standalone: true,
   imports: [SvgIcon],
-  template: `<cue-svg-icon slot="slot()" [name]="icon()"></cue-svg-icon>`,
+  template: `<cue-svg-icon [slot]="slot()" [name]="icon()"></cue-svg-icon>`,
 })
 export class ButtonIcon {
   icon = input<IconName | undefined>(undefined);

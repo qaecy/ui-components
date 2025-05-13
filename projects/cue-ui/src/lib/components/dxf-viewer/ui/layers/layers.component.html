@@ -1,0 +1,17 @@
+<cue-draggable-card abel="Drawing layers" [padded]="false" (clickedClose)="toggleVisibility()">
+  <div class="content">
+    <!-- Check all box -->
+    <div class="item">
+      <input type="checkbox" [checked]="allLayersOn" (change)="toggleAll()" />
+    </div>
+    <div class="item" *ngFor="let layer of layers">
+      <input
+        type="checkbox"
+        [checked]="layer.checked"
+        (change)="toggleLayer(layer)"
+      />
+      {{ layer.displayName }}
+      <div [style.background-color]="layer.color" class="color-box"></div>
+    </div>
+  </div>
+</cue-draggable-card>

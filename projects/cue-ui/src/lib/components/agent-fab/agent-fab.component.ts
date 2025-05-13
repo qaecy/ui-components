@@ -11,7 +11,6 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ShortPressDirective, LongPressDirective } from '../../directives';
-import { Logo } from '../logo.component';
 import { Button } from '../button/button.component';
 import { ButtonIcon } from '../button/button-icon.component';
 
