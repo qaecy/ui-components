@@ -1,10 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { SideNavComponent } from './side-nav.component';
+import { Typography } from './typography.component';
+import { Card } from './card.component';
 
 const meta: Meta<SideNavComponent> = {
   title: 'Side Nav',
   component: SideNavComponent,
   tags: ['autodocs'],
+  decorators: [
+    moduleMetadata({
+      imports: [Typography, Card],
+    }),
+  ],
   argTypes: {},
 };
 
@@ -14,18 +21,22 @@ type Story = StoryObj<SideNavComponent>;
 const render = (args: any) => ({
   props: args,
   template: `<div style="width: 100%; height: 500px; border: 1px solid; border-radius: ${args.parentBorderRadius}; font-family: var(--cue-font-family);">
-  <cue-side-nav 
-    navWidth="${args.navWidth}" 
-    [showSideNav]="${args.showSideNav}" 
+  <cue-side-nav
+    navWidth="${args.navWidth}"
+    [showSideNav]="${args.showSideNav}"
     parentBorderRadius="${args.parentBorderRadius}"
     [mobileBreakpoint]="${args.mobileBreakpoint}"
     [showBounceAnimation]="${args.showBounceAnimation}"
     [keepOpenBreakpoint]="${args.keepOpenBreakpoint}">
-      <div sideNavContent style="padding: 16px;">
-        <p class="mat-typography">Side Nav Content</p>
+      <div sideNavContent style="padding: var(--cue-dim-padding-sub);">
+        <cue-card>
+          <cue-typography>Nav Content</cue-typography>
+        </cue-card>
       </div>
-      <div mainContent style="padding: 16px;">
-        <p class="mat-typography">Main Content</p>
+      <div mainContent style="padding: var(--cue-dim-padding-sub);">
+        <cue-card style="min-width: 50em;">
+          <cue-typography>Main Content</cue-typography>
+        </cue-card>
       </div>
     </cue-side-nav>
   </div>`,

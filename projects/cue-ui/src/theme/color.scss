@@ -44,6 +44,8 @@
   --cue-warningContrast: var(--cue-color-white);
 
   --cue-border-color: #d9d9d9;
+  --cue-scrollbar-thumb-color: var(--cue-color-lightgray);
+  --cue-scrollbar-track-color: transparent;
 }
 
 body.dark {
@@ -57,4 +59,5 @@ body.dark {
   --cue-neutralContrast: var(--cue-color-white);
 
   --cue-border-color: #414955;
+  --cue-scrollbar-thumb-color: var(--cue-color-midgray);
 }

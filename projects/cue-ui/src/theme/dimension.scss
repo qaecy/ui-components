@@ -15,4 +15,21 @@
   --cue-dim-s-elem-xs: calc(16em / 16);
   --cue-dim-s-elem-s: calc(20em / 16);
   --cue-dim-s-elem-m: calc(28em / 16);
+
+  --cue-dim-padding-main: calc(10em / 16);
+  --cue-dim-padding-sub: calc(10em / 16);
+}
+
+@media (min-width: 20em) {
+  :root {
+    --cue-dim-padding-main: calc(20em / 16);
+    --cue-dim-padding-sub: calc(10em / 16);
+  }
+}
+
+@media (min-width: 40em) {
+  :root {
+    --cue-dim-padding-main: calc(32em / 16);
+    --cue-dim-padding-sub: calc(16em / 16);
+  }
 }

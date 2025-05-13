@@ -48,7 +48,7 @@ import { Typography } from './typography.component';
         display: flex;
         align-items: stretch;
 
-        @container container-wrap (width <= 20em) {
+        @container cue-container (width < 20em) {
           --height: calc(34rem / 16);
         }
       }
@@ -59,7 +59,7 @@ import { Typography } from './typography.component';
         top: 50%;
         transform: translate(0, -50%);
 
-        @container container-wrap (width <= 20em) {
+        @container cue-container (width < 20em) {
           right: calc(4em / 16);
         }
       }
@@ -101,7 +101,7 @@ import { Typography } from './typography.component';
           color: currentColor;
         }
 
-        @container container-wrap (width <= 20em) {
+        @container cue-container (width < 20em) {
           padding: 0 1em;
         }
       }

@@ -50,15 +50,9 @@ export interface DocumentSearchViewSearchResult {
     ButtonIcon,
   ],
   template: `
-    <cue-flexcontainer style="flex: 1">
-      <cue-split-layout
-        mainContent
-        [sizes]="[30, 70]"
-        [minSizes]="[10, 200]"
-        [gutterSize]="30"
-        style="flex:1;"
-      >
-        <cue-container leftContent class="leftContent" style="height:100%">
+    <cue-flexcontainer style="flex: 1;">
+      <div class="panel left">
+        <cue-container>
           <cue-flexcontainer direction="column">
             <!-- SEARCH BOX -->
             <cue-card variant="primary">
@@ -69,9 +63,13 @@ export interface DocumentSearchViewSearchResult {
 
             <!-- PROPERTIES -->
             @if(properties().length){
-            <cue-card variant="accent">
+            <cue-card
+              variant="accent"
+              [scrollable]="true"
+              style="flex: 1;min-height:4em"
+            >
               <cue-key-val-list>
-                @for(item of properties(); track $index){
+                @for(item of properties(); track $index; ; let idx = $index){
                 <cue-key-val
                   [size]="item.size"
                   [key]="item.key"
@@ -81,12 +79,11 @@ export interface DocumentSearchViewSearchResult {
               </cue-key-val-list>
             </cue-card>
             }
-
             <!-- MAP -->
             @if(mapboxToken(); as token){ @if(location(); as center){
             <cue-card
               [padded]="false"
-              style="position:relative;flex:1"
+              style="position:relative;aspect-ratio:4 / 3"
               variant="default"
             >
               <cue-map
@@ -100,57 +97,80 @@ export interface DocumentSearchViewSearchResult {
             } }
           </cue-flexcontainer>
         </cue-container>
+      </div>
 
-        <cue-flexcontainer rightContent style="height:100%;flex: 1;">
-          <cue-card style="flex:1">
-            <!-- DOCUMENT VIEW -->
-            @if(pdfURL()){
-            <div
-              style="display: flex; flex-direction: column; align-items: flex-start; height: 100%"
+      <div class="panel right">
+        <cue-card style="flex: 1;" [scrollable]="true">
+          <!-- DOCUMENT VIEW -->
+          @if(pdfURL()){
+          <cue-flexcontainer direction="column">
+            <cue-button
+              variant="accent"
+              size="s"
+              cueTooltip="Go back"
+              (click)="closePDF()"
             >
-              <cue-button
-                variant="accent"
-                size="s"
-                cueTooltip="Go back"
-                (click)="closePDF()"
-              >
-                <cue-button-icon icon="arrow-back" />
-              </cue-button>
-              <div style="height: 500px; width: 100%;">
-                <cue-pdf-viewer
-                  style="height: 100%; width: 100%"
-                  [src]="pdfURL()"
-                  [original-size]="false"
-                ></cue-pdf-viewer>
-              </div>
+              <cue-button-icon icon="arrow-back" />
+            </cue-button>
+            <div style="height: 500px; width: 100%;">
+              <cue-pdf-viewer
+                style="height: 100%; width: 100%"
+                [src]="pdfURL()"
+                [original-size]="false"
+              ></cue-pdf-viewer>
             </div>
-            }
+          </cue-flexcontainer>
+          }
 
-            <!-- TABLE VIEW -->
-            @else if(searchResults().length){
-            <cue-table
-              [data]="searchResults()"
-              [clickableRows]="true"
-              (clickedRow)="handleRowClick($event)"
-              [columnDefs]="columnDefs"
-              tooltipCol="summary"
-            ></cue-table>
-            }
+          <!-- TABLE VIEW -->
+          @else if(searchResults().length){
+          <cue-table
+            [data]="searchResults()"
+            [clickableRows]="true"
+            (clickedRow)="handleRowClick($event)"
+            [columnDefs]="columnDefs"
+            tooltipCol="summary"
+          ></cue-table>
+          }
 
-            <!-- NO RESULTS -->
-            @else {
-            <div
-              style="display: flex;  justify-content: center; align-items: center;"
-            >
-              <cue-typography>{{ info() }}</cue-typography>
-            </div>
-            }
-          </cue-card>
-        </cue-flexcontainer>
-      </cue-split-layout>
+          <!-- NO RESULTS -->
+          @else {
+          <div
+            style="display: flex;  justify-content: center; align-items: center;"
+          >
+            <cue-typography>{{ info() }}</cue-typography>
+          </div>
+          }
+        </cue-card>
+      </div>
     </cue-flexcontainer>
   `,
-  styles: `:host{display: contents;}`,
+  styles: `
+    :host{display: contents;}
+
+    .panel {
+      position: relative;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      &.left {
+        flex: 0 0 20em;
+        max-width: 20em;
+
+        @container cue-app-wrap (width < 40em){
+          flex-basis: 10em;
+        }
+      }
+
+       & > * {
+        position: absolute;
+        inset:0;
+       }
+    }
+    `,
 })
 export class DocumentSearchView {
   properties = input<DocumentSearchViewProperty[]>([]);

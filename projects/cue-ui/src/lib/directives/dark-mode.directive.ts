@@ -54,6 +54,10 @@ export class DarkModeDirective {
     effect(() => {
       console.log(`Dark mode changed to: ${this._isDarkMode()}`);
       this.darkModeChange.emit(this._isDarkMode());
+      // TODO: this has to be set at another place
+      document.documentElement.style.colorScheme = this._isDarkMode()
+        ? 'dark'
+        : 'light';
     });
   }
 

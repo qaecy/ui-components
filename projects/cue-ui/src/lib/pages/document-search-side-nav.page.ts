@@ -1,49 +1,34 @@
 import { Component, input } from '@angular/core';
 import { LngLatLike } from 'mapbox-gl';
 import { FlexContainer } from '../components/flexcontainer.component';
-import { AppHeader } from '../components/app-header.component';
-import { Button } from '../components/button/button.component';
-import { ButtonIcon } from '../components/button/button-icon.component';
+import { Typography } from '../components/typography.component';
 import {
   DocumentSearchView,
   DocumentSearchViewProperty,
   DocumentSearchViewSearchResult,
 } from '../components/views/document-search-view.component';
 import { SideNavComponent } from '../components';
+import { AppWrap } from '../components/app-wrap.component';
+import { SampleAppHeader } from './sample-app-header.component';
 
 @Component({
   selector: 'cue-document-search-page',
   imports: [
     FlexContainer,
-    AppHeader,
-    Button,
-    ButtonIcon,
     DocumentSearchView,
     SideNavComponent,
+    Typography,
+    AppWrap,
+    SampleAppHeader,
   ],
   template: `
-    <cue-flexcontainer direction="column" style="flex: 1">
-      <cue-app-header>
-        <cue-flexcontainer end gap="m" align="center">
-          <cue-button variant="tertiary" size="s" title="Assets">
-            <cue-button-icon icon="folder" />
-          </cue-button>
-          <cue-button variant="tertiary" size="s" title="Info">
-            <cue-button-icon icon="layout" />
-          </cue-button>
-          <cue-button variant="tertiary" size="s" title="Settings">
-            <cue-button-icon icon="settings" />
-          </cue-button>
-          <cue-button>
-            <cue-button-icon icon="avatar" />
-          </cue-button>
-        </cue-flexcontainer>
-      </cue-app-header>
-      <cue-side-nav>
-        <div sideNavContent style="padding: 16px;">
-          <p class="mat-typography">Side Nav Content</p>
-        </div>
-        <div mainContent style="padding: 16px;">
+    <cue-side-nav style="flex:1;height:100%;">
+      <div sideNavContent style="padding: var(--cue-dim-padding-sub);">
+        <cue-typography>Side Nav Content</cue-typography>
+      </div>
+      <cue-app-wrap mainContent>
+        <cue-flexcontainer direction="column" style="flex: 1">
+          <cue-map-search />
           <cue-document-search
             [properties]="properties()"
             [location]="location()"
@@ -52,9 +37,9 @@ import { SideNavComponent } from '../components';
             [info]="info()"
           >
           </cue-document-search>
-        </div>
-      </cue-side-nav>
-    </cue-flexcontainer>
+        </cue-flexcontainer>
+      </cue-app-wrap>
+    </cue-side-nav>
   `,
   styles: `:host{display: contents;}`,
 })

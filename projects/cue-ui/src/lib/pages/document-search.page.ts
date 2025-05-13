@@ -1,45 +1,31 @@
 import { Component, input } from '@angular/core';
 import { LngLatLike } from 'mapbox-gl';
 import { FlexContainer } from '../components/flexcontainer.component';
-import { AppHeader } from '../components/app-header.component';
-import { Button } from '../components/button/button.component';
-import { ButtonIcon } from '../components/button/button-icon.component';
+import { AppWrap } from '../components/app-wrap.component';
 import {
   DocumentSearchView,
   DocumentSearchViewProperty,
   DocumentSearchViewSearchResult,
 } from '../components/views/document-search-view.component';
+import { SampleAppHeader } from './sample-app-header.component';
 
 @Component({
   selector: 'cue-document-search-page',
-  imports: [FlexContainer, AppHeader, Button, ButtonIcon, DocumentSearchView],
+  imports: [FlexContainer, SampleAppHeader, DocumentSearchView, AppWrap],
   template: `
-    <cue-flexcontainer direction="column" style="flex: 1">
-      <cue-app-header>
-        <cue-flexcontainer end gap="m" align="center">
-          <cue-button variant="tertiary" size="s" title="Assets">
-            <cue-button-icon icon="folder" />
-          </cue-button>
-          <cue-button variant="tertiary" size="s" title="Layout">
-            <cue-button-icon icon="layout" />
-          </cue-button>
-          <cue-button variant="tertiary" size="s" title="Settings">
-            <cue-button-icon icon="settings" />
-          </cue-button>
-          <cue-button>
-            <cue-button-icon icon="avatar" />
-          </cue-button>
-        </cue-flexcontainer>
-      </cue-app-header>
-      <cue-document-search
-        [properties]="properties()"
-        [location]="location()"
-        [mapboxToken]="mapboxToken()"
-        [searchResults]="searchResults()"
-        [info]="info()"
-      >
-      </cue-document-search>
-    </cue-flexcontainer>
+    <cue-app-wrap>
+      <cue-flexcontainer direction="column" style="flex: 1">
+        <cue-map-search />
+        <cue-document-search
+          [properties]="properties()"
+          [location]="location()"
+          [mapboxToken]="mapboxToken()"
+          [searchResults]="searchResults()"
+          [info]="info()"
+        >
+        </cue-document-search>
+      </cue-flexcontainer>
+    </cue-app-wrap>
   `,
   styles: `:host{display: contents;}`,
 })

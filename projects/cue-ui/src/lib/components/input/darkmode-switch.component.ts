@@ -8,8 +8,8 @@ import { Switch } from './switch.component';
   host: { '[class.checked]': 'checked()' },
   template: `<cue-input-switch
     [checked]="checked()"
-    icon="sun"
-    iconChecked="moon"
+    icon="light-mode"
+    iconChecked="dark-mode"
   />`,
   styles: `
       :host {

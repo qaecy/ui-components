@@ -1,8 +1,8 @@
 :root {
   /* CARD SYSTEM */
   --cue-card-border-radius: calc(30em / 16);
-  --cue-card-padding-x: calc(24em / 16);
-  --cue-card-padding-y: calc(24em / 16);
+  --cue-card-padding-x: calc(16em / 16);
+  --cue-card-padding-y: calc(16em / 16);
   --cue-card-border-color: var(--cue-border-color);
   --cue-card-box-shadow: 0 1px calc(24em / 16) rgba(0, 0, 0, 0.2);
 }
@@ -11,7 +11,7 @@ body.dark {
   --cue-card-box-shadow: 0 1px calc(24em / 16) rgba(255, 255, 255, 0.3);
 }
 
-@container container-wrap (width <= 20em) {
+@container cue-container (width < 20em) {
   cue-card {
     --cue-card-border-radius: calc(20em / 16);
     --cue-card-padding-x: calc(12em / 16);

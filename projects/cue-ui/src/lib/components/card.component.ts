@@ -19,12 +19,17 @@ export type CardVariant = (typeof cardVariants)[number];
     '[class.padded]': 'padded()',
     '[class.shadow]': 'shadow()',
   },
-  template: '<ng-content />',
+  template: `
+    <div class="inner" [style.display]="innerDisplay()">
+      <ng-content />
+    </div>
+  `,
   styles: `
     :host {
       display: block;
       border-radius: var(--cue-card-border-radius);
       border: 1px solid var(--cue-card-border-color);
+      box-sizing: border-box;
 
       &.padded {
         padding: var(--cue-card-padding-y) var(--cue-card-padding-x);
@@ -33,6 +38,12 @@ export type CardVariant = (typeof cardVariants)[number];
       &.shadow {
         box-shadow: var(--cue-card-box-shadow);
       }
+
+      --cue-scrollbar-thumb-color: var(--cue-color-lightgray);
+      body.dark &.variant-default {
+        --cue-scrollbar-thumb-color: var(--cue-color-midgray);
+      }
+
 
       &.variant-secondary, &.variant-primary {
           --cue-button-primary-background: var(--cue-color-ultralightgray);
@@ -52,6 +63,12 @@ export type CardVariant = (typeof cardVariants)[number];
       &.variant-secondary {
         --cue-input-switch-checked-background: var(--cue-color-blue);
       }
+
+      & > .inner {
+        position:absolute;
+        inset: var(--cue-card-padding-y) var(--cue-card-padding-x);
+        overflow: auto;
+      }
     }
     `,
 })
@@ -60,6 +77,12 @@ export class Card {
   variant = input<CardVariant>('default');
   shadow = input<boolean>(false);
   padded = input<boolean>(true);
+  scrollable = input<boolean>(false);
+  maxHeight = input<string | undefined>(undefined);
+
+  isScrollable = computed(
+    () => this.scrollable() || this.maxHeight() !== undefined
+  );
 
   getClass = computed(() => `variant-${this.variant()}`);
 
@@ -70,6 +93,8 @@ export class Card {
       color: var(--cue-${color}Contrast);
       --background-color: var(--cue-${color});
       background-color: var(--background-color);
+      max-height: ${this.maxHeight() ?? 'none'};
+      position: ${this.isScrollable() ? 'relative' : undefined};
     `,
     ];
     if (this.variant() === 'fade') {
@@ -80,4 +105,6 @@ export class Card {
     styles.push(this.style());
     return styles.join('');
   });
+
+  innerDisplay = computed(() => (this.isScrollable() ? 'block' : 'contents'));
 }

@@ -15,7 +15,7 @@ import { MatCardModule } from '@angular/material/card';
       :host {
         display: flex;
         align-items: stretch;
-        container-name: container-wrap;
+        container-name: cue-container;
         container-type: inline-size;
 
         & > * {

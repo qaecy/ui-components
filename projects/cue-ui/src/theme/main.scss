@@ -13,7 +13,6 @@
 
 :root {
   color-scheme: light;
-  --main-padding: calc(10em / 16);
   /* EXISTING DEFINITIONS: marked for deletion */
   --cue-light-gray: #d9d9d9;
   --cue-extra-light-gray: #f5f6f9;
@@ -28,12 +27,6 @@ html {
 }
 
 body {
-  --background-color: var(--cue-main-background);
-  background-color: var(--background-color);
-  color: var(--cue-main-foreground);
-  padding: var(--main-padding);
-  box-sizing: border-box;
-  height: 100%;
   display: flex;
   flex-direction: column;
 
@@ -41,12 +34,11 @@ body {
     color-scheme: dark;
   }
 
-  @media (min-width: 20em) {
-    --main-padding: calc(20em / 16);
-  }
-
-  @media (min-width: 40em) {
-    --main-padding: calc(32em / 16);
+  & > * {
+    scrollbar-color: var(--cue-scrollbar-thumb-color)
+      var(--cue-scrollbar-track-color);
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
   }
 }
 
@@ -54,12 +46,10 @@ body {
 .sb-main-padded {
   display: flex !important;
   min-height: 100%;
-  padding: var(--main-padding) !important;
+  padding: 0 !important;
 
   #storybook-root {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    display: contents;
 
     storybook-root {
       display: contents;

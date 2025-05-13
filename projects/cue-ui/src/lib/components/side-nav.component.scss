@@ -49,11 +49,24 @@
   width: var(--nav-width);
   height: 100%;
   background: var(--cue-primary);
-  color: white;
+  color: var(--cue-primaryContrast);
   transition: left var(--transition-duration) ease;
   z-index: 50;
   overflow-y: auto;
   animation: bounce var(--bounce-duration) ease var(--bounce-repeats);
+
+  --cue-button-primary-background: var(--cue-color-ultralightgray);
+  --cue-button-primary-focus-color: var(--cue-color-ultralightgray);
+  --cue-button-primary-foreground: var(--cue-color-blue);
+  --cue-button-primary-border-color: var(--cue-color-ultralightgray);
+  --cue-button-primary-background: var(--cue-color-ultralightgray);
+
+  --cue-button-primary-disabled-foreground: var(--cue-color-midgray);
+  --cue-button-primary-disabled-background: var(--cue-color-lightgray);
+  --cue-button-primary-disabled-border-color: var(--cue-color-lightgray);
+
+  --cue-button-secondary-disabled-foreground: var(--cue-color-midgray);
+  --cue-button-secondary-disabled-border-color: var(--cue-color-midgray);
 }
 
 .content {
@@ -62,6 +75,7 @@
   transition: margin-left var(--transition-duration) ease;
   overflow-y: auto;
   margin-left: 0;
+  display: flex;
 }
 
 /* When nav is open */

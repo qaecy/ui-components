@@ -5,7 +5,6 @@
   [style.borderTopLeftRadius]="parentBorderRadius()"
   [style.borderBottomLeftRadius]="parentBorderRadius()"
 >
-
   @if(showSideNav()){ @if(!hideDragHandle()){
   <button
     class="nav-toggle"
@@ -23,8 +22,6 @@
   }
 
   <div class="content" [style.margin-left]="contentMargin">
-    <div [style.margin-left]="isOpen ? '1rem' : '0.2rem'">
-      <ng-content select="[mainContent]"></ng-content>
-    </div>
+    <ng-content select="[mainContent]"></ng-content>
   </div>
 </div>

@@ -74,7 +74,7 @@
   }
 }
 
-@container container-wrap (width <= 20em) {
+@container cue-container (width < 20em) {
   cue-button {
     --cue-button-xs-height: var(--cue-dim-s-elem-xs);
     --cue-button-xs-padding-x: calc(1em / 16);

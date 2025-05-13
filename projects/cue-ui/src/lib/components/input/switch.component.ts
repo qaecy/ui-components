@@ -41,7 +41,7 @@ import { SvgIcon } from '../icons/svg-icon.component';
           --cue-input-switch-height: var(--cue-dim-elem-s);
         }
 
-        @container container-wrap (width <= 20em) {
+        @container cue-container (width < 20em) {
           --cue-input-switch-height: var(--cue-dim-s-elem-m);
           &[size="xs"]{
             --cue-input-switch-height: var(--cue-dim-s-elem-xs);
