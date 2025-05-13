@@ -14,7 +14,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "19.2.10",
-    "@angular/cdk": "19.2.11",
+    "@angular/cdk": "^19.2.11",
     "@angular/common": "19.2.10",
     "@angular/compiler": "19.2.10",
     "@angular/core": "19.2.10",
@@ -27,6 +27,7 @@
     "@fontsource/poppins": "5.2.5",
     "@thatopen/components": "^2.2.4",
     "@thatopen/components-front": "^2.2.1",
+    "dxf-viewer": "^1.0.42",
     "mapbox-gl": "3.3.0",
     "marked": "^15.0.11",
     "mime-types": "^3.0.1",
