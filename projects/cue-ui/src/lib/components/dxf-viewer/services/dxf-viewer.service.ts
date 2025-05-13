@@ -28,7 +28,6 @@ export class DXFViewerService implements OnDestroy {
   }
 
   set viewerOptions(value: ViewerOptions) {
-    console.log(value);
     this._viewerOptions = value;
   }
 

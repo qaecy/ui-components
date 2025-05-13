@@ -19,19 +19,16 @@ import { EventsService } from './services/events.service';
 import { AnnotationService } from './services/annotation.service';
 import { LayersComponent } from './ui/layers/layers.component';
 import {
-  DarkModeDirective,
   LoadingOverlayDirective,
   ResizedDirective,
   ResizedEvent,
 } from '../../directives';
-import { Color } from 'three';
 
 @Component({
   imports: [
     CommonModule,
     ResizedDirective,
     LoadingOverlayDirective,
-    DarkModeDirective,
     LayersComponent,
   ],
   selector: 'cue-dxf-viewer',
@@ -45,7 +42,6 @@ export class DXFViewer implements OnDestroy {
   private _cdref = inject(ChangeDetectorRef);
 
   fileURL = input.required<string>();
-  backgroundColor = input<undefined | string>(undefined);
   settings = input(new DXFViewerSettings());
   annotationMarkers = input<AnnotationMarkerDef[]>([]);
   //   customToolbarItems = input<ToolbarSection[]>([]);
@@ -93,23 +89,6 @@ export class DXFViewer implements OnDestroy {
     if (this.settings() === undefined) return;
     await this.loadFile(this.fileURL());
   });
-
-  onBGColorChange = effect(() => {
-    const bgColor = this.backgroundColor();
-    if (bgColor === undefined) return;
-    this.viewerOptions.update((options) => {
-      options.clearColor = new Color(bgColor);
-      return options;
-    });
-  });
-
-  setDarkMode(darkMode: boolean) {
-    if (this.backgroundColor() !== undefined) return;
-    this.viewerOptions.update((options) => {
-      options.clearColor = darkMode ? new Color('black') : new Color('white');
-      return options;
-    });
-  }
 
   ngOnDestroy() {
     this._service.dispose();

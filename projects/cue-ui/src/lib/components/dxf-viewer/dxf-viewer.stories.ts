@@ -26,7 +26,7 @@ type Story = StoryObj<DXFViewer>;
 const render = (args: any) => ({
   props: {
     fileURL: args.fileURL,
-    settings: args.settings,
+    settings: args.settings
   },
   template: `<cue-card style="width: 90%; height: 500px;">
       <cue-dxf-viewer [fileURL]="fileURL" [settings]="settings"></cue-dxf-viewer>
@@ -48,5 +48,13 @@ export const LayerLegend: Story = {
   args: {
     fileURL,
     settings
+  },
+};
+
+export const BackgroundOverride: Story = {
+  render,
+  args: {
+    fileURL,
+    settings: new DXFViewerSettings(),
   },
 };
