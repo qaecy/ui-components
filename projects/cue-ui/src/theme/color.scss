@@ -43,7 +43,7 @@
   --cue-warning: #ffc107;
   --cue-warningContrast: var(--cue-color-white);
 
-  --cue-mimeicon-deco-color: var(--cue-color-lightgray);
+  --cue-border-color: #d9d9d9;
 }
 
 body.dark {
@@ -56,5 +56,5 @@ body.dark {
   --cue-neutral: var(--cue-color-midgray);
   --cue-neutralContrast: var(--cue-color-white);
 
-  --cue-mimeicon-deco-color: var(--cue-color-midgray);
+  --cue-border-color: #414955;
 }

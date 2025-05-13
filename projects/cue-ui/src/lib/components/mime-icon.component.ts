@@ -32,10 +32,10 @@ const colorMap: { [mime: string]: string } = {
   host: {
     '[class]': 'className()',
   },
-  template: ` <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 30">
+  template: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 30">
       <path
-        fill="var(--cue-mimeicon-deco-color)"
-        d="M16.4 0H4.1C1.8 0 0 1.8 0 4.1v22.3c0 2 1.6 3.6 3.6 3.6h16.8c2 0 3.6-1.6 3.6-3.6V7.6L16.4 0Z"
+        fill="var(--cue-border-color)"
+        d="M16.2.5H4.1C2.1.5.5 2.1.5 4.1v22.3c0 1.7 1.4 3.1 3.1 3.1h16.8c1.7 0 3.1-1.4 3.1-3.1V7.8h-.1c0-.1-7-7.1-7-7.1h-.1l-.1-.2Z"
       />
       <path
         [attr.fill]="color()"

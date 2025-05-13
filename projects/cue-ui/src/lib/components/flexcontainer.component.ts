@@ -1,5 +1,4 @@
-import { NgStyle } from '@angular/common';
-import { Component, computed, HostBinding, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 @Component({
   selector: 'cue-flexcontainer',
   standalone: true,
