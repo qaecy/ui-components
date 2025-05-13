@@ -7,15 +7,29 @@
   display: flex;
   overflow-x: hidden;
   flex-direction: column;
-  --mat-table-background-color: rgba(0,0,0,0);
-  --mat-paginator-container-background-color: rgba(0,0,0,0);
+  --mat-table-background-color: var(--background-color, transparent);
+  --mat-paginator-container-background-color: var(
+    --background-color,
+    transparent
+  );
+  --mat-table-row-item-outline-color: var(--cue-border-color);
+  --mat-paginator-container-text-font: var(--cue-font-family);
 }
-.table-container{
+::ng-deep .mat-mdc-option {
+  --mat-option-label-text-font: var(--cue-font-family);
+}
+.table-container {
   overflow-x: auto;
   overflow-y: auto;
   max-height: 100%;
 }
-::ng-deep .mat-mdc-row.selected {
+.mat-mdc-header-row {
+  color: inherit;
+}
+.mat-mdc-row {
+  color: inherit;
+}
+.mat-mdc-row.selected {
   font-weight: 600;
 }
 ::ng-deep .mat-mdc-row.clickable:hover {

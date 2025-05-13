@@ -76,8 +76,8 @@ export type DisplayType = (typeof displayTypes)[number];
       .container {
         display: flex;
         font-family: var(--cue-font-family);
-        --mat-table-background-color: rgba(0, 0, 0, 0);
-        --mat-paginator-container-background-color: rgba(0, 0, 0, 0);
+        --mat-table-background-color: var(--background-color);
+        --mat-paginator-container-background-color: var(--background-color);
       }
       ::ng-deep .right-aligned {
         justify-content: flex-end;
