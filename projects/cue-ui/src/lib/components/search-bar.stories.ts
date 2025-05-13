@@ -63,7 +63,7 @@ export const Default: Story = {
     buttonVariant: 'accent',
     debounceTime: 200,
     showSubmitButton: true,
-    submitIcon: 'paperplane',
+    submitIcon: 'search',
   },
 };
 
@@ -98,6 +98,6 @@ export const Narrow: Story = {
     buttonVariant: 'accent',
     debounceTime: 200,
     showSubmitButton: true,
-    submitIcon: 'paperplane',
+    submitIcon: 'search',
   },
 };

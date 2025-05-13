@@ -22,7 +22,7 @@ const iconNames = Object.keys(svgs);
         style="flex: 0 0 5em"
       >
         <cue-svg-icon [name]="iconName" />
-        <cue-typography>{{ iconName }}</cue-typography>
+        <cue-typography size="s">{{ iconName }}</cue-typography>
       </cue-flexcontainer>
       }
     </cue-flexcontainer>

@@ -1,1 +1,7 @@
-<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#000" stroke-linejoin="round" stroke-width="1.5"><path d="m6.3 6.5h11.6v11.2c0 1.2-1 2.3-2.3 2.3h-7.1c-1.2 0-2.3-1-2.3-2.3v-11.2z" stroke-linecap="round"/><path d="m4.2 6.5h15.7" stroke-linecap="round"/><path d="m8.9 5.1v-1.8c0-.3.2-.5.5-.5h5.3c.3 0 .5.2.5.5v1.8"/></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" version="1.1" viewBox="0 0 24 24">
+  <!-- Generator: Adobe Illustrator 29.3.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 151)  -->
+  <path d="M6.3,6.5h11.6v11.2c0,1.2-1,2.3-2.3,2.3h-7.1c-1.2,0-2.3-1-2.3-2.3V6.5h0Z" fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <line x1="4.2" y1="6.5" x2="19.9" y2="6.5" fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path d="M8.9,5.1v-1.8c0-.3.2-.5.5-.5h5.3c.3,0,.5.2.5.5v1.8" fill="none" stroke="red" stroke-linejoin="round" stroke-width="1.5"/>
+</svg>

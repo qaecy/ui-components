@@ -115,7 +115,7 @@ export class SearchBarComponent {
   variant = input<CardVariant>('secondary');
 
   showSubmitButton = input<boolean>(true);
-  submitIcon = input<IconName>('paperplane');
+  submitIcon = input<IconName>('search');
 
   buttonVariant = input<ButtonVariant>('accent');
 
