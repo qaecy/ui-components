@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-  <path
-    d="m600-120-240-84-186 72q-20 8-37-4.5T120-170v-560q0-13 7.5-23t20.5-15l212-72 240 84 186-72q20-8 37 4.5t17 33.5v560q0 13-7.5 23T812-192l-212 72Zm-40-98v-468l-160-56v468l160 56Zm80 0 120-40v-474l-120 46v468Zm-440-10 120-46v-468l-120 40v474Zm440-458v468-468Zm-320-56v468-468Z" />
+<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" version="1.1" viewBox="0 0 24 24">
+  <!-- Generator: Adobe Illustrator 29.3.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 151)  -->
+  <polygon points="9 18 3 20 3 6 9 4 9 18" fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <polygon points="15 20 9 18 9 4 15 6 15 20" fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <polygon points="21 18 15 20 15 6 21 4 21 18" fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
 </svg>
