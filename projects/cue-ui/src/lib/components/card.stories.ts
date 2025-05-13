@@ -31,6 +31,11 @@ const meta: Meta<Card> = {
       },
       options: cardVariants,
     },
+    padded: {
+      control: {
+        type: 'boolean',
+      },
+    },
     shadow: {
       control: {
         type: 'boolean',
@@ -42,10 +47,13 @@ const meta: Meta<Card> = {
 const render = (args: any) => ({
   props: args,
   template: `<cue-card
-    variant="${args.variant}" [shadow]="${args.shadow}">
-    <cue-typography>
-      Card content goes here
-    </cue-typography>
+    variant="${args.variant}"
+    [padded]="${args.padded}"
+    [shadow]="${args.shadow}"
+    >
+      <cue-typography>
+        Card content goes here
+      </cue-typography>
     </cue-card>`,
 });
 
@@ -56,6 +64,7 @@ export const Default: Story = {
   render,
   args: {
     variant: 'default',
+    padded: true,
     shadow: false,
   },
 };
@@ -93,6 +102,7 @@ export const WithContent: Story = {
   }),
   args: {
     variant: 'default',
+    padded: true,
     shadow: false,
   },
 };

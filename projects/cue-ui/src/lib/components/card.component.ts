@@ -15,6 +15,7 @@ export type CardVariant = (typeof cardVariants)[number];
   imports: [],
   host: {
     '[style]': 'getStyles()',
+    '[class]': 'getClass()',
     '[class.padded]': 'padded()',
     '[class.shadow]': 'shadow()',
   },
@@ -33,7 +34,7 @@ export type CardVariant = (typeof cardVariants)[number];
         box-shadow: var(--cue-card-box-shadow);
       }
 
-      &[variant="secondary"], &[variant="primary"] {
+      &.variant-secondary, &.variant-primary {
           --cue-button-primary-background: var(--cue-color-ultralightgray);
           --cue-button-primary-focus-color: var(--cue-color-ultralightgray);
           --cue-button-primary-foreground: var(--cue-color-blue);
@@ -48,7 +49,7 @@ export type CardVariant = (typeof cardVariants)[number];
           --cue-button-secondary-disabled-border-color: var(--cue-color-midgray);
       }
 
-      &[variant="secondary"] {
+      &.variant-secondary {
         --cue-input-switch-checked-background: var(--cue-color-blue);
       }
     }
@@ -59,6 +60,8 @@ export class Card {
   variant = input<CardVariant>('default');
   shadow = input<boolean>(false);
   padded = input<boolean>(true);
+
+  getClass = computed(() => `variant-${this.variant()}`);
 
   getStyles = computed(() => {
     const color = this.variant() === 'fade' ? 'neutral' : this.variant();
