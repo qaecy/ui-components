@@ -43,7 +43,7 @@
   --cue-warning: #ffc107;
   --cue-warningContrast: var(--cue-color-white);
 
-  --cue-border-color: #d9d9d9;
+  --cue-border-color: var(--cue-color-lightgray);
   --cue-scrollbar-thumb-color: var(--cue-color-lightgray);
   --cue-scrollbar-track-color: transparent;
 }
@@ -58,6 +58,6 @@ body.dark {
   --cue-neutral: var(--cue-color-midgray);
   --cue-neutralContrast: var(--cue-color-white);
 
-  --cue-border-color: #414955;
-  --cue-scrollbar-thumb-color: var(--cue-color-midgray);
+  --cue-border-color: var(--cue-color-darkmidgray);
+  --cue-scrollbar-thumb-color: var(--cue-color-darkmidgray);
 }

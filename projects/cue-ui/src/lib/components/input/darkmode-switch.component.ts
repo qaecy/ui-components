@@ -13,17 +13,17 @@ import { Switch } from './switch.component';
   />`,
   styles: `
       :host {
-        --cue-input-switch-background: #000;
+        --cue-input-switch-background: var(--cue-color-lightgray);
         --cue-input-switch-indicator-background: var(--cue-color-green);
         --cue-input-switch-indicator-foreground: var(--cue-color-black);
 
-        --cue-input-switch-checked-background: #000;
+        --cue-input-switch-checked-background: var(--cue-color-lightgray);
         --cue-input-switch-checked-indicator-background: var(--cue-color-green);
         --cue-input-switch-checked-indicator-foreground: var(--cue-color-black);
 
-        @media(prefers-color-scheme: dark) {
-          --cue-input-switch-background: var(--cue-color-lightgray);
-          --cue-input-switch-checked-background: var(--cue-color-lightgray);
+        body.dark & {
+          --cue-input-switch-background: var(--cue-color-darkmidgray);
+          --cue-input-switch-checked-background: var(--cue-color-darkmidgray);
         }
       }
     `,

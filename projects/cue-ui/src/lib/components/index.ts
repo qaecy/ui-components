@@ -24,3 +24,4 @@ export * from './typography.component';
 export * from './search-bar';
 export * from './button';
 export * from './input';
+export * from './menu';

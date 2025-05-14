@@ -8,12 +8,10 @@ import { KeyValList } from '../key-val-list.component';
 import { FlexContainer } from '../flexcontainer.component';
 import { Container } from '../container.component';
 import { Typography } from '../typography.component';
-import { Button } from '../button/button.component';
-import { ButtonIcon } from '../button/button-icon.component';
+import { Button, ButtonIcon, ButtonLabel, ButtonPadder } from '../button';
 import { PDFViewer } from '../pdf-viewer/pdf-viewer.component';
 import { TooltipDirective } from '../../directives';
 import { GeoJSONFeatureCollection } from '../../utils/geojson/models';
-import { ButtonPadder } from '../button/button-padder.component';
 import { SearchBarShadow } from '../search-bar/search-bar-shadow.component';
 
 export interface DocumentSearchViewProperty {
@@ -58,6 +56,7 @@ export interface DocumentSearchViewSearchResult {
     TooltipDirective,
     ButtonIcon,
     ButtonPadder,
+    ButtonLabel,
   ],
   template: `
     <cue-flexcontainer style="flex: 1;">
@@ -84,7 +83,7 @@ export interface DocumentSearchViewSearchResult {
                     @for(keyword of keywords(); track keyword.id; ){
                     <cue-button size="s" [variant]="keyword.variant">
                       <cue-button-padder size="s" />
-                      <cue-typography>{{ keyword.value }}</cue-typography>
+                      <cue-button-label>{{ keyword.value }}</cue-button-label>
                       <cue-button-padder size="s" />
                     </cue-button>
                     }

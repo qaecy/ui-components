@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import {
+  Component,
+  computed,
+  ElementRef,
+  input,
+  viewChild,
+} from '@angular/core';
 import { TooltipDirective } from '../../directives/tooltip.directive';
 import { ButtonSize, ButtonVariant } from './types';
 
@@ -8,6 +14,7 @@ import { ButtonSize, ButtonVariant } from './types';
   standalone: true,
   imports: [CommonModule, TooltipDirective],
   template: `<button
+    #buttonElement
     [style]="getStyles()"
     [disabled]="disabled()"
     [cueTooltip]="tooltip()"
@@ -49,6 +56,8 @@ export class Button {
   size = input<ButtonSize>('m');
   tooltip = input<string>('');
   disabled = input(false);
+  buttonElement =
+    viewChild.required<ElementRef<HTMLButtonElement>>('buttonElement');
 
   getStyles = computed(() => {
     const styles = [

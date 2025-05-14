@@ -6,6 +6,7 @@
 @use "./card";
 @use "./button";
 @use "./input";
+@use "./menu";
 @use "./grid";
 @use "./flex";
 @use "./icon";
@@ -13,10 +14,6 @@
 
 :root {
   color-scheme: light;
-  /* EXISTING DEFINITIONS: marked for deletion */
-  --cue-light-gray: #d9d9d9;
-  --cue-extra-light-gray: #f5f6f9;
-  --cue-font-family: Poppins;
 }
 
 html {

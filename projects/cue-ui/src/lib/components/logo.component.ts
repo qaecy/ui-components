@@ -86,7 +86,7 @@ export class Logo implements OnDestroy {
   private norm = 0;
   animate = (t?: number) => {
     if (t !== undefined) {
-      this.tip = Math.min(1, (t - this.appearTime) * 0.0004);
+      this.tip = Math.min(1, (t - this.appearTime) * 0.0006);
       if (!this.active()) {
         this.toe = Math.min(1, (t - this.disappearTime) * 0.0006);
       }

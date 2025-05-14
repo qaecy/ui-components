@@ -57,7 +57,7 @@ export type DisplayType = (typeof displayTypes)[number];
 
     <!-- MIMEICON -->
     @else if(valueType() === 'MIMEICON'){
-    <cue-mime-icon [mime]="value()"></cue-mime-icon>
+    <cue-mime-icon [mime]="value()" size="s"></cue-mime-icon>
     }
 
     <!-- DEFAULT CASE -->
