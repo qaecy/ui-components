@@ -3,7 +3,7 @@ import { SplitLayoutComponent } from '../split-layout.component';
 import { Card, KeyValComponent, MapComponent } from '../';
 import { LngLatLike } from 'mapbox-gl';
 import { ColumnDef, TableComponent } from '../table.component';
-import { SearchBarComponent } from '../search-bar.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { KeyValList } from '../key-val-list.component';
 import { FlexContainer } from '../flexcontainer.component';
 import { Container } from '../container.component';
@@ -13,11 +13,19 @@ import { ButtonIcon } from '../button/button-icon.component';
 import { PDFViewer } from '../pdf-viewer/pdf-viewer.component';
 import { TooltipDirective } from '../../directives';
 import { GeoJSONFeatureCollection } from '../../utils/geojson/models';
+import { ButtonPadder } from '../button/button-padder.component';
+import { SearchBarShadow } from '../search-bar/search-bar-shadow.component';
 
 export interface DocumentSearchViewProperty {
   size: 'm' | 'l' | 'xl';
   key: string;
   value: string;
+}
+
+export interface DocumentSearchViewKeyword {
+  id: string;
+  value: string;
+  variant: 'secondary' | 'primary';
 }
 
 export interface DocumentSearchViewSearchResult {
@@ -39,6 +47,7 @@ export interface DocumentSearchViewSearchResult {
     KeyValComponent,
     TableComponent,
     SearchBarComponent,
+    SearchBarShadow,
     Card,
     KeyValList,
     FlexContainer,
@@ -48,6 +57,7 @@ export interface DocumentSearchViewSearchResult {
     PDFViewer,
     TooltipDirective,
     ButtonIcon,
+    ButtonPadder,
   ],
   template: `
     <cue-flexcontainer style="flex: 1;">
@@ -55,10 +65,34 @@ export interface DocumentSearchViewSearchResult {
         <cue-container>
           <cue-flexcontainer direction="column">
             <!-- SEARCH BOX -->
-            <cue-card variant="primary">
-              <ng-content select="[searchBefore]"></ng-content>
-              <cue-search-bar></cue-search-bar>
-              <ng-content select="[searchAfter]"></ng-content>
+            <cue-card variant="primary" style="overflow:hidden">
+              <cue-flexcontainer direction="column">
+                <ng-content select="[searchBefore]"></ng-content>
+                <cue-search-bar-shadow variant="default">
+                  <cue-search-bar />
+                </cue-search-bar-shadow>
+                @if(keywords().length){
+                <div></div>
+                <div
+                  style="flex:1;position: relative;min-height:calc(3 * var(--cue-button-s-height));overflow-y:auto;"
+                >
+                  <cue-flexcontainer
+                    gap="s"
+                    wrap="wrap"
+                    style="position:absolute;inset:0"
+                  >
+                    @for(keyword of keywords(); track keyword.id; ){
+                    <cue-button size="s" [variant]="keyword.variant">
+                      <cue-button-padder size="s" />
+                      <cue-typography>{{ keyword.value }}</cue-typography>
+                      <cue-button-padder size="s" />
+                    </cue-button>
+                    }
+                  </cue-flexcontainer>
+                </div>
+                }
+                <ng-content select="[searchAfter]"></ng-content>
+              </cue-flexcontainer>
             </cue-card>
 
             <!-- PROPERTIES -->
@@ -177,6 +211,7 @@ export class DocumentSearchView {
   location = input<LngLatLike | undefined>(undefined);
   mapboxToken = input<string>();
   searchResults = input<DocumentSearchViewSearchResult[]>([]);
+  keywords = input<DocumentSearchViewKeyword[]>([]);
   info = input<string>('Search your project...');
 
   doSearch = output<string>();

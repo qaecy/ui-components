@@ -35,21 +35,18 @@
       (mouseenter)="onContainerHovered()"
     >
       @for(item of otherItems(); track item.id; let idx = $index){
-      <div
+      <cue-button
         class="btn delayed"
         (mouseover)="hovered = item.id"
         (mouseleave)="hovered = undefined"
+        [size]="size()"
+        [variant]="variant()"
+        [cueTooltip]="item.label"
+        [tooltipPlacement]="tooltipPlacement()"
+        (click)="handleClick(idx + 1)"
       >
-        <cue-button
-          [size]="size()"
-          [variant]="variant()"
-          [cueTooltip]="item.label"
-          [tooltipPlacement]="tooltipPlacement()"
-          (click)="handleClick(idx + 1)"
-        >
-          <cue-button-icon [icon]="item.icon" />
-        </cue-button>
-      </div>
+        <cue-button-icon [icon]="item.icon" />
+      </cue-button>
       }
     </cue-flexcontainer>
   </div>

@@ -29,6 +29,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  background-color: var(--cue-main-background);
 
   &.dark {
     color-scheme: dark;

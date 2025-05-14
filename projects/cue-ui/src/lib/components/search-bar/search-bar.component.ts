@@ -6,41 +6,42 @@ import {
   input,
   output,
 } from '@angular/core';
-import { CardVariant } from './card.component';
-import { Button } from './button/button.component';
-import { ButtonIcon } from './button/button-icon.component';
-import { ButtonVariant } from './button/types';
-import { IconName } from './icons/types';
-import { Typography } from './typography.component';
+import { CardVariant } from '../card.component';
+import { Button } from '../button/button.component';
+import { ButtonIcon } from '../button/button-icon.component';
+import { ButtonVariant } from '../button/types';
+import { IconName } from '../icons/types';
+import { Typography } from '../typography.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'cue-search-bar',
   imports: [Button, ButtonIcon, Typography],
+  host: {
+    '[style]': 'hostStyles()',
+  },
   template: `
-    <div class="wrap" [style]="wrapStyles()">
-      <cue-typography>
-        <input
-          type="text"
-          class="search-input"
-          [placeholder]="placeholder()"
-          (keyup)="update($event)"
-        />
-      </cue-typography>
-      @if(showSubmitButton()){
-      <cue-button
-        (click)="submit()"
-        class="search-button"
-        [variant]="buttonVariant()"
-      >
-        <cue-button-icon [icon]="submitIcon()" />
-      </cue-button>
-      }
-    </div>
+    <cue-typography>
+      <input
+        type="text"
+        class="search-input"
+        [placeholder]="placeholder()"
+        (keyup)="update($event)"
+      />
+    </cue-typography>
+    @if(showSubmitButton()){
+    <cue-button
+      (click)="submit()"
+      class="search-button"
+      [variant]="buttonVariant()"
+    >
+      <cue-button-icon [icon]="submitIcon()" />
+    </cue-button>
+    }
   `,
   styles: [
     `
-      .wrap {
+      :host {
         --height: calc(64rem / 16);
         border-radius: var(--height);
         position: relative;
@@ -147,7 +148,7 @@ export class SearchBarComponent {
     this.valueSubmit.emit(this._value);
   }
 
-  wrapStyles = computed(() => {
+  hostStyles = computed(() => {
     return `
         color: var(--cue-${this.variant()}Contrast);
         background-color: var(--cue-${this.variant()});

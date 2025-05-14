@@ -1,8 +1,8 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { SearchBarComponent } from './search-bar.component';
-import { Card } from './card.component';
-import svgs from './icons/svg.json';
-import { Container } from './container.component';
+import { Card } from '../card.component';
+import svgs from '../icons/svg.json';
+import { Container } from '../container.component';
 
 const meta: Meta<SearchBarComponent> = {
   title: 'Search bar',
