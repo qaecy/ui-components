@@ -121,7 +121,7 @@ export class Menu {
   onToggle(event: ToggleEvent) {
     const popoverNode = event.target as HTMLElement;
     if (!popoverNode) return;
-    const button = (popoverNode.querySelector('button.selected') ||
+    const button = (popoverNode.querySelector('button:not(.selected)') ||
       popoverNode.querySelector('button')) as HTMLButtonElement;
     if (button) {
       button.focus();

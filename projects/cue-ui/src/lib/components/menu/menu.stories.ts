@@ -64,5 +64,7 @@ export const Default: Story = {
       </cue-menu>
 `,
   }),
-  args: {},
+  args: {
+    positioning: 'bottomright',
+  },
 };

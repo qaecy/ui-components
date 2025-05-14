@@ -6,7 +6,7 @@ import { Typography } from '../typography.component';
   selector: 'cue-menu-item',
   imports: [FlexContainer, Typography],
   template:
-    '<button class="getClass()"><ng-content select="[before]" /><cue-typography><ng-content /></cue-typography><div class="flexer"></div><ng-content select="[after]" /></button>',
+    '<button [attr.tabIndex]="getTabindex()" [class]="getClass()"><ng-content select="[before]" /><cue-typography><ng-content /></cue-typography><div class="flexer"></div><ng-content select="[after]" /></button>',
   styles: `
     :host {
       display: contents;
@@ -32,12 +32,12 @@ import { Typography } from '../typography.component';
         outline: none;
       }
 
-      &.selected {
-        background: var(--cue-menu-item-selected-background-color);
-      }
-
       &:hover:not(:disabled), &:focus:not(:disabled) {
         background: var(--cue-menu-item-focus-background-color);
+      }
+
+      &.selected {
+        background: var(--cue-menu-item-selected-background-color);
       }
     }
 
@@ -47,6 +47,7 @@ import { Typography } from '../typography.component';
   `,
 })
 export class MenuItem {
-  selected = input<boolean | undefined>(undefined);
+  selected = input<boolean>(false);
   getClass = computed(() => (this.selected() ? 'selected' : ''));
+  getTabindex = computed(() => (this.selected() ? '-1' : '0'));
 }

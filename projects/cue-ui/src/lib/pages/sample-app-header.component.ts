@@ -36,7 +36,7 @@ import {
         <cue-button-icon icon="settings" />
       </cue-button>
 
-      <cue-menu position="bottomleft">
+      <cue-menu position="bottomright">
         <cue-button #trigger trigger variant="tertiary">
           <cue-button-padder />
           <cue-button-label>De</cue-button-label>
@@ -45,7 +45,7 @@ import {
           </cue-button-padder>
         </cue-button>
         <cue-menu-wrap menu>
-          <cue-menu-item selected> De </cue-menu-item>
+          <cue-menu-item [selected]="true"> De </cue-menu-item>
           <cue-menu-item> Fr </cue-menu-item>
           <cue-menu-item> It </cue-menu-item>
         </cue-menu-wrap>
