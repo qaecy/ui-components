@@ -1,6 +1,5 @@
 import {
   afterRender,
-  afterRenderEffect,
   Component,
   computed,
   ElementRef,
@@ -152,8 +151,6 @@ export class Logo implements OnDestroy {
    */
   constructor() {
     const elementRef = inject(ElementRef<HTMLElement>);
-
-    afterRenderEffect((): void => {});
 
     afterRender({
       read: () => {

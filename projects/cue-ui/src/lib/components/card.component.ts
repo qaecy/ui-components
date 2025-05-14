@@ -1,4 +1,5 @@
 import { Component, computed, input } from '@angular/core';
+import { ResizedDirective, ResizedEvent } from '../directives';
 
 export const cardVariants = [
   'default',
@@ -12,7 +13,7 @@ export type CardVariant = (typeof cardVariants)[number];
 @Component({
   selector: 'cue-card',
   standalone: true,
-  imports: [],
+  imports: [ResizedDirective],
   host: {
     '[style]': 'getStyles()',
     '[class]': 'getClass()',
@@ -20,7 +21,12 @@ export type CardVariant = (typeof cardVariants)[number];
     '[class.shadow]': 'shadow()',
   },
   template: `
-    <div class="inner" [style.display]="innerDisplay()">
+    <div
+      cueResized
+      (resized)="onResize($event)"
+      class="inner"
+      [style.display]="innerDisplay()"
+    >
       <ng-content />
     </div>
   `,
@@ -79,6 +85,7 @@ export class Card {
   padded = input<boolean>(true);
   scrollable = input<boolean>(false);
   maxHeight = input<string | undefined>(undefined);
+  maxContentHeight = input<boolean>(false);
 
   isScrollable = computed(
     () => this.scrollable() || this.maxHeight() !== undefined
@@ -107,4 +114,15 @@ export class Card {
   });
 
   innerDisplay = computed(() => (this.isScrollable() ? 'block' : 'contents'));
+
+  onResize(evt: ResizedEvent) {
+    if (!this.maxContentHeight()) return;
+    // let's get all children's heights
+    const height = Array.from(evt.element.children).reduce((height, child) => {
+      return child.getBoundingClientRect().height + height;
+    }, 0);
+    (
+      evt.element.parentElement as HTMLElement
+    ).style.maxHeight = `calc(${height}px + var(--cue-card-padding-y) * 2 + 2px)`;
+  }
 }

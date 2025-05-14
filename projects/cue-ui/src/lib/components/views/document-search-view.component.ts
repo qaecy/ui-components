@@ -100,7 +100,8 @@ export interface DocumentSearchViewSearchResult {
             <cue-card
               variant="accent"
               [scrollable]="true"
-              style="flex: 1;min-height:4em"
+              [maxContentHeight]="true"
+              style="flex: 1;min-height:4em;margin-bottom:auto"
             >
               <cue-key-val-list>
                 @for(item of properties(); track $index; ; let idx = $index){
