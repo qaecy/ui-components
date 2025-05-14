@@ -64,7 +64,6 @@ export class BIMTilesViewer implements OnDestroy{
     const [components, world] = await this._setupComponents(container);
     const loader = components.get(IfcStreamer);
     loader.world = world;
-    loader.url = `to-be-removed`;
     monkeyPatchIfcStreamer(loader, data.urlAuthenticator);
     
     const loaded: {model: FragmentsGroup, geometryDefinition: GeometryDefinition}[] = [];
