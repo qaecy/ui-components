@@ -7,36 +7,9 @@
 >
   <!-- FILTER -->
   @if(displayFilter){
-  <div class="filter-row">
-    @if(!filterVisible){
-    <span style="flex: 1"></span>
-    <button
-      mat-icon-button
-      aria-label="Show filter"
-      (click)="filterVisible = true"
-    >
-    <cue-icon icon="filter"></cue-icon>
-    </button>
-    } @if(filterVisible){
-    <mat-form-field style="width: 100%" floatLabel="always">
-      <mat-label>{{ filterLabel }}</mat-label>
-      <input
-        matInput
-        (keyup)="applyFilter($event)"
-        [(ngModel)]="filterStr"
-        [placeholder]="filterLabel"
-        subscriptSizing="dynamic"
-      />
-    </mat-form-field>
-    <button
-      mat-icon-button
-      aria-label="Hide filter"
-      (click)="filterVisible = false"
-    >
-      <cue-icon icon="filter_off"></cue-icon>
-    </button>
-    }
-  </div>
+  <cue-table-toolbar
+    (filterValueChange)="setFilter($event)"
+  ></cue-table-toolbar>
   }
 
   <div class="table-container">
@@ -128,9 +101,11 @@
 
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4" *ngIf="filterStr">
-          No data matching the filter "{{ filterStr }}"
+        @if(dataSource.filter){
+        <td class="mat-cell" colspan="4">
+          No data matching the filter "{{ dataSource.filter }}"
         </td>
+        }
       </tr>
     </table>
   </div>

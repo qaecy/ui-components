@@ -19,7 +19,7 @@ export * from './mime-icon.component';
 export * from './side-nav.component';
 export * from './split-layout.component';
 export * from './table-cell.component';
-export * from './table.component';
+export * from './table/table.component';
 export * from './typography.component';
 export * from './search-bar';
 export * from './button';

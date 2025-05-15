@@ -15,7 +15,7 @@ const meta: Meta<BIMFragmentsViewer> = {
 export default meta;
 type Story = StoryObj<BIMFragmentsViewer>;
 
-const allModels = [
+const separateModels = [
   {
     id: 'backbone',
     name: 'Backbone',
@@ -32,10 +32,9 @@ const allModels = [
     name: 'VISIONWOOD',
     fileURL: 'models/220425_VISIONWOOD.fragments',
   },
-  { id: 'nest', name: 'NEST', fileURL: 'models/231121_NEST.fragments' },
 ];
 const data: BIMFragmentsViewerData = {
-  models: allModels,
+  models: separateModels,
 };
 const render = (args: any) => ({
   props: {
@@ -50,7 +49,7 @@ export const Default: Story = {
   render,
   args: {
     data: {
-      models: allModels,
+      models: separateModels,
     },
     loadInstantly: false,
     showModelList: true,
@@ -61,7 +60,9 @@ export const SingleModel: Story = {
   render,
   args: {
     data: {
-      models: [allModels[0]],
+      models: [
+        { id: 'nest', name: 'NEST', fileURL: 'models/231121_NEST.fragments' },
+      ],
     },
     loadInstantly: true,
     showModelList: false,
@@ -72,9 +73,9 @@ export const AllModelsInstantLoad: Story = {
   render,
   args: {
     data: {
-      models: allModels,
+      models: separateModels,
     },
     loadInstantly: true,
-    showModelList: false,
+    showModelList: true,
   },
 };

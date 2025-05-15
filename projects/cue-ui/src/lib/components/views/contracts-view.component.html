@@ -1,0 +1,83 @@
+<cue-flexcontainer style="flex: 1">
+  <div class="panel left">
+    <cue-container>
+      <cue-flexcontainer direction="column">
+        <!-- SEARCH BOX -->
+        <cue-card variant="primary" style="overflow: hidden">
+          <cue-flexcontainer direction="column">
+            <ng-content select="[searchBefore]"></ng-content>
+            <cue-search-bar-shadow variant="default">
+              <cue-search-bar placeholder="Filter..." [debounceTime]="20" (valueChange)="setTableFilter($event)" />
+            </cue-search-bar-shadow>
+          </cue-flexcontainer>
+        </cue-card>
+
+        <!-- PROPERTIES -->
+        @if(selectedContract()){
+        <cue-card
+          variant="accent"
+          [scrollable]="true"
+          [maxContentHeight]="true"
+          style="flex: 1; min-height: 4em; margin-bottom: auto"
+        >
+          <cue-button (click)="togglePDF()">{{
+            showPDF() ? "Hide PDF" : "Show PDF"
+          }}</cue-button>
+          <br>
+          <cue-key-val-list>
+            @for(item of selectedContract()?.general; track $index; ; let idx =
+            $index){
+            <cue-key-val
+              [size]="item.size"
+              [key]="item.key"
+              [val]="item.value"
+            ></cue-key-val>
+            }
+            <cue-typography weight="semibold">Parties</cue-typography>
+            @for(item of selectedContract()?.parties; track $index; ; let idx =
+            $index){
+            <cue-key-val
+              [size]="item.size"
+              [key]="item.key"
+              [val]="item.value"
+            ></cue-key-val>
+            }
+            <cue-typography weight="semibold">Obligations</cue-typography>
+            @for(item of selectedContract()?.obligations; track $index; ; let idx
+            = $index){
+            <cue-key-val
+              [size]="item.size"
+              [key]="item.key"
+              [val]="item.value"
+            ></cue-key-val>
+            }
+          </cue-key-val-list>
+        </cue-card>
+        }
+      </cue-flexcontainer>
+    </cue-container>
+  </div>
+
+  <div class="panel right">
+    <cue-card style="flex: 1" [scrollable]="true">
+      <!-- TABLE -->
+      @if(!showPDF()){
+      <cue-table
+        [data]="tableData()"
+        [filterValue]="filterValue()"
+        [clickableRows]="true"
+        (clickedRow)="handleRowClick($event)"
+        [columnDefs]="columnDefs"
+        [displayFilter]="false"
+        tooltipCol="summary"
+      ></cue-table>
+      } @else{
+      <cue-pdf-viewer
+        style="height: 100%; width: 100%"
+        [src]="pdfURL()"
+        [original-size]="false"
+      ></cue-pdf-viewer>
+      }
+    </cue-card>
+  </div>
+</cue-flexcontainer>

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   HostListener,
   input,
   Input,
@@ -12,23 +13,23 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { TableCellComponent } from './table-cell.component';
+import { TableCellComponent } from '../table-cell.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
   ResizedDirective,
   ResizedEvent,
   TooltipDirective,
-} from '../directives';
+} from '../../directives';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
-import { IconMenuComponent } from './icon-menu.component';
+import { IconMenuComponent } from '../icon-menu.component';
 import { MatButtonModule } from '@angular/material/button';
-import { IconComponent } from './icon.component';
+import { TableToolbar } from './toolbar.component';
 
 export class ColumnDef {
   type = 'DEFAULT';
@@ -54,7 +55,6 @@ export interface CellValueChange {
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
-    IconComponent,
     ResizedDirective,
     MatTableModule,
     MatPaginatorModule,
@@ -64,7 +64,8 @@ export interface CellValueChange {
     TableCellComponent,
     TooltipDirective,
     IconMenuComponent,
-    MatButtonModule
+    MatButtonModule,
+    TableToolbar
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
@@ -75,6 +76,7 @@ export class TableComponent implements OnChanges {
   @Input() columnDefs: ColumnDef[] = [];
   @Input() data: any;
   @Input() fixedLayout = true;
+  filterValue = input<string>("");
 
   // Functionality
   selectedRow = input<string>(); // Id of selected row
@@ -91,9 +93,6 @@ export class TableComponent implements OnChanges {
   @Input() editableCol: string | undefined = undefined;
   @Input() actionItemsCol: string | undefined = undefined;
 
-  // Labels
-  @Input() filterLabel = 'Filter';
-
   contentChanged = output<any>();
 
   // OUTPUT
@@ -101,6 +100,11 @@ export class TableComponent implements OnChanges {
   cellValueChange = output<CellValueChange>();
   selectionChange = output<void>();
   clickedRow = output<any>();
+
+  onFilterChanged = effect(() => {
+    if(this.dataSource === undefined) return;
+    this.dataSource.filter = this.filterValue();
+  })
 
   readonly dataSource: MatTableDataSource<any> = new MatTableDataSource();
   @ViewChild(MatSort) sort!: MatSort;
@@ -113,7 +117,6 @@ export class TableComponent implements OnChanges {
   displayedColumns: string[] = [];
   originalData: any[] = [];
   selection: { [columnKey: string]: any[] } = {};
-  filterStr = '';
   pageSizeOptions = [5, 10, 20];
   filterVisible = false;
   hoveredRow: any = null;
@@ -149,10 +152,9 @@ export class TableComponent implements OnChanges {
     this.dataSource.paginator = this.paginator;
   }
 
-  applyFilter(event: Event) {
+  setFilter(value: string) {
     if (this.dataSource === undefined) return;
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = value;
   }
 
   onSortChange(sortState: Sort) {

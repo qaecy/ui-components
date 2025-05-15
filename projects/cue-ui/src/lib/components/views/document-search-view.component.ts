@@ -2,7 +2,7 @@ import { Component, computed, input, output, signal } from '@angular/core';
 import { SplitLayoutComponent } from '../split-layout.component';
 import { Card, KeyValComponent, MapComponent } from '../';
 import { LngLatLike } from 'mapbox-gl';
-import { ColumnDef, TableComponent } from '../table.component';
+import { ColumnDef, TableComponent } from '../table/table.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { KeyValList } from '../key-val-list.component';
 import { FlexContainer } from '../flexcontainer.component';

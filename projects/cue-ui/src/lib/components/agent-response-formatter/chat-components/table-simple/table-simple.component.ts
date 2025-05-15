@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { TableSimpleData } from '../models';
-import { ColumnDef, TableComponent } from '../../../table.component';
+import { ColumnDef, TableComponent } from '../../../table/table.component';
 
 @Component({
   selector: 'cue-table-simple',
