@@ -13,7 +13,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { TableCellComponent } from '../table-cell.component';
+import { TableCell } from '../table-cell.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -27,7 +27,7 @@ import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
-import { IconMenuComponent } from '../icon-menu.component';
+import { IconMenu } from '../icon-menu.component';
 import { MatButtonModule } from '@angular/material/button';
 import { TableToolbar } from './toolbar.component';
 
@@ -61,22 +61,22 @@ export interface CellValueChange {
     MatSortModule,
     FormsModule,
     MatCheckboxModule,
-    TableCellComponent,
+    TableCell,
     TooltipDirective,
-    IconMenuComponent,
+    IconMenu,
     MatButtonModule,
-    TableToolbar
+    TableToolbar,
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableComponent implements OnChanges {
+export class Table implements OnChanges {
   // Data
   @Input() columnDefs: ColumnDef[] = [];
   @Input() data: any;
   @Input() fixedLayout = true;
-  filterValue = input<string>("");
+  filterValue = input<string>('');
 
   // Functionality
   selectedRow = input<string>(); // Id of selected row
@@ -102,9 +102,9 @@ export class TableComponent implements OnChanges {
   clickedRow = output<any>();
 
   onFilterChanged = effect(() => {
-    if(this.dataSource === undefined) return;
+    if (this.dataSource === undefined) return;
     this.dataSource.filter = this.filterValue();
-  })
+  });
 
   readonly dataSource: MatTableDataSource<any> = new MatTableDataSource();
   @ViewChild(MatSort) sort!: MatSort;

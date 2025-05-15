@@ -8,6 +8,7 @@
             <ng-content select="[searchBefore]"></ng-content>
             <cue-search-bar-shadow variant="default">
               <cue-search-bar
+                i18n-placeholder
                 placeholder="Filter..."
                 [debounceTime]="20"
                 (valueChange)="setTableFilter($event)"
@@ -26,10 +27,10 @@
         >
           <cue-typography>
             <cue-flexcontainer [direction]="'row'" [justify]="'space-between'">
-              <cue-button (click)="togglePDF()">{{
+              <cue-button (click)="togglePDF()" i18n>{{
                 showPDF() ? "Hide PDF" : "Show PDF"
               }}</cue-button>
-              <cue-button (click)="toggleHideEmpty()">{{
+              <cue-button (click)="toggleHideEmpty()" i18n>{{
                 !hideEmptyValues() ? "Hide empty values" : "Show empty values"
               }}</cue-button>
             </cue-flexcontainer>
@@ -38,23 +39,26 @@
           <cue-key-val-list>
             @for(item of contract.general; track $index; ; let idx = $index){
             <cue-key-val
+              i18n-key
               [size]="item.size"
               [key]="item.key"
               [val]="item.value"
             ></cue-key-val>
             }
-            <cue-typography weight="semibold">{{contract.parties.length ? 'Parties' : 'No Parties found'}}</cue-typography>
+            <cue-typography weight="semibold" i18n>{{contract.parties.length ? 'Parties' : 'No Parties found'}}</cue-typography>
             @for(item of contract.parties; track $index; ; let idx = $index){
             <cue-key-val
+              i18n-key
               [size]="item.size"
               [key]="item.key"
               [val]="item.value"
             ></cue-key-val>
             }
-            <cue-typography weight="semibold">{{contract.obligations.length ? 'Obligations' : 'No Obligations found'}}</cue-typography>
+            <cue-typography weight="semibold" i18n>{{contract.obligations.length ? 'Obligations' : 'No Obligations found'}}</cue-typography>
             @for(item of contract.obligations; track $index; ; let idx =
             $index){
             <cue-key-val
+              i18n-key
               [size]="item.size"
               [key]="item.key"
               [val]="item.value"

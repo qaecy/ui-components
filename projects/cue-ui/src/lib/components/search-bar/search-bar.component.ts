@@ -109,7 +109,7 @@ import { Typography } from '../typography.component';
     `,
   ],
 })
-export class SearchBarComponent {
+export class SearchBar {
   placeholder = input<string>('Search...');
 
   debounceTime = input<number>(200);

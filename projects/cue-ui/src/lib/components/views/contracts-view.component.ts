@@ -3,12 +3,12 @@ import { FlexContainer } from '../flexcontainer.component';
 import { Container } from '../container.component';
 import { Card } from '../card.component';
 import { Typography } from '../typography.component';
-import { SearchBarComponent } from '../search-bar';
-import { ColumnDef, TableComponent } from '../table/table.component';
+import { SearchBar } from '../search-bar';
+import { ColumnDef, Table } from '../table/table.component';
 import { SearchBarShadow } from '../search-bar/search-bar-shadow.component';
 import { JSONEntry, Row, Val } from './contracts.interfaces';
 import { KeyValList } from '../key-val-list.component';
-import { KeyValComponent } from '../key-val.component';
+import { KeyVal } from '../key-val.component';
 import { PDFViewer } from '../pdf-viewer/pdf-viewer.component';
 import { Button } from '../button';
 
@@ -33,11 +33,11 @@ export class ContractProps {
     Container,
     Card,
     Typography,
-    SearchBarComponent,
-    TableComponent,
+    SearchBar,
+    Table,
     SearchBarShadow,
     KeyValList,
-    KeyValComponent,
+    KeyVal,
     PDFViewer,
     Button,
   ],

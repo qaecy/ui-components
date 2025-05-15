@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InlineRefComponent } from './inline-ref.component';
+import { InlineRef } from './inline-ref.component';
 
-describe('InlineRefComponent', () => {
-  let component: InlineRefComponent;
-  let fixture: ComponentFixture<InlineRefComponent>;
+describe('InlineRef', () => {
+  let component: InlineRef;
+  let fixture: ComponentFixture<InlineRef>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InlineRefComponent]
+      imports: [InlineRef]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InlineRefComponent);
+    fixture = TestBed.createComponent(InlineRef);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

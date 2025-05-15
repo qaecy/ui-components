@@ -1,5 +1,4 @@
 import { Component, computed, input } from '@angular/core';
-import { IconComponent } from './icon.component';
 import { Typography } from './typography.component';
 import mimeTypes from 'mime-types';
 
@@ -70,7 +69,7 @@ const colorMap: { [mime: string]: string } = {
   }
   `,
 })
-export class MimeIconComponent {
+export class MimeIcon {
   mime = input<string>('application/pdf');
   size = input<'xs' | 's' | 'm'>('m');
 

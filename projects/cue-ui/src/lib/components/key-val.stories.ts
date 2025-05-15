@@ -1,10 +1,10 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { KeyValComponent } from './key-val.component';
+import { KeyVal } from './key-val.component';
 import { KeyValList } from './key-val-list.component';
 
-const meta: Meta<KeyValComponent> = {
+const meta: Meta<KeyVal> = {
   title: 'Key Value',
-  component: KeyValComponent,
+  component: KeyVal,
   decorators: [
     moduleMetadata({
       imports: [KeyValList],
@@ -28,7 +28,7 @@ const render = (args: any) => ({
 });
 
 export default meta;
-type Story = StoryObj<KeyValComponent>;
+type Story = StoryObj<KeyVal>;
 
 export const Default: Story = {
   render,

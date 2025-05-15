@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { ColumnDef, TableComponent } from './table.component';
+import { ColumnDef, Table } from './table.component';
 
-const meta: Meta<TableComponent> = {
+const meta: Meta<Table> = {
   title: 'Table',
-  component: TableComponent,
+  component: Table,
   tags: ['autodocs'],
   argTypes: {},
 };
 
 export default meta;
-type Story = StoryObj<TableComponent>;
+type Story = StoryObj<Table>;
 
 const data = [
   {

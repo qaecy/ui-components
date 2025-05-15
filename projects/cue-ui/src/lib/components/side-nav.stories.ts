@@ -1,11 +1,11 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { SideNavComponent } from './side-nav.component';
+import { SideNav } from './side-nav.component';
 import { Typography } from './typography.component';
 import { Card } from './card.component';
 
-const meta: Meta<SideNavComponent> = {
+const meta: Meta<SideNav> = {
   title: 'Side Nav',
-  component: SideNavComponent,
+  component: SideNav,
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
@@ -16,7 +16,7 @@ const meta: Meta<SideNavComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<SideNavComponent>;
+type Story = StoryObj<SideNav>;
 
 const render = (args: any) => ({
   props: args,

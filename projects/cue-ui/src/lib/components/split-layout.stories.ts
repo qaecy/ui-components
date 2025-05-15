@@ -1,13 +1,13 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { SplitLayoutComponent } from './split-layout.component';
+import { SplitLayout } from './split-layout.component';
 import { Card } from './card.component';
 import { Container } from './container.component';
 import { Typography } from './typography.component';
 import { FlexContainer } from './flexcontainer.component';
 
-const meta: Meta<SplitLayoutComponent> = {
+const meta: Meta<SplitLayout> = {
   title: 'Split Layout',
-  component: SplitLayoutComponent,
+  component: SplitLayout,
   tags: ['autodocs'],
   argTypes: {
     sizes: {
@@ -59,7 +59,7 @@ const templateRight = `<cue-container rightContent style="height:100%">
         </cue-container>`;
 
 export default meta;
-type Story = StoryObj<SplitLayoutComponent>;
+type Story = StoryObj<SplitLayout>;
 
 const render = (args: any) => ({
   props: {

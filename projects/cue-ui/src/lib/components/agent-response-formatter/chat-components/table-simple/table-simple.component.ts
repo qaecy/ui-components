@@ -1,10 +1,10 @@
 import { Component, computed, input } from '@angular/core';
 import { TableSimpleData } from '../models';
-import { ColumnDef, TableComponent } from '../../../table/table.component';
+import { ColumnDef, Table } from '../../../table/table.component';
 
 @Component({
   selector: 'cue-table-simple',
-  imports: [TableComponent],
+  imports: [Table],
   templateUrl: './table-simple.component.html',
   styleUrl: './table-simple.component.scss',
 })

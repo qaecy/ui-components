@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TruncateDirective } from '../directives/truncate.directive';
-import { MimeIconComponent } from './mime-icon.component';
+import { MimeIcon } from './mime-icon.component';
 
 export const displayTypes = [
   'CHECKBOX',
@@ -26,7 +26,7 @@ export type DisplayType = (typeof displayTypes)[number];
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'cue-table-cell',
-  imports: [MatCheckboxModule, TruncateDirective, MimeIconComponent],
+  imports: [MatCheckboxModule, TruncateDirective, MimeIcon],
   template: `<div
     class="container"
     #cell
@@ -91,7 +91,7 @@ export type DisplayType = (typeof displayTypes)[number];
     `,
   ],
 })
-export class TableCellComponent {
+export class TableCell {
   value = input.required<any>();
   valueType = input<DisplayType>('DEFAULT');
   contentAlignment = input<'left' | 'right' | 'center'>('left');

@@ -22,7 +22,7 @@ import { Typography } from './typography.component';
     `,
   ],
 })
-export class KeyValComponent {
+export class KeyVal {
   size = input<'m' | 'l' | 'xl'>('m');
   key = input.required<string>();
   val = input.required<string>();

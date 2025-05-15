@@ -58,7 +58,7 @@ export class IconMenuItem {
     ]),
   ],
 })
-export class IconMenuComponent {
+export class IconMenu {
   menuItems = input.required<IconMenuItem[]>();
   openDirection = input<OpenDirection>('right');
   labelPosition = input<Placement | undefined>();

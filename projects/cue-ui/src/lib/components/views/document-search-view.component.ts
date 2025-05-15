@@ -1,9 +1,8 @@
 import { Component, computed, input, output, signal } from '@angular/core';
-import { SplitLayoutComponent } from '../split-layout.component';
-import { Card, KeyValComponent, MapComponent } from '../';
+import { Card, KeyVal, MapComponent } from '../';
 import { LngLatLike } from 'mapbox-gl';
-import { ColumnDef, TableComponent } from '../table/table.component';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { ColumnDef, Table } from '../table/table.component';
+import { SearchBar } from '../search-bar/search-bar.component';
 import { KeyValList } from '../key-val-list.component';
 import { FlexContainer } from '../flexcontainer.component';
 import { Container } from '../container.component';
@@ -39,12 +38,11 @@ export interface DocumentSearchViewSearchResult {
 @Component({
   selector: 'cue-document-search',
   imports: [
-    SplitLayoutComponent,
     MapComponent,
     Card,
-    KeyValComponent,
-    TableComponent,
-    SearchBarComponent,
+    KeyVal,
+    Table,
+    SearchBar,
     SearchBarShadow,
     Card,
     KeyValList,

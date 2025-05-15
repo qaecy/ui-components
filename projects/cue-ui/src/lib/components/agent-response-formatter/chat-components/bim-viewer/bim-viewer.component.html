@@ -2,7 +2,8 @@
   <!-- Start passive -->
   @if(data() && startPassive()){ @if(!loadDeferred){
   <cue-passive-mode
-    icon="3d-rotation"
+    i18n-label
+    icon="rotate-3d"
     label="Load model"
     (click)="loadDeferred = true"
   ></cue-passive-mode>

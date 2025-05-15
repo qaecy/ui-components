@@ -30,7 +30,7 @@ type Position = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   templateUrl: './agent-fab.component.html',
   styleUrls: ['./agent-fab.component.scss'],
 })
-export class AgentFabComponent implements AfterViewInit {
+export class AgentFAB implements AfterViewInit {
   fabText = input('Chat with');
   containerHeight = input('400px');
   containerWidth = input('250px');

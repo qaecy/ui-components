@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { MimeIconComponent } from './mime-icon.component';
+import { MimeIcon } from './mime-icon.component';
 
-const meta: Meta<MimeIconComponent> = {
+const meta: Meta<MimeIcon> = {
   title: 'Mime Icon',
-  component: MimeIconComponent,
+  component: MimeIcon,
   tags: ['autodocs'],
   argTypes: {
     size: {
@@ -14,7 +14,7 @@ const meta: Meta<MimeIconComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<MimeIconComponent>;
+type Story = StoryObj<MimeIcon>;
 
 export const Default: Story = {
   args: {

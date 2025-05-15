@@ -114,12 +114,12 @@ export class Menu {
 
   getClass = computed(() => this.positioning());
 
-  onBeforeToggle(event: ToggleEvent) {
-    if (this.isOpen() !== undefined) event.preventDefault();
+  onBeforeToggle(event: Event) {
+    if (this.isOpen() !== undefined) (event as ToggleEvent).preventDefault();
   }
 
-  onToggle(event: ToggleEvent) {
-    const popoverNode = event.target as HTMLElement;
+  onToggle(event: Event) {
+    const popoverNode = (event as ToggleEvent).target as HTMLElement;
     if (!popoverNode) return;
     const button = (popoverNode.querySelector('button:not(.selected)') ||
       popoverNode.querySelector('button')) as HTMLButtonElement;

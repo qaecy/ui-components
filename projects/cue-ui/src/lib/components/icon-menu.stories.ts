@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import {
-  IconMenuComponent,
+  IconMenu,
   IconMenuItem,
   openDirections,
 } from './icon-menu.component';
 
-const meta: Meta<IconMenuComponent> = {
+const meta: Meta<IconMenu> = {
   title: 'Icon Menu',
-  component: IconMenuComponent,
+  component: IconMenu,
   tags: ['autodocs'],
   argTypes: {
     openDirection: {
@@ -21,7 +21,7 @@ const meta: Meta<IconMenuComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<IconMenuComponent>;
+type Story = StoryObj<IconMenu>;
 
 export const Default: Story = {
   args: {

@@ -7,7 +7,7 @@ import {
   DocumentSearchViewProperty,
   DocumentSearchViewSearchResult,
 } from '../components/views/document-search-view.component';
-import { SideNavComponent } from '../components';
+import { SideNav } from '../components';
 import { AppWrap } from '../components/app-wrap.component';
 import { SampleAppHeader } from './sample-app-header.component';
 
@@ -16,7 +16,7 @@ import { SampleAppHeader } from './sample-app-header.component';
   imports: [
     FlexContainer,
     DocumentSearchView,
-    SideNavComponent,
+    SideNav,
     Typography,
     AppWrap,
     SampleAppHeader,

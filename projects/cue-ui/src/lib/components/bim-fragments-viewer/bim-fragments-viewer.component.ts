@@ -51,7 +51,7 @@ export interface BIMFragmentsViewerData {
     ></div>
     @if(showModelList() && models().length){
     <cue-draggable-card [padded]="false">
-      <cue-topography size="s">
+      <cue-typography size="s">
         <cue-flexcontainer direction="column" style="padding: 10px;">
           @if(modelsAreLoading()){
           <span>Loading...</span>
@@ -66,7 +66,7 @@ export interface BIMFragmentsViewerData {
           </cue-flexcontainer>
           } }
         </cue-flexcontainer>
-      </cue-topography>
+      </cue-typography>
     </cue-draggable-card>
     }`,
   imports: [

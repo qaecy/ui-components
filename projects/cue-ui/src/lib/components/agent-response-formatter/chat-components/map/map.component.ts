@@ -13,11 +13,11 @@ import { PassiveMode } from '../../../passive-mode.component';
 import { KeyValList } from '../../../key-val-list.component';
 import { buildFeatureCollection } from '../../../../utils/geojson/build-tools';
 import { GeoJSONFeatureCollection } from '../../../../utils/geojson/models';
-import { KeyValComponent } from '../../../key-val.component';
+import { KeyVal } from '../../../key-val.component';
 
 @Component({
   selector: 'app-map',
-  imports: [MapComponent, KeyValComponent, KeyValList, PassiveMode],
+  imports: [MapComponent, KeyVal, KeyValList, PassiveMode],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
 })
@@ -38,7 +38,7 @@ export class InChatMap {
   mapboxToken = computed(() => this.data()?.mapboxToken ?? '');
   featureCollection = signal<GeoJSONFeatureCollection | undefined>(undefined);
 
-  // @ViewChild(NgMapboxComponent) mapbox!: NgMapboxComponent;
+  // @ViewChild(MapComponent) mapbox!: MapComponent;
   mapbox = contentChildren(MapComponent);
   lngLat: LngLatLike = [8.5, 47];
   zoom = 1;

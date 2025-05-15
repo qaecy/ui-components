@@ -1,12 +1,12 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { SearchBarComponent } from './search-bar.component';
+import { SearchBar } from './search-bar.component';
 import { Card } from '../card.component';
 import svgs from '../icons/svg.json';
 import { Container } from '../container.component';
 
-const meta: Meta<SearchBarComponent> = {
+const meta: Meta<SearchBar> = {
   title: 'Search bar',
-  component: SearchBarComponent,
+  component: SearchBar,
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
@@ -30,7 +30,7 @@ const meta: Meta<SearchBarComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<SearchBarComponent>;
+type Story = StoryObj<SearchBar>;
 
 export const Default: Story = {
   render: (args: any) => ({

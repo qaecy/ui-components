@@ -9,6 +9,7 @@ import {
   Button,
   AppHeader,
   FlexContainer,
+  ButtonPadder,
 } from '../components';
 @Component({
   selector: 'cue-map-search',
@@ -18,6 +19,7 @@ import {
     Button,
     ButtonLabel,
     ButtonIcon,
+    ButtonPadder,
     DarkmodeSwitch,
     Menu,
     MenuWrap,

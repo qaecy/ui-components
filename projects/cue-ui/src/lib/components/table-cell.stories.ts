@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { TableCellComponent, displayTypes } from './table-cell.component';
+import { TableCell, displayTypes } from './table-cell.component';
 
-const meta: Meta<TableCellComponent> = {
+const meta: Meta<TableCell> = {
   title: 'Table cell',
-  component: TableCellComponent,
+  component: TableCell,
   tags: ['autodocs'],
   argTypes: {
     valueType: {
@@ -16,7 +16,7 @@ const meta: Meta<TableCellComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<TableCellComponent>;
+type Story = StoryObj<TableCell>;
 
 export const Default: Story = {
   args: {

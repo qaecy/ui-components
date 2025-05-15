@@ -27,7 +27,7 @@ export interface FileData {
   templateUrl: './inline-ref.component.html',
   styleUrl: './inline-ref.component.scss',
 })
-export class InlineRefComponent {
+export class InlineRef {
   i = input.required<string>();
   data = input<DocRefData>();
   clickable = input<boolean>(true);

@@ -13,7 +13,7 @@ import { ResizedDirective, ResizedEvent } from '../directives/resized.directive'
     '[class.nav-open]': 'isOpen',
   },
 })
-export class SideNavComponent {
+export class SideNav {
   navWidth = input<string>('200px');
   mobileBreakpoint = input<number>(576); // small
   keepOpenBreakpoint = input<number>(992); // lg

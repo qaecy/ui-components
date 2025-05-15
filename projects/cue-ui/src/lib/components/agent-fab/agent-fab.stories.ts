@@ -1,11 +1,11 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { AgentFabComponent } from './agent-fab.component';
+import { AgentFAB } from './agent-fab.component';
 import { Typography } from '../typography.component';
 import { FlexContainer } from '../flexcontainer.component';
 
-const meta: Meta<AgentFabComponent> = {
+const meta: Meta<AgentFAB> = {
   title: 'Agent FAB',
-  component: AgentFabComponent,
+  component: AgentFAB,
   tags: ['autodocs'],
   argTypes: {},
   decorators: [
@@ -19,7 +19,7 @@ const meta: Meta<AgentFabComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<AgentFabComponent>;
+type Story = StoryObj<AgentFAB>;
 
 const render = (args: any) => ({
   props: args,

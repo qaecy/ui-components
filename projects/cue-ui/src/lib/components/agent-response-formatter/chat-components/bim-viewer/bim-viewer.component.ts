@@ -16,14 +16,14 @@ import {
   BIMTilesViewerData,
 } from '../../../bim-tiles-viewer/bim-tiles-viewer.component';
 import { ResizedDirective, ResizedEvent } from '../../../../directives';
-import { IconMenuComponent, IconMenuItem } from '../../../icon-menu.component';
+import { IconMenu, IconMenuItem } from '../../../icon-menu.component';
 import { PassiveMode } from '../../../passive-mode.component';
 
 const DEMO_PROJECT_ID = 'demo-project';
 
 @Component({
   selector: 'app-bim-viewer',
-  imports: [BIMTilesViewer, ResizedDirective, PassiveMode, IconMenuComponent],
+  imports: [BIMTilesViewer, ResizedDirective, PassiveMode, IconMenu],
   templateUrl: './bim-viewer.component.html',
   styleUrl: './bim-viewer.component.scss',
 })

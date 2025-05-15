@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BimViewerComponent } from './bim-viewer.component';
+import { InChatBIMViewer } from './bim-viewer.component';
 
-describe('BimViewerComponent', () => {
-  let component: BimViewerComponent;
-  let fixture: ComponentFixture<BimViewerComponent>;
+describe('InChatBIMViewer', () => {
+  let component: InChatBIMViewer;
+  let fixture: ComponentFixture<InChatBIMViewer>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BimViewerComponent]
+      imports: [InChatBIMViewer]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BimViewerComponent);
+    fixture = TestBed.createComponent(InChatBIMViewer);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

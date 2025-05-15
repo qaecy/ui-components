@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { IconComponent } from '../icon.component';
 import { MatInputModule } from '@angular/material/input';
+import { SvgIcon } from '../icons/svg-icon.component';
 
 @Component({
   selector: 'cue-table-toolbar',
@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
-    IconComponent,
+    SvgIcon,
     MatInputModule,
   ],
   template: `<div class="filter-row">
@@ -24,7 +24,7 @@ import { MatInputModule } from '@angular/material/input';
       aria-label="Show filter"
       (click)="toggleFilterDisplay()"
     >
-      <cue-icon icon="filter"></cue-icon>
+      <cue-svg-icon name="filter"></cue-svg-icon>
     </button>
     } @if(filterVisible()){
     <mat-form-field style="width: 100%" floatLabel="always">
@@ -42,7 +42,7 @@ import { MatInputModule } from '@angular/material/input';
       aria-label="Hide filter"
       (click)="toggleFilterDisplay()"
     >
-      <cue-icon icon="filter_off"></cue-icon>
+      <cue-svg-icon name="filter"></cue-svg-icon>
     </button>
     }
   </div>`,

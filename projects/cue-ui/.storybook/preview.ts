@@ -6,6 +6,7 @@ import docJson from "../documentation.json";
 import { themes } from '@storybook/theming';
 import { addons } from "@storybook/preview-api";
 import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
+import '@angular/localize/init';
 
 setCompodocJson(docJson);
 

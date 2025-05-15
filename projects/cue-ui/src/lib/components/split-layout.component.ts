@@ -69,7 +69,7 @@ export interface PanelSizes {
     `,
   ],
 })
-export class SplitLayoutComponent implements AfterViewInit, OnDestroy {
+export class SplitLayout implements AfterViewInit, OnDestroy {
   @ViewChild('splitLeft', { static: true }) splitLeft!: ElementRef;
   @ViewChild('splitRight', { static: true }) splitRight!: ElementRef;
 
