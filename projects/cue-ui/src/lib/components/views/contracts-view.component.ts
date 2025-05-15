@@ -78,6 +78,17 @@ export class ContractsView {
     return rows;
   });
 
+  hideEmptyValues = signal(false);
+  contractData = computed(() => {
+    const contract = this.selectedContract();
+    if (contract === undefined) return undefined;
+    if (!this.hideEmptyValues()) return contract;
+    const general = contract.general.filter((p) => p.value !== '-');
+    const parties = contract.parties.filter((p) => p.value !== '-');
+    const obligations = contract.obligations.filter((p) => p.value !== '-');
+    return { general, parties, obligations };
+  });
+
   private _getStrVal(val: string | Val | null | undefined, fallback = '-') {
     const flatVal = typeof val === 'string' ? val : val?.value;
     if (flatVal === undefined) return fallback;
@@ -184,5 +195,9 @@ export class ContractsView {
 
   togglePDF() {
     this.showPDF() ? this.showPDF.set(false) : this.showPDF.set(true);
+  }
+
+  toggleHideEmpty(){
+    this.hideEmptyValues.set(!this.hideEmptyValues());
   }
 }

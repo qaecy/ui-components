@@ -7,44 +7,53 @@
           <cue-flexcontainer direction="column">
             <ng-content select="[searchBefore]"></ng-content>
             <cue-search-bar-shadow variant="default">
-              <cue-search-bar placeholder="Filter..." [debounceTime]="20" (valueChange)="setTableFilter($event)" />
+              <cue-search-bar
+                placeholder="Filter..."
+                [debounceTime]="20"
+                (valueChange)="setTableFilter($event)"
+              />
             </cue-search-bar-shadow>
           </cue-flexcontainer>
         </cue-card>
 
         <!-- PROPERTIES -->
-        @if(selectedContract()){
+        @if(contractData(); as contract){
         <cue-card
           variant="accent"
           [scrollable]="true"
           [maxContentHeight]="true"
           style="flex: 1; min-height: 4em; margin-bottom: auto"
         >
-          <cue-button (click)="togglePDF()">{{
-            showPDF() ? "Hide PDF" : "Show PDF"
-          }}</cue-button>
-          <br>
+          <cue-typography>
+            <cue-flexcontainer [direction]="'row'" [justify]="'space-between'">
+              <cue-button (click)="togglePDF()">{{
+                showPDF() ? "Hide PDF" : "Show PDF"
+              }}</cue-button>
+              <cue-button (click)="toggleHideEmpty()">{{
+                !hideEmptyValues() ? "Hide empty values" : "Show empty values"
+              }}</cue-button>
+            </cue-flexcontainer>
+          </cue-typography>
+          <br />
           <cue-key-val-list>
-            @for(item of selectedContract()?.general; track $index; ; let idx =
-            $index){
+            @for(item of contract.general; track $index; ; let idx = $index){
             <cue-key-val
               [size]="item.size"
               [key]="item.key"
               [val]="item.value"
             ></cue-key-val>
             }
-            <cue-typography weight="semibold">Parties</cue-typography>
-            @for(item of selectedContract()?.parties; track $index; ; let idx =
-            $index){
+            <cue-typography weight="semibold">{{contract.parties.length ? 'Parties' : 'No Parties found'}}</cue-typography>
+            @for(item of contract.parties; track $index; ; let idx = $index){
             <cue-key-val
               [size]="item.size"
               [key]="item.key"
               [val]="item.value"
             ></cue-key-val>
             }
-            <cue-typography weight="semibold">Obligations</cue-typography>
-            @for(item of selectedContract()?.obligations; track $index; ; let idx
-            = $index){
+            <cue-typography weight="semibold">{{contract.obligations.length ? 'Obligations' : 'No Obligations found'}}</cue-typography>
+            @for(item of contract.obligations; track $index; ; let idx =
+            $index){
             <cue-key-val
               [size]="item.size"
               [key]="item.key"
