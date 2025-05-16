@@ -41,8 +41,8 @@ export class ContractProps {
     PDFViewer,
     Button,
   ],
-  templateUrl: `./contracts-view.component.html`,
-  styleUrl: `./contracts-view.component.scss`,
+  templateUrl: `./contracts.view.html`,
+  styleUrl: `./contracts.view.scss`,
 })
 export class ContractsView {
   contracts = input<{ [filePath: string]: JSONEntry }>({});

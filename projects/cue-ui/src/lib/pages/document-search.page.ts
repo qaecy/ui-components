@@ -7,7 +7,7 @@ import {
   DocumentSearchViewKeyword,
   DocumentSearchViewProperty,
   DocumentSearchViewSearchResult,
-} from '../components/views/document-search-view.component';
+} from '../components/views/document-search.view';
 import { SampleAppHeader } from './sample-app-header.component';
 
 @Component({

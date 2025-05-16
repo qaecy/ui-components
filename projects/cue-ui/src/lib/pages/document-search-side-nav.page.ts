@@ -6,7 +6,7 @@ import {
   DocumentSearchView,
   DocumentSearchViewProperty,
   DocumentSearchViewSearchResult,
-} from '../components/views/document-search-view.component';
+} from '../components/views/document-search.view';
 import { SideNav } from '../components';
 import { AppWrap } from '../components/app-wrap.component';
 import { SampleAppHeader } from './sample-app-header.component';

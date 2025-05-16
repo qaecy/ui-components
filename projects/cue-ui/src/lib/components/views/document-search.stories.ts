@@ -4,7 +4,7 @@ import {
   DocumentSearchViewKeyword,
   DocumentSearchViewProperty,
   DocumentSearchViewSearchResult,
-} from './document-search-view.component';
+} from './document-search.view';
 
 const mapboxToken = '<MAPBOX_TOKEN>';
 
@@ -12,7 +12,9 @@ const meta: Meta<DocumentSearchView> = {
   title: 'View: Document search',
   component: DocumentSearchView,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    doSearch: { action: 'do-search' },
+  },
 };
 
 export default meta;

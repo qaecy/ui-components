@@ -4,7 +4,7 @@ const mapboxToken = "<MAPBOX_TOKEN>";
 
 // 👇 Imports the required stories
 import { DocumentSearchSideNavPage } from './document-search-side-nav.page';
-import { DocumentSearchViewProperty, DocumentSearchViewSearchResult } from '../components/views/document-search-view.component';
+import { DocumentSearchViewProperty, DocumentSearchViewSearchResult } from '../components/views/document-search.view';
 
 const meta: Meta<DocumentSearchSideNavPage> = {
   component: DocumentSearchSideNavPage,

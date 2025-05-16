@@ -57,7 +57,7 @@ export interface DocumentSearchViewSearchResult {
     ButtonLabel,
   ],
   template: `
-    <cue-flexcontainer style="flex: 1;">
+    <cue-flexcontainer style="flex: 1">
       <div class="panel left">
         <cue-container>
           <cue-flexcontainer direction="column">
@@ -66,7 +66,7 @@ export interface DocumentSearchViewSearchResult {
               <cue-flexcontainer direction="column">
                 <ng-content select="[searchBefore]"></ng-content>
                 <cue-search-bar-shadow variant="default">
-                  <cue-search-bar />
+                  <cue-search-bar (valueSubmit)="doSearch.emit($event)"/>
                 </cue-search-bar-shadow>
                 @if(keywords().length){
                 <div></div>

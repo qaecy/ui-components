@@ -5,26 +5,15 @@ import {
   Pipe,
   ViewEncapsulation,
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import svgs from './svg.json';
 import { IconName } from './types';
-
-@Pipe({
-  name: 'safeHtml',
-  standalone: true,
-})
-export class SafeHtmlPipe {
-  constructor(private sanitizer: DomSanitizer) {}
-  transform(html: string) {
-    return this.sanitizer.bypassSecurityTrustHtml(html);
-  }
-}
+import { SafeHtmlPipe } from '../../pipes';
 
 @Component({
   selector: 'cue-svg-icon',
   standalone: true,
   imports: [SafeHtmlPipe],
-  template: `<div [innerHTML]="this.getSvg() ?? '' | safeHtml"></div>`,
+  template: `<div [innerHTML]="this.getSvg() ?? '' | cueSafeHtml"></div>`,
   encapsulation: ViewEncapsulation.ShadowDom,
   styles: `
     svg {

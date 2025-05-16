@@ -1,2 +1,3 @@
-export * from './contracts-view.component';
-export * from './document-search-view.component';
+export * from './accept-terms.view';
+export * from './contracts.view';
+export * from './document-search.view';

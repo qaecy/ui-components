@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { ContractsView } from './contracts-view.component';
+import { ContractsView } from './contracts.view';
 import { contracts } from './contracts-sample';
 
 const meta: Meta<ContractsView> = {

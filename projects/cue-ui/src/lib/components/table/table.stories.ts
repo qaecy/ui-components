@@ -5,7 +5,12 @@ const meta: Meta<Table> = {
   title: 'Table',
   component: Table,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    sortUpdated: { action: 'sort-update' },
+    cellValueChange: { action: 'cell-value-change' },
+    selectionChange: { action: 'selection-change' },
+    clickedRow: { action: 'row-click' },
+  },
 };
 
 export default meta;
@@ -77,5 +82,13 @@ export const Long: Story = {
   args: {
     data: [...data, ...data, ...data, ...data],
     columnDefs
+  },
+};
+
+export const ClickableRows: Story = {
+  args: {
+    data,
+    columnDefs: columnDefsAdv,
+    clickableRows: true
   },
 };

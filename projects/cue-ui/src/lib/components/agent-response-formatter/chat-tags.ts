@@ -23,7 +23,7 @@ export const chatTags = [
     component: {
       importPromise: () =>
         import('./chat-components/inline-ref/inline-ref.component'),
-      importName: 'InlineRefComponent',
+      importName: 'InlineRef',
     },
     selector: 'ref',
   },

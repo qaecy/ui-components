@@ -8,7 +8,7 @@ import {
   DocumentSearchViewKeyword,
   DocumentSearchViewProperty,
   DocumentSearchViewSearchResult,
-} from '../components/views/document-search-view.component';
+} from '../components/views/document-search.view';
 
 const meta: Meta<DocumentSearchPage> = {
   component: DocumentSearchPage,
